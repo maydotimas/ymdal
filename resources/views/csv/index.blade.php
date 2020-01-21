@@ -9,17 +9,18 @@
                 <!-- general form elements -->
                 <div class="box-body">
                     <!-- general form elements -->
-                    <form action="http://test.yamahalogistics.com/admin/upload" method="post"
-                          enctype="multipart/form-data" onsubmit="uploadstart()">
+                    <form action="/csv/upload" method="post" enctype="multipart/form-data">
+                        @csrf
                         <div class="col-md-4">
                             <input type="button" class="btn btn-block btn-primary btn-lg"
                                    onclick="document.getElementById('fu').click()" value="Select CSV file">
-                            <input type="file" id="fu" name="pfilename" accept=".csv" onchange="FileSelected()"
+                            <input type="file" id="fu" name="pfilename" accept=".csv"
                                    style="width: 0;">
                             <input type="hidden" name="ptype" id="csvtype" value="navision">
+                            <input type="hidden" name="name" id="name">
                         </div>
                         <div class="col-md-4">
-                            <input id="fileName" disabled="" class="form-control input-lg" type="text"
+                            <input id="fileName" name="fileName" disabled="" class="form-control input-lg" type="text"
                                    placeholder="No CSV file chosen">
                         </div>
                         <div class="col-md-4">
@@ -47,25 +48,7 @@
                             <p class="bold">LIST OF FILES UPLOADED</p>
                             <div id="DataTables_Table_0_wrapper"
                                  class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="dataTables_length" id="DataTables_Table_0_length"><label>Show
-                                                <select name="DataTables_Table_0_length"
-                                                        aria-controls="DataTables_Table_0"
-                                                        class="form-control input-sm">
-                                                    <option value="10">10</option>
-                                                    <option value="25">25</option>
-                                                    <option value="50">50</option>
-                                                    <option value="100">100</option>
-                                                </select> entries</label></div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                            <label>Search:<input
-                                                        type="search" class="form-control input-sm" placeholder=""
-                                                        aria-controls="DataTables_Table_0"></label></div>
-                                    </div>
-                                </div>
+
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
@@ -120,58 +103,6 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-sm-5">
-                                        <div class="dataTables_info" id="DataTables_Table_0_info" role="status"
-                                             aria-live="polite">Showing 1 to 10 of 623 entries
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-7">
-                                        <div class="dataTables_paginate paging_simple_numbers"
-                                             id="DataTables_Table_0_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button previous disabled"
-                                                    id="DataTables_Table_0_previous"><a href="#"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        data-dt-idx="0"
-                                                                                        tabindex="0">Previous</a>
-                                                </li>
-                                                <li class="paginate_button active"><a href="#"
-                                                                                      aria-controls="DataTables_Table_0"
-                                                                                      data-dt-idx="1"
-                                                                                      tabindex="0">1</a></li>
-                                                <li class="paginate_button "><a href="#"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                data-dt-idx="2" tabindex="0">2</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                data-dt-idx="3" tabindex="0">3</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                data-dt-idx="4" tabindex="0">4</a>
-                                                </li>
-                                                <li class="paginate_button "><a href="#"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                data-dt-idx="5" tabindex="0">5</a>
-                                                </li>
-                                                <li class="paginate_button disabled"
-                                                    id="DataTables_Table_0_ellipsis"><a href="#"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        data-dt-idx="6"
-                                                                                        tabindex="0">…</a></li>
-                                                <li class="paginate_button "><a href="#"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                data-dt-idx="7" tabindex="0">63</a>
-                                                </li>
-                                                <li class="paginate_button next" id="DataTables_Table_0_next"><a
-                                                            href="#" aria-controls="DataTables_Table_0" data-dt-idx="8"
-                                                            tabindex="0">Next</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -179,4 +110,40 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('extra-scripts')
+
+    <script src="/neon/assets/js/datatables/datatables.js"></script>
+    <script>
+        /* once page is loaded*/
+        $(document).ready(function () {
+            /* do this when the click select csv file is clicked. trigger the file select*/
+            $("#fu").change(function () {
+                /* get file nam details*/
+                var file = $(this).val();
+                var filename = file.substr(file.lastIndexOf('\\') + 1, file.length);
+                /* change the display value of the text box */
+                $("#fileName").val(filename);
+                $("#name").val(filename);
+                /* enable the submit button*/
+                $("#btnUploadCsv").removeAttr('disabled');
+            });
+
+            /* iNitialize table */
+            var table = $( "#DataTables_Table_0" );
+
+            // Initialize DataTable
+            table.DataTable( {
+                "dom": 'frtip',
+                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+                "bStateSave": true
+            });
+
+            // Initalize Select Dropdown after DataTables is created
+            table.closest( '.dataTables_wrapper' ).find( 'select' ).select2( {
+                minimumResultsForSearch: -1
+            });
+        });
+    </script>
 @endsection

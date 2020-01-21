@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>YMDAL | HOME</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="/css/neon_app.css">
 
@@ -161,6 +162,7 @@
 
                     <li>
                         <form method="POST" action="/logout">
+                            @csrf
                             <button class="btn btn-red btn-icon btn-sm check-changes-class">
                                 Log out
                                 <i class="entypo-logout right"></i>
@@ -221,6 +223,8 @@
 
 <!-- Demo Settings -->
 <script src="/neon/assets/js/neon-demo.js"></script>
+
+@yield('extra-scripts')
 
 </body>
 </html>
