@@ -19,15 +19,11 @@ class UploadCsvController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('details', function($row){
-
                     $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">DETAILS</a>';
-
                     return $btn;
                 })
                 ->addColumn('action', function($row){
-
                     $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">ACTION</a>';
-
                     return $btn;
                 })
                 ->rawColumns(['action','details'])

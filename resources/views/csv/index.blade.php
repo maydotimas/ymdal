@@ -46,8 +46,8 @@
                 <div class="panel panel-primary panel-table">
                     <div class="panel-body">
                         <p class="bold">LIST OF FILES UPLOADED</p>
-                        <div id="DataTables_Table_0_wrapper"
-                             class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div id=""
+                             class="">
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -147,13 +147,24 @@
                     {data: 'loaded_to_production', name: 'loaded_to_production'},
                     {data: 'details', name: 'details', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                ]
+                ],
+                fnRowCallback: function (nRow, aData, iDisplayIndex) {
+
+                    var isloaded = aData.loaded_to_production;
+                    if (isloaded == 0) {
+                        $(nRow).addClass('danger');
+                    }
+                    else {
+                        $(nRow).addClass('success');
+                    }
+                }
             });
 
             // Initalize Select Dropdown after DataTables is created
             table.closest('.dataTables_wrapper').find('select').select2({
                 minimumResultsForSearch: -1
             });
+
         });
     </script>
 @endsection
