@@ -4,23 +4,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content="YMDAL | HOME"/>
-    <meta name="author" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Neon Admin Panel" />
+    <meta name="author" content="" />
 
     <link rel="icon" href="/neon/assets/images/favicon.ico">
-    <link rel="stylesheet" href="/neon/assets/css/font-icons/entypo/css/entypo.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <title>YMDAL | HOME</title>
+    <title>Neon | Dashboard</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="/css/neon_app.css">
+    <link rel="stylesheet" href="/neon/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="/neon/assets/css/font-icons/entypo/css/entypo.css">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+    <link rel="stylesheet" href="/neon/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="/neon/assets/css/neon-core.css">
+    <link rel="stylesheet" href="/neon/assets/css/neon-theme.css">
+    <link rel="stylesheet" href="/neon/assets/css/neon-forms.css">
+    <link rel="stylesheet" href="/neon/assets/css/custom.css">
 
     <script src="/neon/assets/js/jquery-1.11.3.min.js"></script>
 
-    <!--[if lt IE 9]>
-    <script src="/neon/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="/neon/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -28,16 +32,11 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-{{--<script src="{{ asset('js/app.js') }}" defer></script>--}}
-
-<!-- Styles -->
-    {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
 
 </head>
-<body class="" data-url="http://neon.dev">
+<body class="page-body  page-fade" data-url="http://neon.dev">
 
-<div id="app" class="page-container">
-    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
     <div class="sidebar-menu">
 
@@ -123,74 +122,141 @@
     </div>
 
     <div class="main-content">
-
+        {{-- header --}}
         <div class="row">
 
-            <!-- Profile Info and Notifications -->
-            <div class="col-md-6 col-sm-8 clearfix">
+            <div class="row">
 
-                <ul class="user-info pull-left pull-none-xsm">
+                <!-- Profile Info and Notifications -->
+                <div class="col-md-6 col-sm-8 clearfix">
 
-                    <!-- Profile Info -->
-                    <li class="profile-info dropdown">
-                        <!-- add class "pull-right" if you want to place this from right -->
+                    <ul class="user-info pull-left pull-none-xsm">
 
-                        <h2>YMDAL | DASHBOARD</h2>
+                        <!-- Profile Info -->
+                        <li class="profile-info dropdown">
+                            <!-- add class "pull-right" if you want to place this from right -->
 
-                    </li>
+                            <h2>&nbsp;YMDAL | DASHBOARD</h2>
 
-                </ul>
+                        </li>
+
+                    </ul>
 
 
-            </div>
+                </div>
 
 
-            <!-- Raw Links -->
-            <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+                <!-- Raw Links -->
+                <div class="col-md-6 col-sm-4 clearfix hidden-xs">
 
-                <ul class="list-inline links-list pull-right">
+                    <ul class="list-inline links-list pull-right">
 
-                    <li>
-                        <b>ADMIN</b>: Role
-                    </li>
-                    <li class="sep"></li>
-                    <li>
-                        <b>version</b>: Role
-                    </li>
+                        <li>
+                            <b>ADMIN</b>: Role
+                        </li>
+                        <li class="sep"></li>
+                        <li>
+                            <b>version</b>: Role
+                        </li>
 
-                    <li class="sep"></li>
+                        <li class="sep"></li>
 
-                    <li>
-                        <form method="POST" action="/logout">
-                            @csrf
-                            <button class="btn btn-red btn-icon btn-sm check-changes-class">
-                                Log out
-                                <i class="entypo-logout right"></i>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                        <li>
+                            <form method="POST" action="/logout">
+                                @csrf
+                                <button class="btn btn-red btn-icon btn-sm check-changes-class">
+                                    Log out
+                                    <i class="entypo-logout right"></i>
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+
+                </div>
 
             </div>
 
         </div>
-
-        <hr/>
-
-    @yield('content')
-
-
-    <!-- Footer -->
+        <hr />
+        {{--main content--}}
+        @yield('content')
+        <!-- Footer -->
         <footer class="main">
 
-            &copy; 2020 <strong>YMDAL</strong> by <a href="http://nexbridgetech.com" target="_blank">NexBridge
-                Technologies</a>
+            &copy; 2015 <strong>Neon</strong> Admin Theme by <a href="http://nexbridgetech.com" target="_blank">NexBrigeTech</a>
 
         </footer>
     </div>
 
-
 </div>
+
+<!-- Sample Modal (Default skin) -->
+<div class="modal fade" id="sample-modal-dialog-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Widget Options - Default Modal</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope. Secure active living depend son repair day ladies now.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sample Modal (Skin inverted) -->
+<div class="modal invert fade" id="sample-modal-dialog-2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Widget Options - Inverted Skin Modal</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope. Secure active living depend son repair day ladies now.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Sample Modal (Skin gray) -->
+<div class="modal gray fade" id="sample-modal-dialog-3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Widget Options - Gray Skin Modal</h4>
+            </div>
+
+            <div class="modal-body">
+                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope. Secure active living depend son repair day ladies now.</p>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 <!-- Imported styles on this page -->
@@ -215,6 +281,7 @@
 <script src="/neon/assets/js/raphael-min.js"></script>
 <script src="/neon/assets/js/morris.min.js"></script>
 <script src="/neon/assets/js/toastr.js"></script>
+<script src="/neon/assets/js/neon-chat.js"></script>
 
 
 <!-- JavaScripts initializations and stuff -->
