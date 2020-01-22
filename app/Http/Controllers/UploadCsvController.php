@@ -7,12 +7,27 @@ use App\Imports\DRImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 
 class UploadCsvController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            $data = CsvUpload::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+
+                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
         return view('csv.index')
             ->with('active', 'csv-upload');
     }
@@ -78,5 +93,6 @@ class UploadCsvController extends Controller
     {
 
     }
+
 }
 

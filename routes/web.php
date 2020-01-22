@@ -26,6 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*CSV*/
 Route::get('/csv/upload', 'UploadCsvController@index')->name('csv');
 Route::post('/csv/upload', 'UploadCsvController@upload')->name('csv-upload');
+Route::get('/csv/upload/files', 'UploadCsvController@files')->name('csv-files');
 Route::get('/csv/history', 'UploadCsvController@history')->name('csv-history');
 /*Reports*/
 Route::get('/reports/per-transaction', 'ReportsController@per_transaction')->name('reports-transaction');

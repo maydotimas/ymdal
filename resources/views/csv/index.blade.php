@@ -135,9 +135,19 @@
 
             // Initialize DataTable
             table.DataTable( {
-                "dom": 'frtip',
-                "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-                "bStateSave": true
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('csv') }}",
+                columns: [
+                    // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                    {data: 'created_at', name: 'created_at'},
+                    {data: 'file_name', name: 'file_name'},
+                    {data: 'dr_count', name: 'dr_count'},
+                    {data: 'dr_item_count', name: 'dr_item_count'},
+                    {data: 'file_size', name: 'file_size'},
+                    {data: 'loaded_to_production', name: 'loaded_to_production'},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                ]
             });
 
             // Initalize Select Dropdown after DataTables is created
