@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CsvUpload;
+use App\DR;
 use App\Imports\DRImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +17,15 @@ class UploadCsvController extends Controller
     {
         if ($request->ajax()) {
             $data = CsvUpload::latest()->get();
+
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('details', function($row){
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">DETAILS</a>';
+                ->addColumn('details', function($data){
+                    $btn = '<button type="button" data-id="'.$data->id.'" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
                 ->addColumn('action', function($row){
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">ACTION</a>';
+                    $btn = '<button type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
                     return $btn;
                 })
                 ->rawColumns(['action','details'])
@@ -95,6 +97,24 @@ class UploadCsvController extends Controller
     {
 
     }
+
+    public function get_dr_per_file(Request $request)
+    {
+        if ($request->ajax()) {
+            return $request->all();
+            $data = DR::where('csv_id',$request->input('csv_id'))->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('details', function($row){
+                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning">DETAILS</a>';
+                    return $btn;
+                })
+                ->rawColumns(['details'])
+                ->make(true);
+        }
+
+    }
+
 
 }
 
