@@ -44,7 +44,7 @@
         <div id="admincontent">
             <div class="col-md-12">
                 <div class="panel panel-primary panel-table">
-                    <div class="panel-body">
+                    <div class="panel-body" id="div_files_uploaded">
                         <p class="bold">LIST OF FILES UPLOADED</p>
                         <div id=""
                              class="">
@@ -53,7 +53,8 @@
                                 <div class="col-sm-12">
                                     <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
                                            id="DataTables_Table_0" role="grid"
-                                           aria-describedby="DataTables_Table_0_info">
+                                           aria-describedby="DataTables_Table_0_info"
+                                           style="color:black !important;">
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_desc" tabindex="0"
@@ -105,6 +106,73 @@
                             </div>
                         </div>
                     </div>
+                    <div class="panel-body hidden" id="div_files_dr">
+                        <p class="bold">LIST OF FILES UPLOADED</p>
+                        <div id=""
+                             class="">
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
+                                           id="DataTables_Table_1" role="grid"
+                                           aria-describedby="DataTables_Table_0_info"
+                                           style="color:black !important;">
+                                        <thead>
+                                        <tr role="row">
+                                            <th class="sorting_desc" tabindex="0"
+                                                aria-controls="DataTables_Table_1" rowspan="1" colspan="1"
+                                                aria-sort="descending"
+                                                aria-label=" NO : activate to sort column ascending"
+                                                style="width: 79px;"> NO
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" FILENAME: activate to sort column ascending"
+                                                style="width: 207px;"> DR NO
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" DR COUNT: activate to sort column ascending"
+                                                style="width: 57px;"> DR DATE
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" OUTLET CODE: activate to sort column ascending"
+                                                style="width: 68px;"> OUTLET CODE
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" OUTLET NAME: activate to sort column ascending"
+                                                style="width: 71px;"> OUTLET NAME
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" SDR NO: activate to sort column ascending"
+                                                style="width: 99px;"> SDR NO
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" : activate to sort column ascending"
+                                                style="width: 54px;"></th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" : activate to sort column ascending"
+                                                style="width: 51px;">PO NO
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" : activate to sort column ascending"
+                                                style="width: 51px;"></th>
+                                        </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,6 +185,8 @@
     <script>
         /* once page is loaded*/
         $(document).ready(function () {
+
+            // part where user uploads a csv file
             /* do this when the click select csv file is clicked. trigger the file select*/
             $("#fu").change(function () {
                 /* get file nam details*/
@@ -129,8 +199,11 @@
                 $("#btnUploadCsv").removeAttr('disabled');
             });
 
+
+            /* initialize datatable yey*/
             /* iNitialize table */
             var table = $("#DataTables_Table_0");
+            var dr_table = $("#DataTables_Table_1");
 
             // Initialize DataTable
             table.DataTable({
@@ -144,26 +217,55 @@
                     {data: 'dr_count', name: 'dr_count'},
                     {data: 'dr_item_count', name: 'dr_item_count'},
                     {data: 'file_size', name: 'file_size'},
-                    {data: 'loaded_to_production', name: 'loaded_to_production'},
+                    {data: 'loaded_to_production_date', name: 'loaded_to_production'},
                     {data: 'details', name: 'details', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                 ],
+                drawCallback: function (settings) {
+                    loadDRTable()
+                },
                 fnRowCallback: function (nRow, aData, iDisplayIndex) {
-
+                    var action_btn = $(nRow).children().last().children().last();
                     var isloaded = aData.loaded_to_production;
                     if (isloaded == 0) {
                         $(nRow).addClass('danger');
                     }
                     else {
                         $(nRow).addClass('success');
+                        action_btn.removeClass('btn-danger');
+                        action_btn.addClass('btn');
+                        action_btn.html('RECALL');
+                        action_btn.css('backgroundColor', 'GRAY');
                     }
                 }
             });
 
-            // Initalize Select Dropdown after DataTables is created
-            table.closest('.dataTables_wrapper').find('select').select2({
-                minimumResultsForSearch: -1
-            });
+            function loadDRTable() {
+                $('.btn_details').click(function () {
+                    alert($(this).data('id'));
+                    $("#div_files_uploaded").addClass('hidden');
+                    $("#div_files_dr").removeClass('hidden');
+                    dr_table.DataTable().clear().destroy();
+                    // Initialize DataTable
+                    dr_table.DataTable({
+                        processing: true,
+                        serverSide: true,
+                        ajax: "/csv/upload/dr/" + $(this).data('id'),
+                        columns: [
+                            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+                            {data: 'dr_no', name: 'dr_no'},
+                            {data: 'dr_date', name: 'dr_date'},
+                            {data: 'outlet_code', name: 'outlet_code'},
+                            {data: 'outlet_code', name: 'outlet_code'},
+                            {data: 'sdr_no', name: 'sdr_no'},
+                            {data: 'po_no', name: 'po_no'},
+                            {data: 'details', name: 'details', orderable: false, searchable: false}
+                        ]
+                    });
+                });
+
+            }
+
 
         });
     </script>

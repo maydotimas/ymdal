@@ -21,6 +21,7 @@ class CsvUpload extends Migration
             $table->integer('dr_item_count')->default(0);
             $table->string('path');
             $table->integer('loaded_to_production');
+            $table->dateTime('loaded_to_production_date')->nullable();
             $table->integer('uploaded_by');
             $table->timestamps();
         });
