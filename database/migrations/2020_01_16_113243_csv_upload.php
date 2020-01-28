@@ -22,6 +22,8 @@ class CsvUpload extends Migration
             $table->string('path');
             $table->integer('loaded_to_production');
             $table->dateTime('loaded_to_production_date')->nullable();
+            $table->dateTime('recall_date')->nullable();
+            $table->string('status')->nullable();
             $table->integer('uploaded_by');
             $table->timestamps();
         });

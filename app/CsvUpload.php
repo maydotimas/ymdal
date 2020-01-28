@@ -13,7 +13,7 @@ class CsvUpload extends Model
      * @var array
      */
     protected $fillable = [
-        'file_name','file_size', 'path', 'loaded_to_production', 'uploaded_by',
+        'file_name','file_size', 'path', 'loaded_to_production', 'uploaded_by','status'
     ];
 
     /**

@@ -44,4 +44,6 @@ class DR extends Model
     {
         return $this->hasMany('App\DR_History','dr_no','dr_no');
     }
+
+
 }

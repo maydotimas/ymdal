@@ -17,17 +17,22 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('layouts.check_dr');
 })->name('check-dr');
 
 /*Dashboard*/
 Route::get('/home', 'HomeController@index')->name('home');
+
 /*CSV*/
 Route::get('/csv/upload', 'UploadCsvController@index')->name('csv');
 Route::post('/csv/upload', 'UploadCsvController@upload')->name('csv-upload');
 Route::get('/csv/upload/files', 'UploadCsvController@files')->name('csv-files');
-Route::get('/csv/upload/dr/{id}', 'UploadCsvController@get_dr_per_file')->name('csv-files-dr');
+Route::get('/csv/upload/csv/{id}', 'UploadCsvController@get_dr_per_file')->name('csv-files-dr');
+Route::get('/csv/upload/dr/{id}', 'UploadCsvController@get_items_per_file')->name('csv-items-dr');
+Route::get('/csv/upload/production/', 'UploadCsvController@upload_to_production')->name('csv-to-prod');
+Route::get('/csv/recall/', 'UploadCsvController@recall')->name('csv-recall');
+
 Route::get('/csv/history', 'UploadCsvController@history')->name('csv-history');
 /*Reports*/
 Route::get('/reports/per-transaction', 'ReportsController@per_transaction')->name('reports-transaction');

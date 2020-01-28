@@ -8,11 +8,18 @@ use App\Imports\DRImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
 
 
 class UploadCsvController extends Controller
 {
+    public $datatable;
+    public function __construct()
+    {
+        $this->datatable = new DataTables();
+    }
+    /* get the data for csv datatable or display the index page*/
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -21,7 +28,7 @@ class UploadCsvController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('details', function($data){
-                    $btn = '<button type="button" data-id="'.$data->id.'" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+                    $btn = '<button type="button" data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
                 ->addColumn('action', function($row){
@@ -36,6 +43,7 @@ class UploadCsvController extends Controller
             ->with('active', 'csv-upload');
     }
 
+    /* upload csv */
     public function upload(Request $request)
     {
         /* get file details*/
@@ -87,29 +95,62 @@ class UploadCsvController extends Controller
         return redirect('/csv/upload')->with('success', 'All good!');
     }
 
+    /* get csv history for page*/
     public function history()
     {
         return view('csv.history')
             ->with('active', 'csv-history');
     }
 
-    public function upload_to_production()
-    {
-
-    }
-
-    public function get_dr_per_file(Request $request)
+    /* upload data to production, basically mark the csv file as uploaded to 1*/
+    public function upload_to_production(Request $request)
     {
         if ($request->ajax()) {
-            return $request->all();
-            $data = DR::where('csv_id',$request->input('csv_id'))->get();
+            $csv_id = $request->input('csv_id');
+            $csv = CsvUpload::find($csv_id);
+            $csv->status = 'UPLOADED_TO_PROD';
+            $csv->loaded_to_production = 1;
+            $csv->loaded_to_production_date = date('Y-m-d H:i:s');
+            $csv->save();
+        }
+    }
+    /* upload data to production, basically mark the csv file as uploaded to 1*/
+    public function recall(Request $request)
+    {
+        if ($request->ajax()) {
+            $csv_id = $request->input('csv_id');
+            $csv = CsvUpload::find($csv_id);
+            $csv->status = 'RECALLED';
+            $csv->loaded_to_production = 0;
+            $csv->recall_date = date('Y-m-d H:i:s');
+            $csv->save();
+        }
+    }
+
+    /* get datatable data for dr details*/
+    public function get_dr_per_file(Request $request,$id)
+    {
+        if ($request->ajax()) {
+            $data = DB::table('dr')->where('csv_id',$id);
+
             return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('details', function($row){
-                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning">DETAILS</a>';
+                ->addColumn('details', function($data){
+                    $btn = '<button  data-name="'.$data->dr_no.')"  data-id="'.$data->dr_no.'" href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning btn_item_details">DETAILS</button>';
                     return $btn;
                 })
                 ->rawColumns(['details'])
+                ->make(true);
+        }
+
+    }
+
+    /* get the datatable data for items per dr */
+    public function get_items_per_file(Request $request,$id)
+    {
+        if ($request->ajax()) {
+            $data = DB::table('dr_items')->where('dr_no',$id);
+
+            return DataTables::of($data)
                 ->make(true);
         }
 
