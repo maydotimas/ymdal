@@ -28,7 +28,7 @@ class UploadCsvController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('details', function($data){
-                    $btn = '<button type="button" data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+                    $btn = '<button type="button" data-status="'.$data->status.'"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
                 ->addColumn('action', function($row){
@@ -135,7 +135,7 @@ class UploadCsvController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('details', function($data){
-                    $btn = '<button  data-name="'.$data->dr_no.')"  data-id="'.$data->dr_no.'" href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning btn_item_details">DETAILS</button>';
+                    $btn = '<button  data-name="'.$data->dr_no.')"  data-id="'.$data->dr_no.'"  href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning btn_item_details">DETAILS</button>';
                     return $btn;
                 })
                 ->rawColumns(['details'])

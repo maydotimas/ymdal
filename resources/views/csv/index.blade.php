@@ -320,29 +320,44 @@
                         /* CUSTOMIZE THE CSS FOR ROWS DEPENDING ON THE STATUS OF UPLOADED TO PRODUCTION */
                         var action_btn = $(nRow).children().last().children().last();
                         var isloaded = aData.loaded_to_production;
+                        var status = aData.status;
 
-                        /* IF CSV IS NOT UPLOADED THEN COLOR RED*/
-                        if (isloaded == 0) {
-                            $(nRow).addClass('danger');
-                        }
-                        else {
-                            /* COLOR GREEN ROW FOR ITEMS THAT ARE UPLOADED ALREADY*/
-                            $(nRow).addClass('success');
+                        /* CUSTOM DISPLAY FOR RECALLED ITEMS*/
+                        if (status == 'RECALLED') {
+                            /* COLOR GREEN ROW FOR ITEMS THAT ARE RECALLED ALREADY*/
+                            $(nRow).addClass('warning');
                             action_btn.removeClass('btn-danger');
                             action_btn.addClass('btn');
-                            action_btn.html('RECALL');
+                            action_btn.html('RECALLED');
                             action_btn.css('backgroundColor', 'GRAY');
-                            action_btn.click(function () {
-                                $.ajax({
-                                    method: "get",
-                                    url: "/csv/recall",
-                                    data: {csv_id: aData.id}
-                                })
-                                    .done(function (msg) {
-                                        alert("Data Saved: " + msg);
-                                    });
-                            });
                         }
+                        /*
+                        * IF ITEM IS NOT RECALLED, CHECK IF UPLOADED TO PRODUCTION OR JUST DELETE */
+                        else {
+                            /* IF CSV IS NOT UPLOADED THEN COLOR RED*/
+                            if (isloaded == 0) {
+                                $(nRow).addClass('danger');
+                            }
+                            else {
+                                /* COLOR GREEN ROW FOR ITEMS THAT ARE UPLOADED ALREADY*/
+                                $(nRow).addClass('success');
+                                action_btn.removeClass('btn-danger');
+                                action_btn.addClass('btn');
+                                action_btn.html('RECALL');
+                                action_btn.css('backgroundColor', 'GRAY');
+                                action_btn.click(function () {
+                                    $.ajax({
+                                        method: "get",
+                                        url: "/csv/recall",
+                                        data: {csv_id: aData.id}
+                                    })
+                                        .done(function (msg) {
+                                            alert("Data Saved: " + msg);
+                                        });
+                                });
+                            }
+                        }
+
                     }
                 });
             }
@@ -350,6 +365,13 @@
             /* LOAD DR TABLES*/
             function loadDRTable() {
                 $('.btn_details').click(function () {
+
+                    /* check status, if not recalled the can upload to production*/
+                    if($(this).data('status') == 'RECALLED'){
+                        $("#btn_prod_upload").addClass('hidden');
+                    }else{
+                        $("#btn_prod_upload").removeClass('hidden');
+                    }
 
                     /*set active csv id*/
                     $("#active_csv_id").val($(this).data('id'));
