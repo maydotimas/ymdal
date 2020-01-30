@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CsvUpload;
 use App\DR;
+use App\DR_Item;
 use App\Imports\DRImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,11 +29,22 @@ class UploadCsvController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('details', function($data){
-                    $btn = '<button type="button" data-status="'.$data->status.'"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+
+                    $btn = '<button data-toggle="modal" data-target="#deleteModal"  type="button" data-status="'.$data->status.'"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
-                ->addColumn('action', function($row){
-                    $btn = '<button type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+                ->addColumn('action', function($data){
+                    if($data->status=='UPLOADED_TO_PROD'){
+                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')"  type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+
+                      }elseif($data->status=='RECALLED'){
+                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+
+                    }else{
+                        $btn = '<button  data-toggle="modal" data-target="#deleteModal"  type="button"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+                    }
+
+
                     return $btn;
                 })
                 ->rawColumns(['action','details'])
@@ -114,6 +126,18 @@ class UploadCsvController extends Controller
             $csv->save();
         }
     }
+
+    /* delete csv file. */
+    public function delete(Request $request)
+    {
+        if ($request->ajax()) {
+            $csv_id = $request->input('csv_id');
+            CsvUpload::find($csv_id)->delete();
+            DR::where('csv_id',$csv_id)->delete();
+            DR_Item::where('csv_id',$csv_id)->delete();
+        }
+    }
+
     /* upload data to production, basically mark the csv file as uploaded to 1*/
     public function recall(Request $request)
     {

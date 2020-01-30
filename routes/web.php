@@ -32,6 +32,7 @@ Route::get('/csv/upload/csv/{id}', 'UploadCsvController@get_dr_per_file')->name(
 Route::get('/csv/upload/dr/{id}', 'UploadCsvController@get_items_per_file')->name('csv-items-dr');
 Route::get('/csv/upload/production/', 'UploadCsvController@upload_to_production')->name('csv-to-prod');
 Route::get('/csv/recall/', 'UploadCsvController@recall')->name('csv-recall');
+Route::get('/csv/delete/', 'UploadCsvController@delete')->name('csv-delete');
 
 Route::get('/csv/history', 'UploadCsvController@history')->name('csv-history');
 /*Reports*/

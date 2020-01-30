@@ -266,7 +266,7 @@
 <!-- Bottom scripts (common) -->
 <script src="/neon/assets/js/gsap/TweenMax.min.js"></script>
 <script src="/neon/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-<script src="/neon/assets/js/bootstrap.js"></script>
+
 <script src="/neon/assets/js/joinable.js"></script>
 <script src="/neon/assets/js/resizeable.js"></script>
 <script src="/neon/assets/js/neon-api.js"></script>
@@ -290,7 +290,7 @@
 
 <!-- Demo Settings -->
 <script src="/neon/assets/js/neon-demo.js"></script>
-
+<script src="/neon/assets/js/bootstrap.js"></script>
 @yield('extra-scripts')
 
 </body>
