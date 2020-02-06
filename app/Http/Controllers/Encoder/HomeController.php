@@ -24,6 +24,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home')
-            ->with('active','dashboard');
+            ->with('active','dashboard')
+            ->with('title','Dashboard');
     }
 }

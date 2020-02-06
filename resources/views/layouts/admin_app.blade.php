@@ -10,7 +10,7 @@
 
     <link rel="icon" href="/neon/assets/images/favicon.ico">
 
-    <title>Neon | Dashboard</title>
+    <title>Neon | {{$title}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="/neon/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
@@ -75,7 +75,7 @@
                 <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" -->
                 {{--DASHBOARD--}}
                 <li @if($active=='dashboard')class="active opened active"@endif>
-                    <a href="/home">
+                    <a href="/admin/home">
                         <i class="entypo-gauge"></i>
                         <span class="title">Dashboard</span>
                     </a>
@@ -88,7 +88,7 @@
                     </a>
                     <ul>
                         <li @if($active=='reports')class="active"@endif>
-                            <a href="/reports/per-transaction">
+                            <a href="/admin/reports/per-transaction">
                                 <span class="title">Per Transaction</span>
                             </a>
                         </li>
@@ -97,23 +97,30 @@
                 </li>
                 {{--CSV--}}
                 <li @if($active=='csv-upload' || $active=='csv-history')class="active opened active"@endif>
-                    <a href="index.html">
+                    <a href="/admin/csv/upload">
                         <i class="entypo-upload-cloud"></i>
                         <span class="title">Third-Party CSV</span>
                     </a>
                     <ul>
                         <li @if($active=='csv-upload')class="active"@endif>
-                            <a href="/csv/upload">
+                            <a href="/admin/csv/upload">
                                 <span class="title">Upload CSV</span>
                             </a>
                         </li>
                         <li @if($active=='csv-history')class="active"@endif>
-                            <a href="/csv/history">
+                            <a href="/admin/csv/history">
                                 <span class="title">Upload Summary</span>
                             </a>
                         </li>
 
                     </ul>
+                </li>
+                {{--BRANCH--}}
+                <li @if($active=='branch')class="active opened active"@endif>
+                    <a href="/admin/branch/upload">
+                        <i class="entypo-upload"></i>
+                        <span class="title">Upload Branch CSV</span>
+                    </a>
                 </li>
             </ul>
 
@@ -136,7 +143,7 @@
                         <li class="profile-info dropdown">
                             <!-- add class "pull-right" if you want to place this from right -->
 
-                            <h2>&nbsp;YMDAL | DASHBOARD</h2>
+                            <h2>&nbsp;YMDAL | {{$title}}</h2>
 
                         </li>
 

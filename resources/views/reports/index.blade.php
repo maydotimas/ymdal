@@ -1,4 +1,4 @@
-@extends('layouts.user_app')
+@extends('layouts.admin_app')
 
 @section('content')
     <div class="row">
@@ -11,14 +11,34 @@
                     <div class="col-md-3">
                         <a id="drtypebtn" onclick="changedrtype()" class="btn btn-block btn-blue btn-icon btn-lg">ALL
                             TYPES<i class="entypo-right"></i></a>
-                        <input type="hidden" id="drtype" value="5">
+                        <input type="hidden" id="drtype" value="ALL">
                     </div>
                     <div class="col-md-2">
                         <a id="reptypebtn" onclick="changereptype()" class="btn btn-block btn-gold btn-icon btn-lg">SELECT<i
                                     class="entypo-right"></i></a>
-                        <input type="hidden" id="reptype" value="2">
+                        <input type="hidden" id="reptype" value="ALL">
                     </div>
-                    <div id="reportcontent" class="col-md-7"></div>
+                    <div id="reportcontent" class="col-md-7 hidden">
+                        <div class="col-md-5">
+                            <div class="input-spinner">
+                                <button class="btn btn-danger btn-lg" onclick="lessrepdate();">-</button>
+                                <input id="condrdate" disabled="" class="form-control size-3 input-lg text-center"
+                                       value="2020-02-01" type="text">
+                                <button class="btn btn-danger btn-lg" onclick="addrepdate();">+</button>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <a id="drtypebtn_generate" onclick="generatereport()"
+                               class="btn btn-block btn-orange btn-icon btn-lg">GENERATE<i class="entypo-print"></i></a>
+                        </div>
+                        <div class="col-md-3">
+                            <a id="drtypebtn_export" onclick="generatereport()"
+                               class="btn btn-block btn-green btn-icon btn-lg">EXPORT<i
+                                        class="fa fa-file-excel-o"></i></a>
+                        </div>
+                        <input id="conrepdate" value="2020-02-01" type="hidden">
+                    </div>
+
                     <!-- /.box -->
                 </div>
             </div>
@@ -165,4 +185,50 @@
             </div>
         </div>
     </div>
+@endsection
+@section('extra-scripts')
+    <script>
+    function changereptype(){
+        var reptype = $("#reptype").val();
+        if(reptype=='ALL'){
+            $("#reptype").val('DAILY')
+            $("#reptypebtn").html('DAILY <i class="entypo-right"></i>')
+        }
+        else if(reptype=='DAILY'){
+            $("#reptype").val('MONTHLY')
+            $("#reptypebtn").html('MONTHLY <i class="entypo-right"></i>')
+        }
+        else {
+            $("#reptype").val('ALL')
+            $("#reptypebtn").html('ALL <i class="entypo-right"></i>')
+        }
+    }
+    function changedrtype(){
+        var drtype = $("#drtype").val();
+        if(drtype=='ALL'){
+            $("#drtype").val('PENDING')
+            $("#drtypebtn").html('PENDING <i class="entypo-right"></i>')
+        }
+        else if(drtype=='PENDING'){
+            $("#drtype").val('IN-TRANSIT')
+            $("#drtypebtn").html('IN-TRANSIT <i class="entypo-right"></i>')
+        }
+        else if(drtype=='IN-TRANSIT'){
+            $("#drtype").val('CONFIRMED')
+            $("#drtypebtn").html('CONFIRMED <i class="entypo-right"></i>')
+        }
+        else if(drtype=='CONFIRMED'){
+            $("#drtype").val('DELIVERED')
+            $("#drtypebtn").html('DELIVERED <i class="entypo-right"></i>')
+        }
+        else if(drtype=='DELIVERED'){
+            $("#drtype").val('BACKLOAD')
+            $("#drtypebtn").html('BACKLOAD <i class="entypo-right"></i>')
+        }
+        else {
+            $("#drtype").val('ALL')
+            $("#drtypebtn").html('ALL <i class="entypo-right"></i>')
+        }
+    }
+    </script>
 @endsection

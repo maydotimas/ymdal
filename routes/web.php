@@ -21,24 +21,41 @@ Route::get('/', function () {
     return view('layouts.check_dr');
 })->name('check-dr');
 
-/*Dashboard*/
-Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('encoder')->group(function () {
 
-/*CSV*/
-Route::get('/csv/upload', 'UploadCsvController@index')->name('csv');
-Route::post('/csv/upload', 'UploadCsvController@upload')->name('csv-upload');
-Route::get('/csv/upload/files', 'UploadCsvController@files')->name('csv-files');
-Route::get('/csv/upload/csv/{id}', 'UploadCsvController@get_dr_per_file')->name('csv-files-dr');
-Route::get('/csv/upload/dr/{id}', 'UploadCsvController@get_items_per_file')->name('csv-items-dr');
-Route::get('/csv/upload/production/', 'UploadCsvController@upload_to_production')->name('csv-to-prod');
-Route::get('/csv/recall/', 'UploadCsvController@recall')->name('csv-recall');
-Route::get('/csv/delete/', 'UploadCsvController@delete')->name('csv-delete');
+    /*Dashboard*/
+    Route::get('/home', 'Encoder\HomeController@index')->name('home');
 
-Route::get('/csv/history', 'UploadCsvController@history')->name('csv-history');
-/*Reports*/
-Route::get('/reports/per-transaction', 'ReportsController@per_transaction')->name('reports-transaction');
+});
 
 
+Route::prefix('admin')->group(function () {
+
+    /*Dashboard*/
+    Route::get('/home', 'Admin\HomeController@index')->name('home');
+
+    /*CSV*/
+    Route::get('/csv/upload', 'Admin\UploadCsvController@index')->name('csv');
+    Route::post('/csv/upload', 'Admin\UploadCsvController@upload')->name('csv-upload');
+    Route::get('/csv/upload/files', 'Admin\UploadCsvController@files')->name('csv-files');
+    Route::get('/csv/upload/csv/{id}', 'Admin\UploadCsvController@get_dr_per_file')->name('csv-files-dr');
+    Route::get('/csv/upload/dr/{id}', 'Admin\UploadCsvController@get_items_per_file')->name('csv-items-dr');
+    Route::get('/csv/upload/production/', 'Admin\UploadCsvController@upload_to_production')->name('csv-to-prod');
+    Route::get('/csv/recall/', 'Admin\UploadCsvController@recall')->name('csv-recall');
+    Route::get('/csv/delete/', 'Admin\UploadCsvController@delete')->name('csv-delete');
+
+    /* DR History */
+    Route::get('/csv/history', 'Admin\UploadCsvController@history')->name('csv-history');
+
+    /*Reports*/
+    Route::get('/reports/per-transaction', 'Admin\ReportsController@per_transaction')->name('reports-transaction');
+
+    /* Branch Upload */
+    Route::get('/branch/upload', 'Admin\BranchController@index')->name('branch');
+    Route::post('/branch/upload', 'Admin\BranchController@upload')->name('branch-upload');
+});
+
+/* Login */
 Route::get('/admin', 'auth\LoginController@showLoginForm')->name('showlogin');
 Route::post('/admin', 'auth\LoginController@login')->name('login');
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\CsvUpload;
 use App\DR;
@@ -30,7 +30,7 @@ class UploadCsvController extends Controller
                 ->addIndexColumn()
                 ->addColumn('details', function($data){
 
-                    $btn = '<button data-toggle="modal" data-target="#deleteModal"  type="button" data-status="'.$data->status.'"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+                    $btn = '<button type="button" data-status="'.$data->status.'"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
                 ->addColumn('action', function($data){
@@ -52,7 +52,8 @@ class UploadCsvController extends Controller
         }
 
         return view('csv.index')
-            ->with('active', 'csv-upload');
+            ->with('active', 'csv-upload')
+            ->with('title', 'NAVISION');
     }
 
     /* upload csv */
@@ -111,7 +112,8 @@ class UploadCsvController extends Controller
     public function history()
     {
         return view('csv.history')
-            ->with('active', 'csv-history');
+            ->with('active', 'csv-history')
+            ->with('title', 'NAVISION');
     }
 
     /* upload data to production, basically mark the csv file as uploaded to 1*/
