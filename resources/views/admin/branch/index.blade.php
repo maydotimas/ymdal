@@ -9,7 +9,7 @@
             <!-- general form elements -->
             <div class="box-body">
                 <!-- general form elements -->
-                <form action="/admin/csv/upload" method="post" enctype="multipart/form-data">
+                <form action="/admin/branch/upload" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-4">
                         <input type="button" class="btn btn-block btn-primary btn-lg"
@@ -31,9 +31,10 @@
 
                 <!-- /.box -->
                 <!-- loader -->
-                <div id="myloader" style="display: none;"><i id="myspinner"
-                                                             class="fa fa-spinner fa-spin text-center"
-                                                             style="color:red;"></i></div>
+                <div id="myloader" style="display: none;">
+                    <i id="myspinner"
+                       class="fa fa-spinner fa-spin text-center"
+                       style="color:red;"></i></div>
             </div>
         </div>
 
@@ -94,10 +95,10 @@
                                                 rowspan="1" colspan="1"
                                                 aria-label=" : activate to sort column ascending"
                                                 style="width: 54px;"></th>
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1"
-                                                aria-label=" : activate to sort column ascending"
-                                                style="width: 51px;"></th>
+                                            {{--<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"--}}
+                                                {{--rowspan="1" colspan="1"--}}
+                                                {{--aria-label=" : activate to sort column ascending"--}}
+                                                {{--style="width: 51px;"></th>--}}
                                         </tr>
                                         </thead>
 
@@ -257,36 +258,7 @@
             </div>
         </div>
     </div>
-    {{-- MODAL FOR DELETE--}}
-    <div id="deleteModal" class="modal fade danger" role="dialog">
-        <div class="modal-dialog">
 
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">DELETE NAVISION FILE</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="input-group col-md-7">
-                            <input disabled="" id="delete_csv_name" class="form-control input-lg text-center" value=""
-                                   type="text">
-                            <input type="hidden" id="delete_csv_id" class="form-control input-lg text-center" value=""
-                                   type="text">
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                    <div class="text-center"><br><h4>Are you sure you want to delete this file?</h4></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" id="btn_delete_csv"> YES</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
     {{-- HIDDEN SWITCHES --}}
     <input type="hidden" id="active_csv_id">
     <input type="hidden" id="is_uploaded" value="0">
@@ -332,70 +304,21 @@
                 table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "{{ route('csv') }}",
+                    ajax: "{{ route('branch') }}",
                     columns: [
                         // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'created_at', name: 'created_at'},
                         {data: 'file_name', name: 'file_name'},
-                        {data: 'dr_count', name: 'dr_count'},
-                        {data: 'dr_item_count', name: 'dr_item_count'},
+                        {data: 'dealer_count', name: 'dealer_count'},
+                        {data: 'outlet_count', name: 'outlet_count'},
                         {data: 'file_size', name: 'file_size'},
                         {data: 'loaded_to_production_date', name: 'loaded_to_production'},
                         {data: 'details', name: 'details', orderable: false, searchable: false},
-                        {data: 'action', name: 'action', orderable: false, searchable: false},
+                        // {data: 'action', name: 'action', orderable: false, searchable: false},
                     ],
                     drawCallback: function (settings) {
                         // set the onclick button
                         loadDRTable();
-                    },
-                    fnRowCallback: function (nRow, aData, iDisplayIndex) {
-                        /* CUSTOMIZE THE CSS FOR ROWS DEPENDING ON THE STATUS OF UPLOADED TO PRODUCTION */
-                        var action_btn = $(nRow).children().last().children().last();
-                        var isloaded = aData.loaded_to_production;
-                        var status = aData.status;
-
-                        /* CUSTOM DISPLAY FOR RECALLED ITEMS*/
-                        if (status == 'RECALLED') {
-                            /* COLOR GREEN ROW FOR ITEMS THAT ARE RECALLED ALREADY*/
-                            $(nRow).addClass('warning');
-                            action_btn.removeClass('btn-danger');
-                            action_btn.addClass('btn');
-                            action_btn.html('RECALLED');
-                            action_btn.css('backgroundColor', 'GRAY');
-                        }
-                        /*
-                        * IF ITEM IS NOT RECALLED, CHECK IF UPLOADED TO PRODUCTION OR JUST DELETE */
-                        else {
-                            /* IF CSV IS NOT UPLOADED THEN COLOR RED*/
-                            if (isloaded == 0) {
-                                $(nRow).addClass('success');
-                                action_btn.click(function () {
-                                    $("#delete_csv_name").val(aData.file_name);
-                                    $("#delete_csv_id").val(aData.id);
-
-                                });
-                            }
-                            else {
-                                /* COLOR GREEN ROW FOR ITEMS THAT ARE UPLOADED ALREADY*/
-                                $(nRow).addClass('danger');
-                                action_btn.removeClass('btn-danger');
-                                action_btn.addClass('btn-default');
-                                action_btn.html('RECALL');
-                                action_btn.click(function () {
-                                    $("#delete_csv_name").val(aData.file_name);
-                                    $("#delete_csv_id").val(aData.id);
-                                    /*$.ajax({
-                                        method: "get",
-                                        url: "/csv/recall",
-                                        data: {csv_id: aData.id}
-                                    })
-                                        .done(function (msg) {
-                                            alert("Data Saved: " + msg);
-                                        });*/
-                                });
-                            }
-                        }
-
                     }
                 });
             }
@@ -522,29 +445,6 @@
             });
 
 
-            /* delete csv file */
-            $("#btn_delete_csv").click(function () {
-                $.ajax({
-                    method: "get",
-                    url: "/csv/delete",
-                    data: {csv_id: $("#delete_csv_id").val()}
-                })
-                    .done(function (msg) {
-
-                    });
-            });
-
-            /* delete csv file */
-            $("#btn_recall_csv").click(function () {
-                $.ajax({
-                    method: "get",
-                    url: "/csv/delete",
-                    data: {csv_id: $("#delete_csv_id").val()}
-                })
-                    .done(function (msg) {
-
-                    });
-            });
 
         });
     </script>

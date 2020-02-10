@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\BranchUpload;
 use App\Http\Controllers\Controller;
+use App\Imports\BranchImport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class BranchController extends Controller
@@ -19,7 +22,7 @@ class BranchController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = CsvUpload::latest()->get();
+            $data = BranchUpload::latest()->get();
 
             return DataTables::of($data)
                 ->addIndexColumn()
@@ -28,7 +31,7 @@ class BranchController extends Controller
                     $btn = '<button type="button" data-status="' . $data->status . '"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
-                ->addColumn('action', function ($data) {
+               /* ->addColumn('action', function ($data) {
                     if ($data->status == 'UPLOADED_TO_PROD') {
                         $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')"  type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
 
@@ -41,12 +44,12 @@ class BranchController extends Controller
 
 
                     return $btn;
-                })
-                ->rawColumns(['action', 'details'])
+                })*/
+                ->rawColumns(['details'])
                 ->make(true);
         }
 
-        return view('admin.csv.index')
+        return view('admin.branch.index')
             ->with('active', 'branch')
             ->with('title', 'BRANCH');
     }
@@ -60,19 +63,19 @@ class BranchController extends Controller
         $size = $request->file('pfilename')->getSize();
 
         /* create a new csv upload file record*/
-        $csv_upload = new CsvUpload;
-        $csv_upload->file_name = $filename;
-        $csv_upload->file_size = $size;
-        $csv_upload->path = $path;
-        $csv_upload->loaded_to_production = 0;
-        $csv_upload->uploaded_by = 1;
-        $csv_upload->save();
+        $branch_upload = new BranchUpload();
+        $branch_upload->file_name = $filename;
+        $branch_upload->file_size = $size;
+        $branch_upload->path = $path;
+        $branch_upload->loaded_to_production = 0;
+        $branch_upload->uploaded_by = auth()->user()->id;
+        $branch_upload->save();
 
         /* store session to link csv content to csv file record*/
-        session(['csv_id' => $csv_upload->id]);
+        session(['csv_id' => $branch_upload->id]);
 
         /* do import*/
-        $import = new DRImport();
+        $import = new BranchImport();
         $import->import($path);
 
         /* To Do: Store failures on a table, then display upload  */
@@ -85,14 +88,15 @@ class BranchController extends Controller
 
         /* TO DO: PENDING IS THE STATUS SO PWEDE PA SIYANG MAUPDATE HEHE */
         /* get and import all DRs */
-        $dr_count = DB::select('select ImportDr(?,?) as dr_count', [$csv_upload->id, 'PENDING']);
+        $dealer_count = DB::select('select ImportDealer(?) as dealer_count', [$branch_upload->id]);
 
         /* get and import all DR Items */
-        $dr_item_count = DB::select('select ImportDrItem(?,?) as dr_items_count', [$csv_upload->id, 'PENDING']);
+        $outlet_count = DB::select('select ImportDealerOutlet(?) as outlet_count', [$branch_upload->id]);
 
-        $csv_upload->dr_count = $dr_count[0]->dr_count;
-        $csv_upload->dr_item_count = $dr_item_count[0]->dr_items_count;
-        $csv_upload->save();
+
+        $branch_upload->dealer_count = $dealer_count[0]->dealer_count;
+        $branch_upload->outlet_count = $outlet_count[0]->outlet_count;
+        $branch_upload->save();
 
         /*TO DO: Create branch and outlet details*/
         /* get and import all branch */
@@ -100,6 +104,6 @@ class BranchController extends Controller
         session()->flush();
 
         /* redirect to page with import details */
-        return redirect('/admin/csv/upload')->with('success', 'All good!');
+        return redirect('/admin/branch/upload')->with('success', 'All good!');
     }
 }

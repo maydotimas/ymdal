@@ -17,6 +17,7 @@ class Dealer extends Migration
             $table->bigIncrements('id');
             $table->string('dealer_code')->unique;
             $table->string('dealer_name');
+            $table->string('csv_id');
             $table->timestamps();
         });
     }
