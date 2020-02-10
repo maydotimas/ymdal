@@ -9,7 +9,7 @@
             <!-- general form elements -->
             <div class="box-body">
                 <!-- general form elements -->
-                <form action="/csv/upload" method="post" enctype="multipart/form-data">
+                <form action="/admin/csv/upload" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="col-md-4">
                         <input type="button" class="btn btn-block btn-primary btn-lg"
@@ -372,7 +372,6 @@
                                 action_btn.click(function () {
                                     $("#delete_csv_name").val(aData.file_name);
                                     $("#delete_csv_id").val(aData.id);
-
                                 });
                             }
                             else {
@@ -433,7 +432,7 @@
                     dr_table.DataTable({
                         processing: true,
                         serverSide: true,
-                        ajax: "/csv/upload/csv/" + $(this).data('id'),
+                        ajax: "/admin/csv/upload/csv/" + $(this).data('id'),
                         columns: [
                             // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
                             {data: 'dr_no', name: 'dr_no'},
@@ -470,7 +469,7 @@
                     item_table.DataTable({
                         processing: true,
                         serverSide: true,
-                        ajax: "/csv/upload/dr/" + $(this).data('id'),
+                        ajax: "/admin/csv/upload/dr/" + $(this).data('id'),
                         columns: [
                             // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
                             {data: 'dr_no', name: 'dr_no'},
@@ -512,7 +511,7 @@
             $("#btn_prod_upload").click(function () {
                 $.ajax({
                     method: "get",
-                    url: "/csv/upload/production/",
+                    url: "/admin/csv/upload/production/",
                     data: {csv_id: $("#active_csv_id").val()}
                 })
                     .done(function (msg) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\CsvUpload;
 use App\DR;
 use App\DR_Item;
+use App\Http\Controllers\Controller;
 use App\Imports\DRImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -51,7 +52,7 @@ class UploadCsvController extends Controller
                 ->make(true);
         }
 
-        return view('csv.index')
+        return view('admin.csv.index')
             ->with('active', 'csv-upload')
             ->with('title', 'NAVISION');
     }
@@ -95,9 +96,12 @@ class UploadCsvController extends Controller
         /* get and import all DR Items */
         $dr_item_count = DB::select('select ImportDrItem(?,?) as dr_items_count', [$csv_upload->id,'PENDING']);
 
+
         $csv_upload->dr_count = $dr_count[0]->dr_count;
         $csv_upload->dr_item_count = $dr_item_count[0]->dr_items_count;
         $csv_upload->save();
+
+        /* get dr record, then update counts of item per dr*/
 
         /*TO DO: Create branch and outlet details*/
         /* get and import all branch */
@@ -105,13 +109,13 @@ class UploadCsvController extends Controller
         session()->flush();
 
         /* redirect to page with import details */
-        return redirect('/csv/upload')->with('success', 'All good!');
+        return redirect('/admin/csv/upload')->with('success', 'All good!');
     }
 
     /* get csv history for page*/
     public function history()
     {
-        return view('csv.history')
+        return view('admin.csv.history')
             ->with('active', 'csv-history')
             ->with('title', 'NAVISION');
     }

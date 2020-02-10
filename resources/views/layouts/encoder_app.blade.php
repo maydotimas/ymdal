@@ -10,7 +10,7 @@
 
     <link rel="icon" href="/neon/assets/images/favicon.ico">
 
-    <title>Neon | {{$title}}</title>
+    <title>YMDAL | {{$title}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="/neon/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/neon/assets/css/neon-theme.css">
     <link rel="stylesheet" href="/neon/assets/css/neon-forms.css">
     <link rel="stylesheet" href="/neon/assets/css/custom.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="/neon/assets/js/jquery-1.11.3.min.js"></script>
 
@@ -84,42 +85,42 @@
                 {{--pending--}}
                 <li @if($active=='pending')class="active opened active"@endif>
                     <a href="/encoder/pending">
-                        <i class="entypo-gauge"></i>
+                        <i class="fa fa-file"></i>
                         <span class="title">Pending</span>
                     </a>
                 </li>
                 {{--in-transit--}}
                 <li @if($active=='intransit')class="active opened active"@endif>
                     <a href="/encoder/intransit">
-                        <i class="entypo-gauge"></i>
+                        <i class="fa fa-truck"></i>
                         <span class="title">In Transit</span>
                     </a>
                 </li>
                 {{-- confirmed --}}
                 <li @if($active=='confirmed')class="active opened active"@endif>
                     <a href="/encoder/confirmed">
-                        <i class="entypo-gauge"></i>
+                        <i class="fa fa-phone"></i>
                         <span class="title">Confirmed</span>
                     </a>
                 </li>
                 {{-- delivered --}}
                 <li @if($active=='delivered')class="active opened active"@endif>
                     <a href="/encoder/delivered">
-                        <i class="entypo-gauge"></i>
+                        <i class="fa fa-check-square-o"></i>
                         <span class="title">Delivered</span>
                     </a>
                 </li>
                 {{-- backload --}}
                 <li @if($active=='backload')class="active opened active"@endif>
                     <a href="/encoder/backload">
-                        <i class="entypo-gauge"></i>
+                        <i class="fa fa-download"></i>
                         <span class="title">Backload</span>
                     </a>
                 </li>
                 {{-- Settings --}}
                 <li @if($active=='settings')class="active opened active"@endif>
                     <a href="/encoder/settings">
-                        <i class="entypo-gauge"></i>
+                        <i class="fa fa-gear"></i>
                         <span class="title">Settings</span>
                     </a>
                 </li>

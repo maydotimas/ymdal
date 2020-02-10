@@ -24,6 +24,9 @@ class DrItems extends Migration
             $table->string('po_no');
             $table->dateTime('delivery_date')->nullable();
             $table->enum('status',['PENDING','INTRANSIT','CONFIRMED','DELIVERED','BACKLOAD']);
+            $table->string('original_status')->nullable();
+            $table->string('is_updated')->nullable();
+            $table->string('updated_by')->nullable();
             $table->integer('csv_id');
             $table->timestamps();
         });

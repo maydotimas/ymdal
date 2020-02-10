@@ -46,7 +46,7 @@ class BranchController extends Controller
                 ->make(true);
         }
 
-        return view('csv.index')
+        return view('admin.csv.index')
             ->with('active', 'branch')
             ->with('title', 'BRANCH');
     }
@@ -100,6 +100,6 @@ class BranchController extends Controller
         session()->flush();
 
         /* redirect to page with import details */
-        return redirect('/csv/upload')->with('success', 'All good!');
+        return redirect('/admin/csv/upload')->with('success', 'All good!');
     }
 }

@@ -104,12 +104,12 @@
                     </a>
                     <ul>
                         <li @if($active=='csv-upload')class="active"@endif>
-                            <a href="/csv/upload">
+                            <a href="/admin/csv/upload">
                                 <span class="title">Upload CSV</span>
                             </a>
                         </li>
                         <li @if($active=='csv-history')class="active"@endif>
-                            <a href="/csv/history">
+                            <a href="/admin/csv/history">
                                 <span class="title">Upload Summary</span>
                             </a>
                         </li>

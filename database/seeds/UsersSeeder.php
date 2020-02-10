@@ -14,21 +14,21 @@ class UsersSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'role' => 1,
+            'role' => 'ADMIN',
             'email' => 'admin@mail.com',
             'password' => Hash::make('password'),
         ]);
         DB::table('users')->insert([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'role' => 2,
+            'role' => 'ENCODER',
             'email' => 'encoder@mail.com',
             'password' => Hash::make('password'),
         ]);
         DB::table('users')->insert([
             'first_name' => Str::random(10),
             'last_name' => Str::random(10),
-            'role' => 3,
+            'role' => 'CS',
             'email' => 'cs@mail.com',
             'password' => Hash::make('password'),
         ]);
