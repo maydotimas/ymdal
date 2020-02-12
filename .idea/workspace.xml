@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_120225_carrier.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_120225_carrier.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +175,7 @@
       <workItem from="1580827449533" duration="3042000" />
       <workItem from="1581170203238" duration="28030000" />
       <workItem from="1581242201680" duration="13411000" />
-      <workItem from="1581477620483" duration="2589000" />
+      <workItem from="1581477620483" duration="2742000" />
     </task>
     <servers />
   </component>
@@ -188,6 +187,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581480314739" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1581480446311">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581480446311" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

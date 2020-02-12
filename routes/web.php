@@ -82,10 +82,10 @@ Route::prefix('admin')->group(function () {
 });
 
 /* Login */
-Route::get('/admin', 'auth\LoginController@showLoginForm')->name('showlogin');
-Route::post('/admin', 'auth\LoginController@login')->name('login');
+Route::get('/admin', 'Auth\LoginController@showLoginForm')->name('showlogin');
+Route::post('/admin', 'Auth\LoginController@login')->name('login');
 
-Route::get('/admin/password_reset', 'auth\LoginController@showLoginForm')->name('password.request');
+Route::get('/admin/password_reset', 'Auth\LoginController@showLoginForm')->name('password.request');
 
 
 
