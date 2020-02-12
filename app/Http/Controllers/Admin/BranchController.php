@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\BranchUpload;
+use App\Dealer;
 use App\Http\Controllers\Controller;
 use App\Imports\BranchImport;
+use App\Outlet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
@@ -28,23 +30,12 @@ class BranchController extends Controller
                 ->addIndexColumn()
                 ->addColumn('details', function ($data) {
 
-                    $btn = '<button type="button" data-status="' . $data->status . '"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+                    $btn = '<button type="button" data-status="' . $data->status . '"  
+                                    data-id="' . $data->id . '"  
+                                    data-name="' . $data->file_name . '(' . $data->created_at . ')" 
+                                    class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
-               /* ->addColumn('action', function ($data) {
-                    if ($data->status == 'UPLOADED_TO_PROD') {
-                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')"  type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
-
-                    } elseif ($data->status == 'RECALLED') {
-                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
-
-                    } else {
-                        $btn = '<button  data-toggle="modal" data-target="#deleteModal"  type="button"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
-                    }
-
-
-                    return $btn;
-                })*/
                 ->rawColumns(['details'])
                 ->make(true);
         }
@@ -101,9 +92,45 @@ class BranchController extends Controller
         /*TO DO: Create branch and outlet details*/
         /* get and import all branch */
         /* get and import all outlet */
-        session()->flush();
+       // session()->flush();
 
         /* redirect to page with import details */
         return redirect('/admin/branch/upload')->with('success', 'All good!');
     }
+
+    /* get outlet details */
+    public function dealers(Request $request, $csv_id){
+        if ($request->ajax()) {
+            $data = Dealer::where('csv_id',$csv_id)->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('details', function ($data) {
+
+                    $btn = '<button type="button"   
+                                    data-id="' . $data->csv_id . '"  
+                                    data-name="' . $data->dealer_name . '"  
+                                    class="btn_dealer_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+                    return $btn;
+                })
+                ->rawColumns(['details'])
+                ->make(true);
+        }
+
+    }
+
+
+    /* get outlet details */
+    public function outlets(Request $request, $csv_id){
+        if ($request->ajax()) {
+            $data = Outlet::where('csv_id',$csv_id)->get();
+
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->rawColumns(['details'])
+                ->make(true);
+        }
+
+    }
+
 }

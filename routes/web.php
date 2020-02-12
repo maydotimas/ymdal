@@ -77,6 +77,9 @@ Route::prefix('admin')->group(function () {
         /* Branch Upload */
         Route::get('/branch/upload', 'Admin\BranchController@index')->name('branch');
         Route::post('/branch/upload', 'Admin\BranchController@upload')->name('branch-upload');
+        Route::get('/branch/dealers/{csv}', 'Admin\BranchController@dealers')->name('branch-dealers');
+        Route::get('/branch/outlets/{csv}', 'Admin\BranchController@outlets')->name('branch-outlets');
+
     });
 
 });

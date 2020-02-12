@@ -38,7 +38,7 @@ class BranchImport implements ToModel, WithBatchInserts, SkipsOnFailure
             'outlet_province' => $row[7],
             'outlet_region' => $row[8],
             'outlet_area' => $row[9],
-            'outlet_area_num' => $row[10],
+            'outlet_leadtime' => $row[10],
             'outlet_mobile' => $row[11],
             'csv_id' => session('csv_id')
         ]);

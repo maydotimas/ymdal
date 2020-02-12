@@ -23,7 +23,7 @@ class BranchOutletContent extends Model
         'outlet_province',
         'outlet_region',
         'outlet_area',
-        'outlet_area_num',
+        'outlet_leadtime',
         'outlet_mobile',
         'csv_id'
     ];

@@ -13,7 +13,7 @@ class Outlet extends Model
      * @var array
      */
     protected $fillable = [
-        'dealer_code','outlet_cluster','outlet_code','outlet_name','outlet_address','city','province','region','area','sno','mobile'
+        'dealer_code','outlet_cluster','outlet_code','outlet_name','outlet_address','city','province','region','area','outlet_leadtime','outlet_mobile'
     ];
 
     /**

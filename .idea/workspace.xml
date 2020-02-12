@@ -3,12 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ymdal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ymdal.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033211_impor_d_r_item.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033211_impor_d_r_item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033221_reset_temp_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033221_reset_temp_update.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/BranchOutletContent.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/BranchOutletContent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BranchController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BranchController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Imports/BranchImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/BranchImport.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Outlet.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Outlet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033309_import_dealer.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033309_import_dealer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir/" />
@@ -114,20 +118,73 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="2020_02_12_033126_get_d_r_item_qty.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php">
+      <file leaf-file-name="BranchController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/BranchController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="10" column="37" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+            <state relative-caret-position="309">
+              <caret line="110" column="62" selection-start-line="110" selection-start-column="62" selection-end-line="110" selection-end-column="62" />
+              <folding>
+                <element signature="e#46#67#0#PHP" expanded="true" />
+                <element signature="e#2349#4443#0#PHP" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2020_02_12_033155_import_d_r.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php">
+      <file leaf-file-name="2020_01_16_115429_dr_items.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+            <state relative-caret-position="459">
+              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Outlet.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Outlet.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="15" column="150" selection-start-line="15" selection-start-column="150" selection-end-line="15" selection-end-column="150" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2020_01_16_115912_outlet.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="230">
+              <caret line="28" column="41" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/branch/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="391" column="39" selection-start-line="391" selection-start-column="39" selection-end-line="391" selection-end-column="39" />
+              <folding>
+                <element signature="e#1975#6250#0#HTML" />
+                <element signature="e#16985#18208#0#HTML" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BranchImport.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Imports/BranchImport.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="241">
+              <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/web.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="80" column="37" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -138,6 +195,9 @@
     <findStrings>
       <find>GetDRItemQty</find>
       <find>PROCEDURE</find>
+      <find>div_files_dr</find>
+      <find>dr_label</find>
+      <find>outlet_area_num</find>
     </findStrings>
     <replaceStrings>
       <replace>FUNCTION</replace>
@@ -151,6 +211,17 @@
       <list>
         <option value="$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_02_12_033309_import_dealer.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_02_12_160152_import_dealer_outlet.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php" />
+        <option value="$PROJECT_DIR$/app/BranchOutletContent.php" />
+        <option value="$PROJECT_DIR$/app/Imports/BranchImport.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Outlet.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/BranchController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php" />
       </list>
     </option>
   </component>
@@ -292,6 +363,11 @@
             <path>
               <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
               <item name="ymdal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ymdal" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -378,12 +454,12 @@
       <workItem from="1581170203238" duration="28030000" />
       <workItem from="1581242201680" duration="13411000" />
       <workItem from="1581477620483" duration="2742000" />
-      <workItem from="1581521332854" duration="198000" />
+      <workItem from="1581521332854" duration="3883000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="198000" />
+    <option name="totallyTimeSpent" value="3883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -439,6 +515,13 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -446,10 +529,97 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php">
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_033309_import_dealer.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+        <state relative-caret-position="468">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="8" selection-start-column="3" selection-end-line="35" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Dealer.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_160152_import_dealer_outlet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_10_135010_branch_file_upload.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/BranchOutletContent.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Imports/BranchImport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="40" column="28" selection-start-line="40" selection-start-column="28" selection-end-line="40" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="80" column="37" selection-start-line="80" selection-start-column="20" selection-end-line="80" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/branch/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="391" column="39" selection-start-line="391" selection-start-column="39" selection-end-line="391" selection-end-column="39" />
+          <folding>
+            <element signature="e#1975#6250#0#HTML" />
+            <element signature="e#16985#18208#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Outlet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="15" column="150" selection-start-line="15" selection-start-column="150" selection-end-line="15" selection-end-column="150" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/BranchController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="110" column="62" selection-start-line="110" selection-start-column="62" selection-end-line="110" selection-end-column="62" />
+          <folding>
+            <element signature="e#46#67#0#PHP" expanded="true" />
+            <element signature="e#2349#4443#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
         </state>
       </provider>
     </entry>

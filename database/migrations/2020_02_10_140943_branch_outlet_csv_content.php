@@ -27,7 +27,7 @@ class BranchOutletCsvContent extends Migration
             $table->string('outlet_province');
             $table->string('outlet_region');
             $table->string('outlet_area');
-            $table->string('outlet_area_num');
+            $table->string('outlet_leadtime');
             $table->string('outlet_mobile');
             $table->integer('csv_id');
             $table->timestamps();
