@@ -13,6 +13,7 @@ class BranchFileUpload extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('branch_upload');
         Schema::create('branch_upload', function (Blueprint $table) {
             $table->bigIncrements('id');;
             $table->string('file_name');

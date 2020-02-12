@@ -13,6 +13,7 @@ class DrCsvContent extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('dr_csv_content');
         Schema::create('dr_csv_content', function (Blueprint $table) {
             $table->bigIncrements('id');;
             $table->string('nav_dr_no');

@@ -13,6 +13,7 @@ class Carrier extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('carrier');
         Schema::create('carrier', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('carrier_code')->unique();

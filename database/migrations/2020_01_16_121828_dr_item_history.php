@@ -13,6 +13,7 @@ class DrItemHistory extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('dr_item_history');
         Schema::create('dr_item_history', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('dr_no');

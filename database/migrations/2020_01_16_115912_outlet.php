@@ -13,6 +13,7 @@ class Outlet extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('outlet');
         Schema::create('outlet', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('dealer_code');

@@ -13,6 +13,7 @@ class DrItems extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('dr_items');
         Schema::create('dr_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('dr_no');

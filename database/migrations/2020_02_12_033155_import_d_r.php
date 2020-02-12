@@ -8,6 +8,7 @@ class ImportDR extends Migration
 {
     public function up()
     {
+        DB::unprepared('DROP PROCEDURE IF EXISTS ImportDr');
         DB::unprepared('
         CREATE FUNCTION `ImportDr`(
             _csv_id integer,

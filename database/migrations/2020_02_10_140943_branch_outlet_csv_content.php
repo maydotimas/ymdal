@@ -13,6 +13,7 @@ class BranchOutletCsvContent extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('branch_outlet_csv_upload');
         Schema::create('branch_outlet_csv_upload', function (Blueprint $table) {
             $table->bigIncrements('id');
 

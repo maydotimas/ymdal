@@ -13,6 +13,7 @@ class TblDr extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('dr');
         Schema::create('dr', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('dr_no')->index();

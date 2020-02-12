@@ -13,6 +13,7 @@ class CsvUpload extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('csv_upload');
         Schema::create('csv_upload', function (Blueprint $table) {
             $table->bigIncrements('id');;
             $table->string('file_name');

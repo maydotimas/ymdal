@@ -8,6 +8,7 @@ class ImporDRItem extends Migration
 {
     public function up()
     {
+        DB::unprepared('DROP PROCEDURE IF EXISTS ImportDrItem');
         DB::unprepared('
             CREATE FUNCTION `ImportDrItem`(
                 _csv_id integer,

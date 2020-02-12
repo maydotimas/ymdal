@@ -8,6 +8,7 @@ class GetDRItemQty extends Migration
 {
     public function up()
     {
+        DB::unprepared('DROP PROCEDURE IF EXISTS GetDRItemQty');
         DB::unprepared('
         CREATE FUNCTION `GetDRItemQty`(
             _dr_no varchar(200)

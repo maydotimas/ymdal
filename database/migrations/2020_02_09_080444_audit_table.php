@@ -13,6 +13,7 @@ class AuditTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('audit');
         Schema::create('audit', function (Blueprint $table) {
             $table->bigIncrements('id');;
             $table->string('prev_status');

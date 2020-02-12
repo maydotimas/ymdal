@@ -13,6 +13,7 @@ class Dealer extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('dealer');
         Schema::create('dealer', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('dealer_code')->unique;

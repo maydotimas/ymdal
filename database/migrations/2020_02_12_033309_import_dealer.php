@@ -8,6 +8,7 @@ class ImportDealer extends Migration
 {
     public function up()
     {
+        DB::unprepared('DROP PROCEDURE IF EXISTS ImportDealer');
         DB::unprepared('
             CREATE FUNCTION `ImportDealer`(
                 _csv_id integer
@@ -28,6 +29,6 @@ class ImportDealer extends Migration
 
     public function down()
     {
-        DB::unprepared('DROP PROCEDURE IF EXISTS ImportDrItem');
+        DB::unprepared('DROP PROCEDURE IF EXISTS ImportDealer');
     }
 }
