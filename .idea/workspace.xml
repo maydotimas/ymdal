@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_19_000000_create_failed_jobs_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_08_120905_create_roles_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_08_120905_create_roles_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_113243_csv_upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_113243_csv_upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_120225_carrier.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_120225_carrier.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_121812_dr_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_121812_dr_history.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_121828_dr_item_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_121828_dr_item_history.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_131833_dr_csv_content.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_131833_dr_csv_content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_09_080444_audit_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_09_080444_audit_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_10_135010_branch_file_upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_10_135010_branch_file_upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033126_get_d_r_item_qty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033155_import_d_r.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033211_impor_d_r_item.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033211_impor_d_r_item.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033221_reset_temp_update.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033221_reset_temp_update.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_02_12_033309_import_dealer.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_02_12_033309_import_dealer.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +174,7 @@
       <workItem from="1580827449533" duration="3042000" />
       <workItem from="1581170203238" duration="28030000" />
       <workItem from="1581242201680" duration="13411000" />
-      <workItem from="1581477620483" duration="1919000" />
+      <workItem from="1581477620483" duration="2270000" />
     </task>
     <servers />
   </component>
