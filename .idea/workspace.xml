@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_121812_dr_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_121812_dr_history.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,12 +175,18 @@
       <workItem from="1580827449533" duration="3042000" />
       <workItem from="1581170203238" duration="28030000" />
       <workItem from="1581242201680" duration="13411000" />
-      <workItem from="1581477620483" duration="2270000" />
+      <workItem from="1581477620483" duration="2467000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="336" y="77" width="739" height="526" key="find.popup" timestamp="1581480192025">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581480192025" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

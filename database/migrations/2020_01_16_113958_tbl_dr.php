@@ -16,8 +16,8 @@ class TblDr extends Migration
         Schema::dropIfExists('dr');
         Schema::create('dr', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('dr_no')->index();
-            $table->string('atp_no')->index();
+            $table->string('dr_no');
+            $table->string('atp_no');
             $table->string('dr_date');
             $table->string('outlet_code');
             $table->string('sdr_no');
