@@ -16,7 +16,7 @@ class Carrier extends Migration
         Schema::dropIfExists('carrier');
         Schema::create('carrier', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('carrier_code')->unique();
+            $table->string('carrier_code');
             $table->timestamps();
         });
     }

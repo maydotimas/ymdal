@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_121812_dr_history.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_121812_dr_history.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_120225_carrier.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_120225_carrier.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +176,7 @@
       <workItem from="1580827449533" duration="3042000" />
       <workItem from="1581170203238" duration="28030000" />
       <workItem from="1581242201680" duration="13411000" />
-      <workItem from="1581477620483" duration="2467000" />
+      <workItem from="1581477620483" duration="2589000" />
     </task>
     <servers />
   </component>
@@ -183,10 +184,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="336" y="77" width="739" height="526" key="find.popup" timestamp="1581480192025">
+    <state x="336" y="77" width="739" height="526" key="find.popup" timestamp="1581480314739">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581480192025" />
+    <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581480314739" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
