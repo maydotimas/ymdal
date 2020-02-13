@@ -16,15 +16,15 @@ class PendingTransactionController extends Controller
     public function pending(Request $request)
     {
         /* reset all items with temp update */
-        DB::select('select ResetTempUpdate(?)', [auth()->user()->id]);
-
+//        DB::select('select ResetTempUpdate(?)', [auth()->user()->id]);
 
         /* allow update for ajax only for dataable*/
         if ($request->ajax()) {
             $data = DB::table('dr')
                 ->select("*")
                 ->selectRaw('GetDRItemQty(dr_no) as dr_qty')
-                ->where('status', 'PENDING');
+                ->whereRaw('csv_id in (select id from csv_upload where loaded_to_production = 1)')
+                ->whereRaw('dr_no in (select dr_no from dr_items where status = "pending")');
 
             return DataTables::of($data)
                 ->addColumn('confirm', function ($data) {
@@ -56,12 +56,12 @@ class PendingTransactionController extends Controller
                 ->addColumn('checkbox', function ($data) {
                     if ($data->status == 'PENDING') {
                         $btn = '<button type="button" class="btn btn-s btn-danger btn_check_uncheck" data-id="' . $data->id . '">
-							<i id="icon_' . $data->id . '" class="fa fa-minus-square"></i> 
+							<i id="icon_' . $data->id . '" class="fa fa-minus-square"></i>
 							<input type="hidden" id="' . $data->id . '" class="dr_items" name="dr_items[]" value="0">
 							</button>';
                     } else {
                         $btn = '<button type="button" class="btn btn-s btn-success btn_check_uncheck" data-id="' . $data->id . '">
-							<i id="icon_' . $data->id . '" class="fa fa-check-square"></i> 
+							<i id="icon_' . $data->id . '" class="fa fa-check-square"></i>
 							<input type="hidden" id="' . $data->id . '" class="dr_items" name="dr_items[]" value="' . $data->id . '">
 							</button>';
                     }
