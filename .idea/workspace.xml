@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/InTransitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/InTransitController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/PendingTransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/PendingTransactionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/encoder/transaction/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/encoder/transaction/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,17 +139,18 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Ignored.Files" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\app\Http\Controllers\Encoder" />
-      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\admin" />
-      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\app\Http\Controllers\Admin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\encoder" />
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\encoder\transaction" />
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\app\Http\Controllers" />
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\layouts" />
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\edotimas\Desktop\test\ymdal\app\Http\Controllers\Encoder" />
+      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\app\Http\Controllers\Encoder" />
+      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\admin" />
+      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\app\Http\Controllers\Admin" />
     </key>
   </component>
   <component name="ServiceViewManager">
@@ -192,14 +194,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="371" y="95" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1581601853420">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="95" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581601853420" />
     <state x="336" y="77" width="739" height="526" key="find.popup" timestamp="1581480314739">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581480314739" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1581599716077">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1581601925515">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581599716077" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1581601925515" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -48,6 +48,19 @@ Route::prefix('encoder')->group(function () {
         Route::get('/', 'Encoder\ConfirmedController@confirmed')->name('confirmed');
         Route::get('/items/{id}', 'Encoder\ConfirmedController@confirmed_items')->name('confirmed_items');
     });
+
+    /* DELIVERED */
+    Route::prefix('delivered')->group(function () {
+        Route::get('/', 'Encoder\DeliveredController@delivered')->name('delivered');
+        Route::get('/items/{id}', 'Encoder\DeliveredController@delivered_items')->name('delivered_items');
+    });
+
+    /* BACKLOAD */
+    Route::prefix('backload')->group(function () {
+        Route::get('/', 'Encoder\BackloadController@backload')->name('backload');
+        Route::get('/items/{id}', 'Encoder\BackloadController@backload_items')->name('backload_items');
+    });
+
 });
 
 Route::get('/home', 'Admin\HomeController@index')->name('home');

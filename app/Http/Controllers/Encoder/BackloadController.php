@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\Encoder;
 
-use App\Audit;
-use App\DR_Item;
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
-class ConfirmedController extends Controller
+class BackloadController extends Controller
 {
-    public function confirmed(Request $request)
+    public function backload(Request $request)
     {
         /* allow update for ajax only for dataable*/
         if ($request->ajax()) {
@@ -20,7 +17,7 @@ class ConfirmedController extends Controller
                 ->select("*")
                 ->selectRaw('GetDRItemQty(dr_no) as dr_qty')
                 ->whereRaw('csv_id in (select id from csv_upload where loaded_to_production = 1)')
-                ->whereRaw('dr_no in (select dr_no from dr_items where status = "CONFIRMED")');
+                ->whereRaw('dr_no in (select dr_no from dr_items where status = "BACKLOAD")');
 
             return DataTables::of($data)
 
@@ -33,11 +30,11 @@ class ConfirmedController extends Controller
         }
 
         return view('encoder.confirmed.index')
-            ->with('active', 'confirmed')
-            ->with('title', 'CONFIRMED');
+            ->with('active', 'backload')
+            ->with('title', 'BACKLOAD');
     }
 
-    public function confirmed_items(Request $request, $dr)
+    public function backload_items(Request $request, $dr)
     {
         if ($request->ajax()) {
             $data = DB::table('dr_items')

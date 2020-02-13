@@ -24,7 +24,7 @@ class PendingTransactionController extends Controller
                 ->select("*")
                 ->selectRaw('GetDRItemQty(dr_no) as dr_qty')
                 ->whereRaw('csv_id in (select id from csv_upload where loaded_to_production = 1)')
-                ->whereRaw('dr_no in (select dr_no from dr_items where status = "pending")');
+                ->whereRaw('dr_no in (select dr_no from dr_items where status = "PENDING")');
 
             return DataTables::of($data)
                 ->addColumn('confirm', function ($data) {
