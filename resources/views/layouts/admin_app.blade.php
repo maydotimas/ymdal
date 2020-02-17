@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/neon/assets/css/neon-theme.css">
     <link rel="stylesheet" href="/neon/assets/css/neon-forms.css">
     <link rel="stylesheet" href="/neon/assets/css/custom.css">
+    <link rel="stylesheet" href="/neon/assets/js/daterangepicker/daterangepicker-bs3.css">
 
     <script src="/neon/assets/js/jquery-1.11.3.min.js"></script>
 
@@ -292,6 +293,10 @@
 <script src="/neon/assets/js/morris.min.js"></script>
 <script src="/neon/assets/js/toastr.js"></script>
 <script src="/neon/assets/js/neon-chat.js"></script>
+
+<script src="/neon/assets/js/bootstrap-datepicker.js"></script>
+
+
 
 
 <!-- JavaScripts initializations and stuff -->

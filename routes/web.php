@@ -82,7 +82,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/csv/delete/', 'Admin\UploadCsvController@delete')->name('csv-delete');
 
         /* DR History */
-        Route::get('/csv/history', 'Admin\UploadCsvController@history')->name('csv-history');
+        Route::get('/csv/history', 'Admin\UploadHistoryController@index')->name('csv-history');
+        Route::get('/csv/history/download', 'Admin\UploadHistoryController@download')->name('csv-history-download');
 
         /*Reports*/
         Route::get('/reports/per-transaction', 'Admin\ReportsController@per_transaction')->name('reports-transaction');

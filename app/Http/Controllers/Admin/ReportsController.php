@@ -18,7 +18,6 @@ class ReportsController extends Controller
 {
     public function per_transaction(Request $request)
     {
-
         if ($request->ajax()) {
             $type = $request->input('reptype');
             $status = str_replace("-","",$request->input('drtype'));

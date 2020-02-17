@@ -115,9 +115,7 @@ class UploadCsvController extends Controller
     /* get csv history for page*/
     public function history()
     {
-        return view('admin.csv.history')
-            ->with('active', 'csv-history')
-            ->with('title', 'NAVISION');
+
     }
 
     /* upload data to production, basically mark the csv file as uploaded to 1*/
