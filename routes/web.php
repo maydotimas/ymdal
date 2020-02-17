@@ -86,6 +86,7 @@ Route::prefix('admin')->group(function () {
 
         /*Reports*/
         Route::get('/reports/per-transaction', 'Admin\ReportsController@per_transaction')->name('reports-transaction');
+        Route::get('/reports/per-transaction/download', 'Admin\ReportsController@per_transaction_download')->name('reports-transaction_download');
 
         /* Branch Upload */
         Route::get('/branch/upload', 'Admin\BranchController@index')->name('branch');

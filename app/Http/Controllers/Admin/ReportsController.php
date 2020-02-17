@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\DR;
 use App\DR_Item;
+use App\Exports\TransactionReportExport;
 use App\Http\Controllers\Controller;
 use App\Imports\DRImport;
 use Illuminate\Http\Request;
@@ -63,5 +64,23 @@ class ReportsController extends Controller
         return view('admin.reports.index')
             ->with('active', 'reports')
             ->with('title', 'PER TRANSACTION REPORTS');
+    }
+
+    public function per_transaction_download(Request $request){
+        $type = $request->input('reptype');
+        $status = str_replace("-","",$request->input('drtype'));
+        $date_daily = $request->input('cur_date_daily');
+        $date_monthly = $request->input('cur_date_monthly');
+
+        if($type=='DAILY'){
+            $date_from = $date_daily." 00:00:00";
+            $date_to = $date_daily." 23:59:59";
+        }else{
+            $date = explode("-", $date_monthly);
+            $date_from = $date[0] . "-" . $date[1] . "-01 00:00:00";
+            $date_to = $date_monthly." 23:59:59";
+        }
+
+        return (new TransactionReportExport($status,$date_from,$date_to))->download('transaction_report.xlsx');
     }
 }

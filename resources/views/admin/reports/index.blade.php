@@ -288,6 +288,9 @@
                 getReport();
             })
 
+            $(".btn_export").click(function(){
+                exportReport();
+            })
             /*
             *
             * FUNCTIONS FOR DATE
@@ -471,6 +474,16 @@
                     },
                 });
             }
+
+            /* Export Report */
+            function exportReport(){
+                var url = "/admin/reports/per-transaction/download?reptype=" + $("#reptype").val()
+                    + "&drtype=" + $("#drtype").val()
+                    + "&cur_date_daily=" + $("#cur_date_daily").val()
+                    + "&cur_date_monthly=" + $("#cur_date_monthly").val();
+                window.open(url,"_blank");
+            }
+
         });
 
     </script>

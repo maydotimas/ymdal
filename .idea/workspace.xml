@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/BackloadController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/DeliveredController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/InTransitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/InTransitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/PendingTransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/PendingTransactionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/encoder/transaction/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/encoder/transaction/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/reports/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/reports/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -119,8 +114,8 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="349">
-              <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="44" />
+            <state relative-caret-position="366">
+              <caret line="88" column="105" selection-start-line="88" selection-start-column="81" selection-end-line="88" selection-end-column="105" />
             </state>
           </provider>
         </entry>
@@ -128,8 +123,8 @@
       <file leaf-file-name="ReportsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="371">
-              <caret line="38" column="35" lean-forward="true" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+            <state relative-caret-position="337">
+              <caret line="79" column="11" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
               <folding>
                 <element signature="e#46#57#0#PHP" expanded="true" />
               </folding>
@@ -137,29 +132,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UploadCsvController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UploadCsvController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/reports/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="465" column="60" selection-start-line="465" selection-start-column="60" selection-end-line="465" selection-end-column="60" />
+            <state relative-caret-position="309">
+              <caret line="479" column="66" selection-start-line="479" selection-start-column="66" selection-end-line="479" selection-end-column="66" />
               <folding>
                 <element signature="e#10255#11572#0#HTML" />
                 <element signature="e#11622#12837#0#HTML" />
@@ -178,11 +155,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/csv/index.blade.php">
+      <file leaf-file-name="TransactionReportExport.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Exports/TransactionReportExport.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="344" column="94" selection-start-line="344" selection-start-column="55" selection-end-line="344" selection-end-column="94" />
+            <state relative-caret-position="451">
+              <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+              <folding>
+                <element signature="e#114#148#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -214,6 +194,8 @@
       <find>cur_date_monthly</find>
       <find>searcha</find>
       <find>DataTables_Table_0</find>
+      <find>exportReport</find>
+      <find>export</find>
     </findStrings>
     <replaceStrings>
       <replace>FUNCTION</replace>
@@ -233,15 +215,16 @@
         <option value="$PROJECT_DIR$/database/migrations/2020_02_10_140943_branch_outlet_csv_content.php" />
         <option value="$PROJECT_DIR$/app/BranchOutletContent.php" />
         <option value="$PROJECT_DIR$/app/Imports/BranchImport.php" />
-        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Outlet.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/BranchController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/UploadCsvController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/reports/index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Encoder/PendingTransactionController.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/reports/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Exports/TransactionReportExport.php" />
       </list>
     </option>
   </component>
@@ -387,6 +370,12 @@
             <path>
               <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
               <item name="ymdal" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Exports" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ymdal" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -505,7 +494,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19973000" />
+    <option name="totallyTimeSpent" value="21795000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -562,16 +551,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Dealer.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_12_160152_import_dealer_outlet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="28" column="35" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2020_02_10_135010_branch_file_upload.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -714,13 +693,6 @@
           <folding>
             <element signature="e#46#57#0#PHP" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="15" />
         </state>
       </provider>
     </entry>
@@ -883,13 +855,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="349">
-          <caret line="87" column="20" selection-start-line="87" selection-start-column="20" selection-end-line="87" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UploadCsvController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -901,27 +866,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="344" column="94" selection-start-line="344" selection-start-column="55" selection-end-line="344" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/reports/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="465" column="60" selection-start-line="465" selection-start-column="60" selection-end-line="465" selection-end-column="60" />
-          <folding>
-            <element signature="e#10255#11572#0#HTML" />
-            <element signature="e#11622#12837#0#HTML" />
-            <element signature="e#15703#15727#0#HTML" />
-            <element signature="e#16336#16551#0#HTML" />
-            <element signature="e#16731#16960#0#HTML" />
-            <element signature="e#17013#17242#0#HTML" />
-            <element signature="e#14121#14872#0#HTML" />
-            <element signature="e#14936#15715#0#HTML" />
-            <element signature="e#15785#16782#0#HTML" />
-            <element signature="e#16852#17861#0#HTML" />
-            <element signature="e#17931#18336#0#HTML" />
-            <element signature="e#18380#18743#0#HTML" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -940,12 +884,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="5" lean-forward="true" selection-start-line="14" selection-start-column="5" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="38" column="35" lean-forward="true" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+        <state relative-caret-position="337">
+          <caret line="79" column="11" selection-start-line="79" selection-start-column="11" selection-end-line="79" selection-end-column="11" />
           <folding>
             <element signature="e#46#57#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="88" column="105" selection-start-line="88" selection-start-column="81" selection-end-line="88" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/reports/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="479" column="66" selection-start-line="479" selection-start-column="66" selection-end-line="479" selection-end-column="66" />
+          <folding>
+            <element signature="e#10255#11572#0#HTML" />
+            <element signature="e#11622#12837#0#HTML" />
+            <element signature="e#15703#15727#0#HTML" />
+            <element signature="e#16336#16551#0#HTML" />
+            <element signature="e#16731#16960#0#HTML" />
+            <element signature="e#17013#17242#0#HTML" />
+            <element signature="e#14121#14872#0#HTML" />
+            <element signature="e#14936#15715#0#HTML" />
+            <element signature="e#15785#16782#0#HTML" />
+            <element signature="e#16852#17861#0#HTML" />
+            <element signature="e#17931#18336#0#HTML" />
+            <element signature="e#18380#18743#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Exports/TransactionReportExport.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="451">
+          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+          <folding>
+            <element signature="e#114#148#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
