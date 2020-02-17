@@ -133,7 +133,8 @@ class PendingTransactionController extends Controller
                     'status' => 'INTRANSIT',
                     'original_status' => 'INTRANSIT',
                     'updated_by' => null,
-                    'is_updated' => null
+                    'is_updated' => null,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             // dr items count
@@ -153,7 +154,8 @@ class PendingTransactionController extends Controller
                 DB::table('dr')
                     ->where('dr_no', $dr)
                     ->update([
-                        'status' => 'INTRANSIT'
+                        'status' => 'INTRANSIT',
+                        'updated_at' => date('Y-m-d H:i:s')
                     ]);
             }
 
@@ -177,13 +179,15 @@ class PendingTransactionController extends Controller
                     'status' => 'INTRANSIT',
                     'original_status' => 'INTRANSIT',
                     'updated_by' => null,
-                    'is_updated' => null
+                    'is_updated' => null,
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             DB::table('dr')
                 ->where('dr_no', $dr)
                 ->update([
-                    'status' => 'INTRANSIT'
+                    'status' => 'INTRANSIT',
+                    'updated_at' => date('Y-m-d H:i:s')
                 ]);
 
             // audit trail

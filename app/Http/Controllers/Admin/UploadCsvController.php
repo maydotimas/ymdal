@@ -106,7 +106,7 @@ class UploadCsvController extends Controller
         /*TO DO: Create branch and outlet details*/
         /* get and import all branch */
         /* get and import all outlet */
-        session()->flush();
+//        session()->flush();
 
         /* redirect to page with import details */
         return redirect('/admin/csv/upload')->with('success', 'All good!');
@@ -161,7 +161,8 @@ class UploadCsvController extends Controller
     public function get_dr_per_file(Request $request,$id)
     {
         if ($request->ajax()) {
-            $data = DB::table('dr')->where('csv_id',$id);
+            $data = DB::table('dr')
+                ->where('csv_id',$id);
 
             return DataTables::of($data)
                 ->addColumn('details', function($data){
