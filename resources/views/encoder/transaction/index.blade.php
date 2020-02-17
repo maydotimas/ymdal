@@ -302,7 +302,7 @@
             /* LOAD CSV TABLES*/
             function loadDRTables() {
 
-                table.DataTable().clear().destroy();
+                // table.DataTable().clear().destroy();
 
                 // Initialize DataTable for CSV Upload list
                 table.DataTable({
@@ -321,7 +321,8 @@
                         {data: 'details', name: 'details', orderable: false, searchable: false},
                         {data: 'confirm', name: 'confirm', orderable: false, searchable: false},
                     ],
-                    drawCallback: function (settings) {
+                    drawCallback: function (data) {
+                        console.log(data);
                         // set the onclick button
                         loadDRItemsTable();
 
