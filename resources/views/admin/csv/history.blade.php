@@ -16,7 +16,7 @@
                     <div class="box-body">
                         <!-- general form elements -->
                         <form id="form-filter" class="form-horizontal" method="POST"
-                              action="http://test.yamahalogistics.com/admin/export_csv">
+                              action="#">
                             <div class="col-md-4 text-right">
                                 <div class="form-group">
                                     <label for="nav_status" class="col-sm-10 control-label">DR STATUS</label>
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-10">
-                                        <button type="submit" id="btn-export" class="btn btn-success btn-block">Export</button>
+                                        <button type="button" id="btn-export" class="btn btn-success btn-block">Export</button>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -197,11 +197,11 @@
 
             /* Export Report */
             function exportReport() {
-                var url = "/admin/reports/per-transaction/download?reptype=" + $("#reptype").val()
-                    + "&drtype=" + $("#drtype").val()
-                    + "&cur_date_daily=" + $("#cur_date_daily").val()
-                    + "&cur_date_monthly=" + $("#cur_date_monthly").val();
-                window.open(url, "_blank");
+                alert()
+                var url = "/admin/csv/history/download?status=" + $("#nav_status").val()
+                    + "&date=" + $("#str_dr_date").val();
+                alert(url)
+                window.open(url);
             }
 
             /* Reset Filter */

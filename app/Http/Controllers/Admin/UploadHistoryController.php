@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Exports\TransactionReportExport;
+use App\Exports\UploadHistoryReportExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -49,6 +50,9 @@ class UploadHistoryController extends Controller
 
     public function download(Request $request)
     {
+        $status = $request->input('status');
+        $date = $request->input('date');
 
+        return (new UploadHistoryReportExport($status,$date))->download('upload_csv_history.xlsx');
     }
 }
