@@ -47,7 +47,7 @@ class LoginController extends Controller
             return '/encoder/home';
         }
         if(auth()->user()->role=='CS'){
-            return '/cs/home';
+            return '/agent/home';
         }
         auth()->logout();
         return '/admin';
