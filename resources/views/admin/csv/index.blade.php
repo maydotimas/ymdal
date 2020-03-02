@@ -525,11 +525,11 @@
             $("#btn_delete_csv").click(function () {
                 $.ajax({
                     method: "get",
-                    url: "/csv/delete",
+                    url: "/admin/csv/delete",
                     data: {csv_id: $("#delete_csv_id").val()}
                 })
                     .done(function (msg) {
-
+                        loadDRTable();
                     });
             });
 
