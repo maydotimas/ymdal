@@ -63,4 +63,28 @@ class DRImport implements ToModel, WithBatchInserts, SkipsOnFailure
     {
         // Handle the failures how you'd like.
     }
+
+    public function rules(): array
+    {
+        return [
+            '0' => 'required',
+            '1' => 'required',
+            '2' => 'required',
+            '3' => 'required',
+            '4' => 'required',
+            '5' => 'required',
+            '6' => 'required',
+            '7' => 'required',
+            '8' => 'required',
+            '9' => 'required',
+            '10' => 'required',
+            '11' => 'required',
+            '12' => 'required',
+            '13' => 'required',
+            '14' => 'required',
+            '15' => 'required',
+            '16' => 'required',
+            '17' => 'required',
+        ];
+    }
 }
