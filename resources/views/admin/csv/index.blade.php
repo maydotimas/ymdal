@@ -287,6 +287,35 @@
 
         </div>
     </div>
+    <div id="recallModal" class="modal fade danger" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">RECALL NAVISION FILE</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="input-group col-md-7">
+                            <input disabled="" id="recall_csv_name" class="form-control input-lg text-center" value=""
+                                   type="text">
+                            <input type="hidden" id="recall_csv_id" class="form-control input-lg text-center" value=""
+                                   type="text">
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="text-center"><br><h4>Are you sure you want to recall this file?</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" data-dismiss="modal" id="btn_recall_csv"> YES</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     {{-- HIDDEN SWITCHES --}}
     <input type="hidden" id="active_csv_id">
     <input type="hidden" id="is_uploaded" value="0">
@@ -381,8 +410,8 @@
                                 action_btn.addClass('btn-default');
                                 action_btn.html('RECALL');
                                 action_btn.click(function () {
-                                    $("#delete_csv_name").val(aData.file_name);
-                                    $("#delete_csv_id").val(aData.id);
+                                    $("#recall_csv_name").val(aData.file_name);
+                                    $("#recall_csv_id").val(aData.id);
                                     /*$.ajax({
                                         method: "get",
                                         url: "/csv/recall",
@@ -537,8 +566,8 @@
             $("#btn_recall_csv").click(function () {
                 $.ajax({
                     method: "get",
-                    url: "/csv/delete",
-                    data: {csv_id: $("#delete_csv_id").val()}
+                    url: "/admin/csv/recall",
+                    data: {csv_id: $("#recall_csv_id").val()}
                 })
                     .done(function (msg) {
 

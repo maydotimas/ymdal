@@ -24,7 +24,7 @@ class DrItems extends Migration
             $table->string('sdr_no');
             $table->string('po_no');
             $table->dateTime('delivery_date')->nullable();
-            $table->enum('status',['PENDING','INTRANSIT','CONFIRMED','DELIVERED','BACKLOAD']);
+            $table->enum('status',['PENDING','INTRANSIT','CONFIRMED','DELIVERED','BACKLOAD','RECALLED']);
             $table->dateTime('guard_out')->nullable();
             $table->dateTime('confirm_date')->nullable();
             $table->dateTime('deliver_date')->nullable();

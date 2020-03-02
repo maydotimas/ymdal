@@ -27,7 +27,7 @@ class TblDr extends Migration
             $table->string('region');
             $table->string('transit_days');
             $table->integer('item_qty')->default(0);
-            $table->enum('status',['PENDING','INTRANSIT','CONFIRMED','DELIVERED','BACKLOAD']);
+            $table->enum('status',['PENDING','INTRANSIT','CONFIRMED','DELIVERED','BACKLOAD','RECALLED']);
             $table->dateTime('date_delivered')->nullable();
             $table->integer('csv_id');
             $table->timestamps();

@@ -147,11 +147,15 @@ class UploadCsvController extends Controller
     {
         if ($request->ajax()) {
             $csv_id = $request->input('csv_id');
+
             $csv = CsvUpload::find($csv_id);
             $csv->status = 'RECALLED';
             $csv->loaded_to_production = 0;
             $csv->recall_date = date('Y-m-d H:i:s');
             $csv->save();
+
+            DR::where('csv_id',$csv_id)->update(['status'=>'RECALLED']);
+            DR_Item::where('csv_id',$csv_id)->update(['status'=>'RECALLED']);
         }
     }
 
