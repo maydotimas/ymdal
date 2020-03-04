@@ -23,16 +23,16 @@ class InTransitController extends Controller
                 ->whereRaw('dr_no in (select dr_no from dr_items where status = "INTRANSIT")');
 
             return DataTables::of($data)
-                ->addColumn('confirm', function ($data) {
+               /* ->addColumn('confirm', function ($data) {
 
                     $btn = '<button type="button" id="row_' . $data->dr_no . '" data-id="' . $data->dr_no . '" data-toggle="modal" data-target="#confirmModal" class="hidden btn_confirm_all edit btn btn-success btn-sm">CONFIRM ALL</button>';
                     return $btn;
-                })
+                })*/
                 ->addColumn('details', function ($data) {
                     $btn = '<button type="button" data-id="' . $data->dr_no . '" data-date="' . $data->dr_date . '" data-outlet="' . $data->outlet_code . '" data-address="' . $data->outlet_code . '" data-atp="' . $data->atp_no . '" data-po="' . $data->po_no . '" class="edit btn btn-primary btn-sm btn-warning btn_dr_details">DETAILS</button>';
                     return $btn;
                 })
-                ->rawColumns(['details', 'confirm'])
+                ->rawColumns(['details'])
                 ->make(true);
         }
 
@@ -49,7 +49,7 @@ class InTransitController extends Controller
                 ->where('dr_no', $dr);
 
             return DataTables::of($data)
-                ->addColumn('checkbox', function ($data) {
+              /*  ->addColumn('checkbox', function ($data) {
                     if ($data->status == 'PENDING') {
                         $btn = '<button type="button" class="btn btn-s btn-danger btn_check_uncheck" data-id="' . $data->id . '">
 							<i id="icon_' . $data->id . '" class="fa fa-minus-square"></i>
@@ -63,14 +63,14 @@ class InTransitController extends Controller
                     }
 
                     return $btn;
-                })
+                })*/
                 ->addColumn('span_status', function ($data) {
 
                     $btn = '<span id="status_' . $data->id . '">' . $data->status . '</span>';
 
                     return $btn;
                 })
-                ->rawColumns(['checkbox', 'span_status'])
+                ->rawColumns(['span_status'])
                 ->make(true);
         }
     }

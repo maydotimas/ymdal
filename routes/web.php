@@ -72,7 +72,7 @@ Route::prefix('agent')->group(function () {
 
 
     /* PENDING */
-    Route::prefix('pending')->group(function () {
+   /* Route::prefix('pending')->group(function () {
         Route::get('/', 'Agent\PendingTransactionController@pending')->name('pending-agent');
         Route::get('/items/{id}', 'Agent\PendingTransactionController@pending_items')->name('pending_items-agent');
         Route::get('/update/{dr}/{status}', 'Agent\PendingTransactionController@update_pending_item')->name('update_pending_items-agent');
@@ -80,7 +80,7 @@ Route::prefix('agent')->group(function () {
         Route::get('/dr/uncheck_all/{dr}/', 'Agent\PendingTransactionController@uncheck_all')->name('uncheck_all_pending_items-agent');
         Route::get('/confirm/{dr}/{date}', 'Agent\PendingTransactionController@confirm')->name('confirm__pending_items-agent');
         Route::get('/confirm_all/{dr}/{date}', 'Agent\PendingTransactionController@confirm_all')->name('confirm_all_pending_items-agent');
-    });
+    });*/
 
     /* INTRANSIT */
     Route::prefix('intransit')->group(function () {
