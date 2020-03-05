@@ -86,6 +86,11 @@ Route::prefix('agent')->group(function () {
     Route::prefix('intransit')->group(function () {
         Route::get('/', 'Agent\InTransitController@intransit')->name('intransit-agent');
         Route::get('/items/{id}', 'Agent\InTransitController@intransit_items')->name('intransit_items-agent');
+        Route::get('/update/{dr}/{status}', 'Agent\InTransitController@update_pending_item')->name('update_intransit_items');
+        Route::get('/dr/check_all/{dr}', 'Agent\InTransitController@check_all')->name('check_all_intransit_items');
+        Route::get('/dr/uncheck_all/{dr}/', 'Agent\InTransitController@uncheck_all')->name('uncheck_all_intransit_items');
+        Route::get('/confirm/{dr}/{date}', 'Agent\InTransitController@confirm')->name('confirm_intransit_items');
+        Route::get('/confirm_all/{dr}/{date}', 'Agent\InTransitController@confirm_all')->name('confirm_all_intransit_items');
     });
     /* CONFIRMED */
     Route::prefix('confirmed')->group(function () {

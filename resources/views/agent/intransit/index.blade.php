@@ -1,4 +1,4 @@
-@extends('layouts.agents_app')
+@extends('layouts.encoder_app')
 
 @section('content')
 
@@ -62,11 +62,11 @@
                                                 aria-label=" : activate to sort column ascending"
                                             ></th>
 
-                                            {{--<th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"--}}
-                                                {{--rowspan="1" colspan="1"--}}
-                                                {{--aria-label=" : activate to sort column ascending"--}}
-                                                {{--style="width:10px;"--}}
-                                            {{--></th>--}}
+                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                rowspan="1" colspan="1"
+                                                aria-label=" : activate to sort column ascending"
+                                                style="width:10px;"
+                                            ></th>
                                         </tr>
                                         </thead>
 
@@ -171,11 +171,11 @@
                                                     aria-label=" STATUS: activate to sort column ascending"
                                                     style="width: 99px;"> STATUS
                                                 </th>
-                                                {{--<th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"--}}
-                                                    {{--rowspan="1" colspan="1"--}}
-                                                    {{--aria-label=" : activate to sort column ascending"--}}
-                                                    {{--style="width: 10px;">--}}
-                                                {{--</th>--}}
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label=" : activate to sort column ascending"
+                                                    style="width: 10px;">
+                                                </th>
                                             </tr>
                                             </thead>
 
@@ -192,12 +192,12 @@
                         <div class="form-group text-right">
 
                             <!--- <button class="btn btn-success" data-toggle="modal" data-target="#alldrModal"> CONFIRM ALL</button> --->
-                         {{--   <button class="btn btn-info" id="btn_check_all" data-id=""> CHECK ALL</button>
+                            <button class="btn btn-info" id="btn_check_all" data-id=""> CHECK ALL</button>
                             <button class="btn btn-danger" id="btn_uncheck_all" data-id=""> UNCHECK ALL</button>
                             <button class="btn btn-warning" data-toggle="modal" data-target="#confirmModal"
                                     id="btn_confirm"> CONFIRM
                             </button>
-                            <input id="nav_url" type="hidden" value="encoder/pending">--}}
+                            <input id="nav_url" type="hidden" value="agent/pending">
 
 
                             <button
@@ -309,7 +309,7 @@
                 table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/encoder/intransit",
+                    ajax: "/agent/intransit",
                     columns: [
                         // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'dr_no', name: 'dr_no'},
@@ -320,7 +320,7 @@
                         {data: 'dr_qty', name: 'dr_qty', orderable: false, searchable: false},
                         {data: 'po_no', name: 'po_no'},
                         {data: 'details', name: 'details', orderable: false, searchable: false},
-                        // {data: 'confirm', name: 'confirm', orderable: false, searchable: false},
+                        {data: 'confirm', name: 'confirm', orderable: false, searchable: false},
                     ],
                     drawCallback: function (settings) {
                         // set the onclick button
@@ -387,7 +387,7 @@
                         {data: 'frame_no', name: 'frame_no'},
                         {data: 'engine_no', name: 'engine_no'},
                         {data: 'span_status', name: 'span_status'},
-                        // {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false}
+                        {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false}
                     ],
                     drawCallback: function (settings) {
                         /* check and uncheck items*/
@@ -415,7 +415,7 @@
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
-                                    url: "/encoder/pending/update/" + id + "/INTRANSIT"
+                                    url: "/agent/intransit/update/" + id + "/INTRANSIT"
                                 });
                             } else {
                                 /* update the button class*/
@@ -435,7 +435,7 @@
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
-                                    url: "/encoder/pending/update/" + id + "/PENDING/"
+                                    url: "/agent/intransit/update/" + id + "/PENDING/"
                                 });
                             }
 
@@ -450,7 +450,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/encoder/pending/dr/check_all/" + dr
+                    url: "/agent/intransit/dr/check_all/" + dr
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
@@ -462,7 +462,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/agent/pending/dr/uncheck_all/" + dr
+                    url: "/agent/intransit/dr/uncheck_all/" + dr
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
@@ -558,7 +558,7 @@
                     /* update temporary detail */
                     $.ajax({
                         method: "get",
-                        url: "/agent/pending/confirm/" + dr + "/" + $("#confirm_date").val()
+                        url: "/agent/intransit/confirm/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         updateItemTable(dr);
                     });
@@ -569,7 +569,7 @@
                     /* update temporary detail */
                     $.ajax({
                         method: "get",
-                        url: "/agent/pending/confirm_all/" + dr + "/" + $("#confirm_date").val()
+                        url: "/agent/intransit/confirm_all/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         // hide the class
                         $("#row_" + dr).closest('tr').addClass('hidden');
@@ -579,6 +579,7 @@
 
             /* BACK BUTTONS*/
             $(".backToDR").click(function () {
+                loadDRTables();
                 $("#div_dr_list").removeClass('hidden');
                 $("#div_dr_items").addClass('hidden');
             });
