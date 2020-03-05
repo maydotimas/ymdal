@@ -579,6 +579,7 @@
 
             /* BACK BUTTONS*/
             $(".backToDR").click(function () {
+                loadDRTables();
                 $("#div_dr_list").removeClass('hidden');
                 $("#div_dr_items").addClass('hidden');
             });
