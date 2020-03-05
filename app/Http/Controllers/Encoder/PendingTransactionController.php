@@ -115,7 +115,8 @@ class PendingTransactionController extends Controller
                 ->update([
                     'status' => 'PENDING',
                     'updated_by' => auth()->user()->id,
-                    'is_updated' => 'NO'
+                    'is_updated' => 'NO',
+                    'guard_out' => null
                 ]);
         }
     }
@@ -125,16 +126,15 @@ class PendingTransactionController extends Controller
         if ($request->ajax()) {
 
             // upload items that are set to intransit
-            DB::table('dr_items')
+            $status = DB::table('dr_items')
                 ->where('dr_no', $dr)
-                ->where('updated_by', auth()->user()->id)
-                ->where('original_status', 'PENDING')
                 ->update([
                     'status' => 'INTRANSIT',
                     'original_status' => 'INTRANSIT',
                     'updated_by' => null,
                     'is_updated' => null,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'guard_out' => $date
                 ]);
 
             // dr items count
@@ -150,7 +150,7 @@ class PendingTransactionController extends Controller
                 ->get();
 
             // check if all items are in-transit, then set dr as intransit
-            if ($dr_items_count == $dr_items_confirmed) {
+            if (count($dr_items_count) == count($dr_items_confirmed)) {
                 DB::table('dr')
                     ->where('dr_no', $dr)
                     ->update([
@@ -180,7 +180,8 @@ class PendingTransactionController extends Controller
                     'original_status' => 'INTRANSIT',
                     'updated_by' => null,
                     'is_updated' => null,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'guard_out' => $date
                 ]);
 
             DB::table('dr')

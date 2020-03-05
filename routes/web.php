@@ -37,7 +37,7 @@ Route::prefix('encoder')->group(function () {
         Route::get('/update/{dr}/{status}', 'Encoder\PendingTransactionController@update_pending_item')->name('update_pending_items');
         Route::get('/dr/check_all/{dr}', 'Encoder\PendingTransactionController@check_all')->name('check_all_pending_items');
         Route::get('/dr/uncheck_all/{dr}/', 'Encoder\PendingTransactionController@uncheck_all')->name('uncheck_all_pending_items');
-        Route::get('/confirm/{dr}/{date}', 'Encoder\PendingTransactionController@confirm')->name('confirm__pending_items');
+        Route::get('/confirm/{dr}/{date}', 'Encoder\PendingTransactionController@confirm')->name('confirm_pending_items');
         Route::get('/confirm_all/{dr}/{date}', 'Encoder\PendingTransactionController@confirm_all')->name('confirm_all_pending_items');
     });
 

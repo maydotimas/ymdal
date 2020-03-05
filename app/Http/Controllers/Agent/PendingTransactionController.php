@@ -122,6 +122,7 @@ class PendingTransactionController extends Controller
 
     public function confirm(Request $request, $dr, $date)
     {
+        dd($date);
         if ($request->ajax()) {
 
             // upload items that are set to intransit
@@ -134,7 +135,8 @@ class PendingTransactionController extends Controller
                     'original_status' => 'INTRANSIT',
                     'updated_by' => null,
                     'is_updated' => null,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'guard_out' => $date,
                 ]);
 
             // dr items count
@@ -180,7 +182,8 @@ class PendingTransactionController extends Controller
                     'original_status' => 'INTRANSIT',
                     'updated_by' => null,
                     'is_updated' => null,
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'updated_at' => date('Y-m-d H:i:s'),
+                    'guard_out' => $date
                 ]);
 
             DB::table('dr')
