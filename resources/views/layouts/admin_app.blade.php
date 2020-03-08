@@ -126,6 +126,20 @@
                         <span class="title">Upload Branch CSV</span>
                     </a>
                 </li>
+                {{--DEALERS--}}
+                <li @if($active=='dealers')class="active opened active"@endif>
+                    <a href="/admin/dealers">
+                        <i class="entypo-briefcase"></i>
+                        <span class="title">Dealers</span>
+                    </a>
+                </li>
+                {{--USERS--}}
+                <li @if($active=='users')class="active opened active"@endif>
+                    <a href="/admin/users">
+                        <i class="entypo-user"></i>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
             </ul>
 
         </div>

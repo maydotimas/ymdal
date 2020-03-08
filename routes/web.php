@@ -146,6 +146,20 @@ Route::prefix('admin')->group(function () {
         Route::get('/branch/dealers/{csv}', 'Admin\BranchController@dealers')->name('branch-dealers');
         Route::get('/branch/outlets/{csv}', 'Admin\BranchController@outlets')->name('branch-outlets');
 
+        /* Dealer */
+        Route::get('/dealers', 'Admin\DealerController@index')->name('dealer');
+        Route::get('/dealers/outlets/{id}', 'Admin\DealerController@get_dealer_outlet')->name('dealer_outlet');
+        Route::get('/dealers/update/{id}', 'Admin\DealerController@update_dealer')->name('dealer_update');
+
+        /* Users */
+        Route::get('/users', 'Admin\UsersController@index')->name('users');
+        Route::get('/users/create', 'Admin\UsersController@create_user')->name('users_create');
+        Route::get('/users/save', 'Admin\UsersController@save_user')->name('users_save');
+        Route::get('/users/update/{id}', 'Admin\UsersController@update_user')->name('users_update');
+        Route::get('/users/block/{id}', 'Admin\UsersController@block_user')->name('users_block');
+        Route::get('/users/unblock/{id}', 'Admin\UsersController@unblock_user')->name('users_unblock');
+        Route::get('/users/password_reset/{id}', 'Admin\UsersController@password_reset')->name('users_password_reset');
+        Route::get('/users/password_change/{id}', 'Admin\UsersController@password_change')->name('users_password_change');
     });
 
 });
