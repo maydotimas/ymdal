@@ -86,7 +86,7 @@
                                    role="grid" aria-describedby="table_info">
                                 <thead>
                                 <tr role="row">
-                                    <th class="sorting_disabled" rowspan="1" colspan="1" style="width: 18px;"> NO</th>
+                                    {{--<th class="sorting_disabled" rowspan="1" colspan="1" style="width: 18px;"> NO</th>--}}
                                     <th class="sorting" tabindex="0" aria-controls="table" rowspan="1" colspan="1"
                                         style="width: 34px;"> DR NO
                                     </th>
@@ -140,6 +140,28 @@
         $(document).ready(function () {
             /* initialize vars*/
 
+            var dr_table = $("#table");
+            dr_table.DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "/admin/csv/history?status=" + $("#nav_status").val()
+                + "&date=" + $("#str_dr_date").val(),
+                dataSrc: "",
+                columns: [
+                    {data: 'dr_no', name: 'dr_no'},
+                    {data: 'dr_date', name: 'dr_date'},
+                    {data: 'outlet_code', name: 'outlet_code'},
+                    {data: 'outlet_code', name: 'outlet_code'},
+                    {data: 'frame_no', name: 'frame_no'},
+                    {data: 'engine_no', name: 'engine_no'},
+                    {data: 'status', name: 'status'},
+                    {data: 'guard_out', name: 'guard_out', orderable: false, searchable: false},
+                    {data: 'confirm_date', name: 'confirm_date', orderable: false, searchable: false},
+                    {data: 'deliver_date', name: 'deliver_date', orderable: false, searchable: false},
+                ],
+                drawCallback: function (settings) {
+                },
+            });
             /*
             *
             * ACTION BUTTONS
@@ -167,7 +189,6 @@
 
             /* initialize table */
             function getReport() {
-                var dr_table = $("#table");
                 /* reset table*/
                 dr_table.DataTable().clear().destroy();
 
@@ -187,8 +208,8 @@
                         {data: 'engine_no', name: 'engine_no'},
                         {data: 'status', name: 'status'},
                         {data: 'guard_out', name: 'guard_out', orderable: false, searchable: false},
-                        {data: 'confirm_date', name: 'confirmed', orderable: false, searchable: false},
-                        {data: 'deliver_date', name: 'delivered', orderable: false, searchable: false},
+                        {data: 'confirm_date', name: 'confirm_date', orderable: false, searchable: false},
+                        {data: 'deliver_date', name: 'deliver_date', orderable: false, searchable: false},
                     ],
                     drawCallback: function (settings) {
                     },

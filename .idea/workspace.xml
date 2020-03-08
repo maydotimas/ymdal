@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Agent/BackloadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Agent/BackloadController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/BackloadController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/BackloadController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/csv/history.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/csv/history.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir/" />
@@ -112,65 +111,34 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="113" column="49" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="49" />
+            <state relative-caret-position="132">
+              <caret line="135" column="65" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="65" />
               <folding>
+                <element signature="e#660#2780#2#PHP" />
+                <element signature="e#2813#4991#2#PHP" />
                 <element signature="e#2938#3877#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeliveredController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php">
+      <file leaf-file-name="UploadHistoryController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UploadHistoryController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-830">
-              <caret line="117" column="31" lean-forward="true" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
+            <state relative-caret-position="119">
+              <caret line="35" column="37" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="37" />
+              <folding>
+                <element signature="e#46#86#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BackloadController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/BackloadController.php">
+      <file leaf-file-name="history.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/csv/history.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="31" column="35" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BackloadController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Encoder/BackloadController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="33" column="40" lean-forward="true" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="encoder_app.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/layouts/encoder_app.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="79" column="37" selection-start-line="79" selection-start-column="30" selection-end-line="79" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/agent/backload/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="291" column="42" selection-start-line="291" selection-start-column="42" selection-end-line="291" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/encoder/backload/index.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="29" selection-start-column="29" selection-end-column="29" />
+            <state relative-caret-position="241">
+              <caret line="146" column="67" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="67" />
             </state>
           </provider>
         </entry>
@@ -245,7 +213,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/admin_app.blade.php" />
         <option value="$PROJECT_DIR$/public/neon/assets/js/neon-custom.js" />
-        <option value="$PROJECT_DIR$/resources/views/admin/csv/history.blade.php" />
         <option value="$PROJECT_DIR$/app/Exports/UploadHistoryReportExport.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/UploadHistoryController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Agent/HomeController.php" />
@@ -280,6 +247,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Agent/BackloadController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Encoder/BackloadController.php" />
         <option value="$PROJECT_DIR$/resources/views/encoder/backload/index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/csv/history.blade.php" />
       </list>
     </option>
   </component>
@@ -588,12 +556,12 @@
       <workItem from="1581477620483" duration="2742000" />
       <workItem from="1581521332854" duration="4671000" />
       <workItem from="1581907798718" duration="15163000" />
-      <workItem from="1581933598675" duration="13309000" />
+      <workItem from="1581933598675" duration="14094000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39703000" />
+    <option name="totallyTimeSpent" value="40488000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -711,27 +679,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/csv/history.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="202" column="25" selection-start-line="202" selection-start-column="25" selection-end-line="202" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Exports/UploadHistoryReportExport.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="39" selection-start-line="39" selection-end-line="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UploadHistoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="884">
-          <caret line="52" column="15" selection-start-line="52" selection-start-column="15" selection-end-line="52" selection-end-column="15" />
-          <folding>
-            <element signature="e#46#86#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -974,16 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/web.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="113" column="49" selection-start-line="113" selection-start-column="31" selection-end-line="113" selection-end-column="49" />
-          <folding>
-            <element signature="e#2938#3877#0#PHP" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-830">
@@ -1023,6 +964,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="29" selection-start-column="29" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="135" column="65" selection-start-line="135" selection-start-column="42" selection-end-line="135" selection-end-column="65" />
+          <folding>
+            <element signature="e#660#2780#2#PHP" />
+            <element signature="e#2813#4991#2#PHP" />
+            <element signature="e#2938#3877#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/UploadHistoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="35" column="37" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="37" />
+          <folding>
+            <element signature="e#46#86#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/csv/history.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="146" column="67" selection-start-line="146" selection-start-column="57" selection-end-line="146" selection-end-column="67" />
         </state>
       </provider>
     </entry>
