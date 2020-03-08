@@ -96,6 +96,11 @@ Route::prefix('agent')->group(function () {
     Route::prefix('confirmed')->group(function () {
         Route::get('/', 'Agent\ConfirmedController@confirmed')->name('confirmed-agent');
         Route::get('/items/{id}', 'Agent\ConfirmedController@confirmed_items')->name('confirmed_items-agent');
+        Route::get('/update/{dr}/{status}', 'Agent\ConfirmedController@update_pending_item')->name('update_confirmed_items');
+        Route::get('/dr/check_all/{dr}', 'Agent\ConfirmedController@check_all')->name('check_all_confirmed_items');
+        Route::get('/dr/uncheck_all/{dr}/', 'Agent\ConfirmedController@uncheck_all')->name('uncheck_all_confirmed_items');
+        Route::get('/confirm/{dr}/{date}', 'Agent\ConfirmedController@confirm')->name('confirm_confirmed_items');
+        Route::get('/confirm_all/{dr}/{date}', 'Agent\ConfirmedController@confirm_all')->name('confirm_all_confirmed_items');
     });
 
     /* DELIVERED */

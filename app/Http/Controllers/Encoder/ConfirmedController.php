@@ -32,7 +32,7 @@ class ConfirmedController extends Controller
                 ->make(true);
         }
 
-        return view('encoder.confirmed.index')
+        return view('agent.confirmed.index')
             ->with('active', 'confirmed')
             ->with('title', 'CONFIRMED');
     }
@@ -55,4 +55,6 @@ class ConfirmedController extends Controller
                 ->make(true);
         }
     }
+
+
 }

@@ -1,4 +1,4 @@
-@extends('layouts.agents_app')
+@extends('layouts.encoder_app')
 
 @section('content')
 
@@ -60,12 +60,6 @@
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1"
                                                 aria-label=" : activate to sort column ascending"
-                                            ></th>
-
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1"
-                                                aria-label=" : activate to sort column ascending"
-                                                style="width:10px;"
                                             ></th>
                                         </tr>
                                         </thead>
@@ -171,11 +165,6 @@
                                                     aria-label=" STATUS: activate to sort column ascending"
                                                     style="width: 99px;"> STATUS
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label=" : activate to sort column ascending"
-                                                    style="width: 10px;">
-                                                </th>
                                             </tr>
                                             </thead>
 
@@ -191,16 +180,7 @@
                     <div class="col-md-12">
                         <div class="form-group text-right">
 
-                            <!--- <button class="btn btn-success" data-toggle="modal" data-target="#alldrModal"> CONFIRM ALL</button> --->
-                            <button class="btn btn-info" id="btn_check_all" data-id=""> CHECK ALL</button>
-                            <button class="btn btn-danger" id="btn_uncheck_all" data-id=""> UNCHECK ALL</button>
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#confirmModal"
-                                    id="btn_confirm"> CONFIRM
-                            </button>
-                            <input id="nav_url" type="hidden" value="agent/pending">
-
-
-                            <button
+                           <button
                                     class="btn btn-primary backToDR"> BACK
                             </button>
                         </div>
@@ -309,7 +289,7 @@
                 table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/agent/intransit",
+                    ajax: "/encoder/delivered/",
                     columns: [
                         // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'dr_no', name: 'dr_no'},
@@ -320,19 +300,11 @@
                         {data: 'dr_qty', name: 'dr_qty', orderable: false, searchable: false},
                         {data: 'po_no', name: 'po_no'},
                         {data: 'details', name: 'details', orderable: false, searchable: false},
-                        {data: 'confirm', name: 'confirm', orderable: false, searchable: false},
                     ],
                     drawCallback: function (settings) {
                         // set the onclick button
                         loadDRItemsTable();
 
-                        /* confirm all*/
-                        $(".btn_confirm_all").click(function () {
-                            $("#hdn_is_confirm_all").val(1);
-                            $("#hdn_dr").val($(this).data('id'));
-                            var date = formatDate(Date.now());
-                            $("#confirm_date").val(date);
-                        });
                     },
                     fnRowCallback: function (nRow, aData, iDisplayIndex) {
 
@@ -379,207 +351,23 @@
                 dr_table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/agent/intransit/items/" + dr,
+                    ajax: "/encoder/delivered/items/" + dr,
                     columns: [
                         // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
                         {data: 'model_code', name: 'model_code'},
                         {data: 'model_name', name: 'model_name'},
                         {data: 'frame_no', name: 'frame_no'},
                         {data: 'engine_no', name: 'engine_no'},
-                        {data: 'span_status', name: 'span_status'},
-                        {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false}
+                        {data: 'span_status', name: 'span_status'}
                     ],
                     drawCallback: function (settings) {
-                        /* check and uncheck items*/
-                        $(".btn_check_uncheck").click(function () {
-                            var id = $(this).data('id');
 
-                            /* CHECK CURRENT STATUS*/
-                            var status = $("#status_" + id).html();
-                            if (status == 'PENDING') {
-                                /* update the button class*/
-                                $(this).removeClass('btn-danger');
-                                $(this).addClass('btn-success');
-
-                                /* update the symbol display*/
-                                $("#icon_" + id).removeClass('fa-minus-square');
-                                $("#icon_" + id).addClass('fa-check-square');
-
-                                /* update the status span*/
-                                $("#status_" + id).html('INTRANSIT');
-
-                                /* add the value for updating status*/
-                                $("#" + id).val($(this).data('id'));
-
-
-                                /* update temporary detail */
-                                $.ajax({
-                                    method: "get",
-                                    url: "/agent/intransit/update/" + id + "/INTRANSIT"
-                                });
-                            } else {
-                                /* update the button class*/
-                                $(this).addClass('btn-danger');
-                                $(this).removeClass('btn-success');
-
-                                /* update the symbol display*/
-                                $("#icon_" + id).addClass('fa-minus-square');
-                                $("#icon_" + id).removeClass('fa-check-square');
-
-                                /* update the status span*/
-                                $("#status_" + id).html('PENDING');
-
-                                /* add the value for updating status*/
-                                $("#" + id).val('');
-
-                                /* update temporary detail */
-                                $.ajax({
-                                    method: "get",
-                                    url: "/agent/intransit/update/" + id + "/PENDING/"
-                                });
-                            }
-
-                        });
                     },
                 });
             }
 
-            /* check all */
-            $("#btn_check_all").click(function () {
-                var dr = $("#dr_no").html();
-                /* update temporary detail */
-                $.ajax({
-                    method: "get",
-                    url: "/agent/intransit/dr/check_all/" + dr
-                }).done(function (msg) {
-                    updateItemTable(dr);
-                });
-            });
-
-            /* uncheck all */
-            $("#btn_uncheck_all").click(function () {
-                var dr = $("#dr_no").html();
-                /* update temporary detail */
-                $.ajax({
-                    method: "get",
-                    url: "/agent/intransit/dr/uncheck_all/" + dr
-                }).done(function (msg) {
-                    updateItemTable(dr);
-                });
-            });
-
-            /* date add / less */
-            function formatDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + (d.getDate()),
-                    year = d.getFullYear();
-
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-
-                return [year, month, day].join('-');
-            }
-
-            function subDate(date) {
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + (d.getDate() - 1),
-                    year = d.getFullYear();
-
-                if (day == 0) {
-                    month = d.getMonth();
-                    date = new Date(year, month, 0);
-
-                    d = new Date(date),
-                        month = '' + (d.getMonth() + 1),
-                        day = '' + (d.getDate()),
-                        year = d.getFullYear();
-                }
-
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-
-                return [year, month, day].join('-');
-            }
-
-            function addDate(date) {
-
-                var d = new Date(date),
-                    month = '' + (d.getMonth() + 1),
-                    day = '' + (d.getDate() + 1),
-                    year = d.getFullYear();
-
-                var cur_date = new Date();
-                var cur_day = (cur_date.getDate());
-
-                if (day >= cur_day) {
-                    d = new Date(date),
-                        month = '' + (cur_date.getMonth() + 1),
-                        day = '' + (cur_date.getDate()),
-                        year = cur_date.getFullYear();
-                }
-
-                if (month.length < 2)
-                    month = '0' + month;
-                if (day.length < 2)
-                    day = '0' + day;
-
-                return [year, month, day].join('-');
-            }
-
-            /* confirm */
-            $("#btn_confirm").click(function () {
-                var date = formatDate(Date.now());
-                $("#confirm_date").val(date);
-            });
-
-            /* date subtract */
-            $("#btn_less_date").click(function () {
-                var date = new Date($("#confirm_date").val());
-                $("#confirm_date").val(subDate(date));
-            });
-
-            /* date add */
-            $("#btn_add_date").click(function () {
-                var date = new Date($("#confirm_date").val());
-                $("#confirm_date").val(addDate(date));
-            });
-
-            /* confirm final */
-            $("#btn_confirm_final").click(function () {
-                // check if transaction is normal confirm
-                if ($("#hdn_is_confirm_all").val() != '1') {
-                    var dr = $("#dr_no").html();
-                    /* update temporary detail */
-                    $.ajax({
-                        method: "get",
-                        url: "/agent/intransit/confirm/" + dr + "/" + $("#confirm_date").val()
-                    }).done(function (msg) {
-                        updateItemTable(dr);
-                    });
-                }
-                // update all
-                else {
-                    var dr = $("#hdn_dr").val();
-                    /* update temporary detail */
-                    $.ajax({
-                        method: "get",
-                        url: "/agent/intransit/confirm_all/" + dr + "/" + $("#confirm_date").val()
-                    }).done(function (msg) {
-                        // hide the class
-                        $("#row_" + dr).closest('tr').addClass('hidden');
-                    });
-                }
-            });
-
             /* BACK BUTTONS*/
             $(".backToDR").click(function () {
-                loadDRTables();
                 $("#div_dr_list").removeClass('hidden');
                 $("#div_dr_items").addClass('hidden');
             });

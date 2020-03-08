@@ -37,8 +37,8 @@ class InTransitController extends Controller
         }
 
         return view('agent.intransit.index')
-            ->with('active', 'CONFIRMED')
-            ->with('title', 'CONFIRMED');
+            ->with('active', 'intransit')
+            ->with('title', 'IN TRANSIT');
     }
 
     public function intransit_items(Request $request, $dr)
@@ -50,7 +50,7 @@ class InTransitController extends Controller
 
             return DataTables::of($data)
                ->addColumn('checkbox', function ($data) {
-                    if ($data->status == 'PENDING') {
+                    if ($data->status == 'INTRANSIT') {
                         $btn = '<button type="button" class="btn btn-s btn-danger btn_check_uncheck" data-id="' . $data->id . '">
 							<i id="icon_' . $data->id . '" class="fa fa-minus-square"></i>
 							<input type="hidden" id="' . $data->id . '" class="dr_items" name="dr_items[]" value="0">

@@ -29,7 +29,7 @@ class DeliveredController extends Controller
                 ->make(true);
         }
 
-        return view('encoder.confirmed.index')
+        return view('encoder.delivered.index')
             ->with('active', 'delivered')
             ->with('title', 'DELIVERED');
     }
