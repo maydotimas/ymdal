@@ -29,7 +29,7 @@ class BackloadController extends Controller
                 ->make(true);
         }
 
-        return view('encoder.confirmed.index')
+        return view('encoder.backload.index')
             ->with('active', 'backload')
             ->with('title', 'BACKLOAD');
     }

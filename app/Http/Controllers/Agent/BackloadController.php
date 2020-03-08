@@ -29,7 +29,7 @@ class BackloadController extends Controller
                 ->make(true);
         }
 
-        return view('agent.confirmed.index')
+        return view('agent.backload.index')
             ->with('active', 'backload')
             ->with('title', 'BACKLOAD');
     }
