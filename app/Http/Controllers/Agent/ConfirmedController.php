@@ -111,7 +111,7 @@ class ConfirmedController extends Controller
                     'status' => 'CONFIRMED',
                     'updated_by' => auth()->user()->id,
                     'is_updated' => 'NO',
-                    'guard_out' => null
+                    'confirm_date' => null
                 ]);
         }
     }
@@ -129,7 +129,7 @@ class ConfirmedController extends Controller
                     'updated_by' => null,
                     'is_updated' => null,
                     'updated_at' => date('Y-m-d H:i:s'),
-                    'guard_out' => $date
+                    'confirm_date' => $date
                 ]);
 
             // dr items count
@@ -176,7 +176,7 @@ class ConfirmedController extends Controller
                     'updated_by' => null,
                     'is_updated' => null,
                     'updated_at' => date('Y-m-d H:i:s'),
-                    'guard_out' => $date
+                    'confirm_date' => $date
                 ]);
 
             DB::table('dr')

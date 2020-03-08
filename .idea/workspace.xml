@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Agent/InTransitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Agent/InTransitController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/DeliveredController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/DeliveredController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agent/confirmed/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/agent/intransit/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agent/intransit/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir/" />
@@ -128,11 +121,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ConfirmedController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="DeliveredController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+            <state relative-caret-position="-830">
+              <caret line="117" column="31" lean-forward="true" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -150,7 +152,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>delete_csv_id</find>
       <find>recall_csv</find>
       <find>/recall</find>
       <find>recall navision</find>
@@ -180,6 +181,7 @@
       <find>confirmed_items</find>
       <find>/encoder/confirmed</find>
       <find>encoder/delivered/</find>
+      <find>guard_out</find>
     </findStrings>
     <replaceStrings>
       <replace>FUNCTION</replace>
@@ -191,6 +193,7 @@
       <replace>/agent/confirmed/</replace>
       <replace>/encoder/delivered/</replace>
       <replace>agent/delivered/</replace>
+      <replace>deliver_date</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -242,11 +245,11 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Encoder/ConfirmedController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/agent/confirmed/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Encoder/DeliveredController.php" />
         <option value="$PROJECT_DIR$/resources/views/encoder/delivered/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php" />
         <option value="$PROJECT_DIR$/resources/views/agent/delivered/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php" />
       </list>
     </option>
   </component>
@@ -563,12 +566,12 @@
       <workItem from="1581477620483" duration="2742000" />
       <workItem from="1581521332854" duration="4671000" />
       <workItem from="1581907798718" duration="15163000" />
-      <workItem from="1581933598675" duration="12447000" />
+      <workItem from="1581933598675" duration="12603000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38841000" />
+    <option name="totallyTimeSpent" value="38997000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -947,13 +950,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="195" column="5" lean-forward="true" selection-start-line="77" selection-start-column="4" selection-end-line="195" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Encoder/DeliveredController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="71">
@@ -989,10 +985,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/ConfirmedController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="113" column="33" selection-start-line="113" selection-start-column="33" selection-end-line="113" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Agent/DeliveredController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="36" column="36" selection-start-line="36" selection-start-column="36" selection-end-line="36" selection-end-column="36" />
+        <state relative-caret-position="-830">
+          <caret line="117" column="31" lean-forward="true" selection-start-line="117" selection-start-column="31" selection-end-line="117" selection-end-column="31" />
         </state>
       </provider>
     </entry>

@@ -108,7 +108,7 @@ class DeliveredController extends Controller
                     'status' => 'CONFIRMED',
                     'updated_by' => auth()->user()->id,
                     'is_updated' => 'NO',
-                    'guard_out' => null
+                    'deliver_date' => null
                 ]);
         }
     }
@@ -126,7 +126,7 @@ class DeliveredController extends Controller
                     'updated_by' => null,
                     'is_updated' => null,
                     'updated_at' => date('Y-m-d H:i:s'),
-                    'guard_out' => $date
+                    'deliver_date' => $date
                 ]);
 
             // dr items count
@@ -173,7 +173,7 @@ class DeliveredController extends Controller
                     'updated_by' => null,
                     'is_updated' => null,
                     'updated_at' => date('Y-m-d H:i:s'),
-                    'guard_out' => $date
+                    'deliver_date' => $date
                 ]);
 
             DB::table('dr')
