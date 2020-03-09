@@ -165,10 +165,6 @@
         </div>
     </div>
 
-    {{-- HIDDEN SWITCHES --}}
-    <input type="hidden" id="active_csv_id">
-    <input type="hidden" id="is_uploaded" value="0">
-
 @endsection
 
 @section('extra-scripts')
@@ -182,8 +178,6 @@
             /* initialize datatable yey*/
             /* iNitialize table */
             var table = $("#DataTables_Table_0");
-            var dr_table = $("#DataTables_Table_1");
-            var item_table = $("#DataTables_Table_2");
 
             loadUserTable();
 
@@ -208,114 +202,29 @@
                         // {data: 'action', name: 'action', orderable: false, searchable: false},
                     ],
                     drawCallback: function (settings) {
-                        // set the onclick button
-                        loadDRTable();
+                        /* check and uncheck items*/
+                        $(".btn_lock").click(function () {
+                            var id = $(this).data('id');
+                            var status = $(this).data('status');
+
+                            if (status == '1') {
+                               /* update temporary detail */
+                                $.ajax({
+                                    method: "get",
+                                    url: "/admin/users/block/" + id
+                                });
+                            } else {
+                                /* update temporary detail */
+                                $.ajax({
+                                    method: "get",
+                                    url: "/admin/users/unblock/" + id
+                                });
+                            }
+
+                        });
                     }
                 });
             }
-
-            /* LOAD DR TABLES*/
-            function loadDRTable() {
-                $('.btn_details').click(function () {
-
-                    /*set active csv id*/
-                    $("#active_csv_id").val($(this).data('id'));
-
-                    /* hide csv table*/
-                    $("#div_files_uploaded").addClass('hidden');
-
-                    /* display dr table*/
-                    $("#div_files_dr").removeClass('hidden');
-
-                    /* reset table*/
-                    dr_table.DataTable().clear().destroy();
-
-                    // Initialize DataTable
-                    dr_table.DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: "/admin/branch/dealers/" + $(this).data('id'),
-                        columns: [
-                            // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
-                            {data: 'dealer_code', name: 'dealer_code'},
-                            {data: 'dealer_name', name: 'dealer_name'},
-                            {data: 'details', name: 'details', orderable: false, searchable: false}
-                        ],
-                        drawCallback: function (settings) {
-                            loadOutletsTable();
-                        },
-                    });
-
-                });
-
-            }
-
-            /* LOAD ITEMS PER DR*/
-            function loadOutletsTable() {
-                $('.btn_dealer_details').click(function () {
-
-                    /* update dr table label*/
-                    $("#item_label").html("LIST OF OUTLETS FOR DR - " + $(this).data('name'));
-
-                    $("#div_files_uploaded").addClass('hidden');
-                    $("#div_files_dr").addClass('hidden');
-                    $("#div_items_dr").removeClass('hidden');
-
-                    item_table.DataTable().clear().destroy();
-
-                    // Initialize DataTable
-                    item_table.DataTable({
-                        processing: true,
-                        serverSide: true,
-                        ajax: "/admin/branch/outlets/" + $(this).data('id'),
-                        columns: [
-                            // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
-                            {data: 'outlet_code', name: 'outlet_code'},
-                            {data: 'outlet_name', name: 'outlet_name'},
-                            {data: 'outlet_area', name: 'outlet_area'},
-                            {data: 'outlet_leadtime', name: 'outlet_leadtime'},
-                            {data: 'outlet_mobile', name: 'outlet_mobile'},
-                        ]
-                    });
-
-                });
-
-            }
-
-            /* BACK BUTTONS*/
-            $(".backToDR").click(function () {
-                $("#div_files_uploaded").addClass('hidden');
-                $("#div_files_dr").removeClass('hidden');
-                $("#div_items_dr").addClass('hidden');
-            });
-
-            $(".backToCSV").click(function () {
-                $("#div_files_uploaded").removeClass('hidden');
-                $("#div_files_dr").addClass('hidden');
-                $("#div_items_dr").addClass('hidden');
-
-                /* check if upload was done*/
-                if ($("#is_uploaded").val() != "0") {
-                    loadUserTable();
-                } else {
-                    $("#is_uploaded").val("0");
-                }
-
-            });
-
-            /*upload to production */
-            $("#btn_prod_upload").click(function () {
-                $.ajax({
-                    method: "get",
-                    url: "/admin/branch/upload/production/",
-                    data: {csv_id: $("#active_csv_id").val()}
-                })
-                    .done(function (msg) {
-                        $("#is_uploaded").val("1");
-                        alert("Data Saved: " + msg);
-                    });
-            });
-
 
         });
     </script>
