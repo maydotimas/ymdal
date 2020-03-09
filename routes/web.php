@@ -152,14 +152,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/dealers/update/{id}', 'Admin\DealerController@update_dealer')->name('dealer_update');
 
         /* Users */
-        Route::get('/users', 'Admin\UsersController@index')->name('users');
-        Route::get('/users/create', 'Admin\UsersController@create_user')->name('users_create');
-        Route::get('/users/save', 'Admin\UsersController@save_user')->name('users_save');
-        Route::get('/users/update/{id}', 'Admin\UsersController@update_user')->name('users_update');
-        Route::get('/users/block/{id}', 'Admin\UsersController@block_user')->name('users_block');
-        Route::get('/users/unblock/{id}', 'Admin\UsersController@unblock_user')->name('users_unblock');
-        Route::get('/users/password_reset/{id}', 'Admin\UsersController@password_reset')->name('users_password_reset');
-        Route::get('/users/password_change/{id}', 'Admin\UsersController@password_change')->name('users_password_change');
+        Route::get('/users', 'Admin\UserController@index')->name('users');
+        Route::get('/users/create', 'Admin\UserController@create_user')->name('users_create');
+        Route::get('/users/save', 'Admin\UserController@save_user')->name('users_save');
+        Route::get('/users/details/{id}', 'Admin\UserController@details_user')->name('users_update');
+        Route::get('/users/update/{id}', 'Admin\UserController@update_user')->name('users_update');
+        Route::get('/users/edit/{id}', 'Admin\UserController@edit_user')->name('users_update');
+        Route::get('/users/block/{id}', 'Admin\UserController@block_user')->name('users_block');
+        Route::get('/users/unblock/{id}', 'Admin\UserController@unblock_user')->name('users_unblock');
+
+        Route::get('/users/password_reset/{id}', 'Admin\UserController@password_reset')->name('users_password_reset');
+        Route::get('/users/password_change/{id}', 'Admin\UserController@password_change')->name('users_password_change');
     });
 
 });
