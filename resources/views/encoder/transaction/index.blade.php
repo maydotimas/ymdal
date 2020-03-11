@@ -205,39 +205,7 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-        </div>
-    </div>
-    {{-- MODAL FOR DELETE--}}
-    <div id="deleteModal" class="modal fade danger" role="dialog">
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">DELETE NAVISION FILE</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="input-group col-md-7">
-                            <input disabled="" id="delete_csv_name" class="form-control input-lg text-center" value=""
-                                   type="text">
-                            <input type="hidden" id="delete_csv_id" class="form-control input-lg text-center" value=""
-                                   type="text">
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                    <div class="text-center"><br><h4>Are you sure you want to delete this file?</h4></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" id="btn_delete_csv"> YES</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
-                </div>
-            </div>
-
         </div>
     </div>
     {{-- modal for confirmation --}}
@@ -278,9 +246,6 @@
             </div>
         </div>
     </div>
-    {{-- HIDDEN SWITCHES --}}
-    <input type="hidden" id="active_csv_id">
-    <input type="hidden" id="is_uploaded" value="0">
 
 @endsection
 
@@ -308,7 +273,7 @@
                 table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/encoder/pending",
+                    ajax: "/{{$role}}/{{$current_status}}",
                     columns: [
                         // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'dr_no', name: 'dr_no'},
@@ -379,7 +344,7 @@
                 dr_table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/encoder/pending/items/" + dr,
+                    ajax: "/{{$role}}/{{$current_status}}/items/" + dr,
                     columns: [
                         // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
                         {data: 'model_code', name: 'model_code'},
@@ -396,7 +361,7 @@
 
                             /* CHECK CURRENT STATUS*/
                             var status = $("#status_" + id).html();
-                            if (status == 'PENDING') {
+                            if (status == '{{$current_status}}') {
                                 /* update the button class*/
                                 $(this).removeClass('btn-danger');
                                 $(this).addClass('btn-success');
@@ -406,7 +371,7 @@
                                 $("#icon_" + id).addClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('INTRANSIT');
+                                $("#status_" + id).html('{{$new_status}}');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val($(this).data('id'));
@@ -415,7 +380,7 @@
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
-                                    url: "/encoder/pending/update/" + id + "/INTRANSIT"
+                                    url: "/{{$role}}/{{$current_status}}/update/" + id + "/{{$new_status}}"
                                 });
                             } else {
                                 /* update the button class*/
@@ -427,7 +392,7 @@
                                 $("#icon_" + id).removeClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('PENDING');
+                                $("#status_" + id).html('{{$current_status}}');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val('');
@@ -435,7 +400,7 @@
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
-                                    url: "/encoder/pending/update/" + id + "/PENDING/"
+                                    url: "/{{$role}}/{{$current_status}}/update/" + id + "/{{$current_status}}/"
                                 });
                             }
 
@@ -450,7 +415,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/encoder/pending/dr/check_all/" + dr
+                    url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr + "/check"
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
@@ -462,7 +427,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/encoder/pending/dr/uncheck_all/" + dr
+                    url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr  + "/uncheck"
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
@@ -558,7 +523,7 @@
                     /* update temporary detail */
                     $.ajax({
                         method: "get",
-                        url: "/encoder/pending/confirm/" + dr + "/" + $("#confirm_date").val()
+                        url: "/{{$role}}/{{$current_status}}/confirm/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         updateItemTable(dr);
                     });
@@ -569,7 +534,7 @@
                     /* update temporary detail */
                     $.ajax({
                         method: "get",
-                        url: "/encoder/pending/confirm_all/" + dr + "/" + $("#confirm_date").val()
+                        url: "/{{$role}}/{{$current_status}}/confirm_all/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         // hide the class
                         $("#row_" + dr).closest('tr').addClass('hidden');

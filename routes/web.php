@@ -29,22 +29,20 @@ Route::prefix('encoder')->group(function () {
     /*Dashboard*/
     Route::get('/home', 'Encoder\HomeController@index')->name('home');
 
-
     /* PENDING */
     Route::prefix('pending')->group(function () {
-        Route::get('/', 'Encoder\PendingTransactionController@pending')->name('pending');
-        Route::get('/items/{id}', 'Encoder\PendingTransactionController@pending_items')->name('pending_items');
-        Route::get('/update/{dr}/{status}', 'Encoder\PendingTransactionController@update_pending_item')->name('update_pending_items');
-        Route::get('/dr/check_all/{dr}', 'Encoder\PendingTransactionController@check_all')->name('check_all_pending_items');
-        Route::get('/dr/uncheck_all/{dr}/', 'Encoder\PendingTransactionController@uncheck_all')->name('uncheck_all_pending_items');
-        Route::get('/confirm/{dr}/{date}', 'Encoder\PendingTransactionController@confirm')->name('confirm_pending_items');
-        Route::get('/confirm_all/{dr}/{date}', 'Encoder\PendingTransactionController@confirm_all')->name('confirm_all_pending_items');
+        Route::get('/', 'Encoder\PendingTransactionController@index');
+        Route::get('/items/{id}', 'Encoder\PendingTransactionController@items');
+        Route::get('/update/{dr}/{status}', 'Encoder\PendingTransactionController@update_item');
+        Route::get('/dr/update_all/{dr}/{mode}', 'Encoder\PendingTransactionController@update_all');
+        Route::get('/confirm/{dr}/{date}', 'Encoder\PendingTransactionController@confirm');
+        Route::get('/confirm_all/{dr}/{date}', 'Encoder\PendingTransactionController@confirm_all');
     });
 
     /* INTRANSIT */
     Route::prefix('intransit')->group(function () {
-        Route::get('/', 'Encoder\InTransitController@intransit')->name('intransit');
-        Route::get('/items/{id}', 'Encoder\InTransitController@intransit_items')->name('intransit_items');
+        Route::get('/', 'Encoder\PendingTransactionController@index');
+        Route::get('/items/{id}', 'Encoder\PendingTransactionController@items');
     });
     /* CONFIRMED */
     Route::prefix('confirmed')->group(function () {
