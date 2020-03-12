@@ -15,13 +15,19 @@ class TransactionController extends Controller
     private $new_status;
     private $role;
     private $view;
+    private $confirm_all;
+    private $checkbox;
+    private $edit;
 
-    public function __construct($current_status, $new_status, $role, $view)
+    public function __construct($current_status, $new_status, $role, $view, $confirm_all = false, $checkbox = false, $edit = false)
     {
         $this->current_status = $current_status;
         $this->new_status = $new_status;
         $this->role = $role;
         $this->view = $view;
+        $this->confirm_all = $confirm_all;
+        $this->checkbox = $checkbox;
+        $this->edit = $edit;
     }
 
     /* get list of all items per status*/
@@ -63,7 +69,10 @@ class TransactionController extends Controller
                 ->make(true);
         }
 
-        return view('encoder.' . $this->view . '.index')
+        return view($this->role .'.'. $this->view . '.index')
+            ->with('edit', $this->edit)
+            ->with('checkbox', $this->checkbox)
+            ->with('confirm_all', $this->confirm_all)
             ->with('role', $this->role)
             ->with('current_status', $this->current_status)
             ->with('new_status', $this->new_status)
@@ -132,6 +141,7 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             $result = DB::table('dr_items')
                     ->where('dr_no', $dr);
+
             if($mode=='check'){
                 $result->update([
                     'status' => $this->new_status,

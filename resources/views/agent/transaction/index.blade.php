@@ -1,4 +1,4 @@
-@extends('layouts.encoder_app')
+@extends('layouts.agents_app')
 
 @section('content')
 
@@ -61,11 +61,12 @@
                                                 rowspan="1" colspan="1"
                                                 aria-label=" : activate to sort column ascending"
                                             ></th>
-
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1"
-                                                aria-label=" : activate to sort column ascending"
-                                            ></th>
+                                            @if($confirm_all)
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label=" : activate to sort column ascending"
+                                                ></th>
+                                            @endif
                                         </tr>
                                         </thead>
 
@@ -170,11 +171,13 @@
                                                     aria-label=" STATUS: activate to sort column ascending"
                                                     style="width: 99px;"> STATUS
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label=" : activate to sort column ascending"
-                                                    style="width: 51px;">
-                                                </th>
+                                                @if($checkbox)
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label=" : activate to sort column ascending"
+                                                        style="width: 51px;">
+                                                    </th>
+                                                @endif
                                             </tr>
                                             </thead>
 
@@ -191,13 +194,14 @@
                         <div class="form-group text-right">
 
                             <!--- <button class="btn btn-success" data-toggle="modal" data-target="#alldrModal"> CONFIRM ALL</button> --->
-                            <button class="btn btn-info" id="btn_check_all" data-id=""> CHECK ALL</button>
-                            <button class="btn btn-danger" id="btn_uncheck_all" data-id=""> UNCHECK ALL</button>
-                            <button class="btn btn-warning" data-toggle="modal" data-target="#confirmModal"
-                                    id="btn_confirm"> CONFIRM
-                            </button>
-                            <input id="nav_url" type="hidden" value="encoder/pending">
-
+                            @if($edit)
+                                <button class="btn btn-info" id="btn_check_all" data-id=""> CHECK ALL</button>
+                                <button class="btn btn-danger" id="btn_uncheck_all" data-id=""> UNCHECK ALL</button>
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#confirmModal"
+                                        id="btn_confirm"> CONFIRM
+                                </button>
+                                <input id="nav_url" type="hidden" value="encoder/pending">
+                            @endif
 
                             <button
                                     class="btn btn-primary backToDR"> BACK
@@ -205,39 +209,7 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-        </div>
-    </div>
-    {{-- MODAL FOR DELETE--}}
-    <div id="deleteModal" class="modal fade danger" role="dialog">
-        <div class="modal-dialog">
-
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">DELETE NAVISION FILE</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-2"></div>
-                        <div class="input-group col-md-7">
-                            <input disabled="" id="delete_csv_name" class="form-control input-lg text-center" value=""
-                                   type="text">
-                            <input type="hidden" id="delete_csv_id" class="form-control input-lg text-center" value=""
-                                   type="text">
-                        </div>
-                        <div class="col-md-3"></div>
-                    </div>
-                    <div class="text-center"><br><h4>Are you sure you want to delete this file?</h4></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" id="btn_delete_csv"> YES</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">CANCEL</button>
-                </div>
-            </div>
-
         </div>
     </div>
     {{-- modal for confirmation --}}
@@ -278,9 +250,6 @@
             </div>
         </div>
     </div>
-    {{-- HIDDEN SWITCHES --}}
-    <input type="hidden" id="active_csv_id">
-    <input type="hidden" id="is_uploaded" value="0">
 
 @endsection
 
@@ -308,7 +277,7 @@
                 table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/encoder/pending",
+                    ajax: "/{{$role}}/{{$current_status}}",
                     columns: [
                         // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'dr_no', name: 'dr_no'},
@@ -319,13 +288,17 @@
                         {data: 'dr_qty', name: 'dr_qty', orderable: false, searchable: false},
                         {data: 'po_no', name: 'po_no'},
                         {data: 'details', name: 'details', orderable: false, searchable: false},
-                        {data: 'confirm', name: 'confirm', orderable: false, searchable: false},
+                            @if($confirm_all)
+                        {
+                            data: 'confirm', name: 'confirm', orderable: false, searchable: false
+                        },
+                        @endif
                     ],
                     drawCallback: function (data) {
                         console.log(data);
                         // set the onclick button
                         loadDRItemsTable();
-
+                        @if($confirm_all)
                         /* confirm all*/
                         $(".btn_confirm_all").click(function () {
                             $("#hdn_is_confirm_all").val(1);
@@ -333,6 +306,7 @@
                             var date = formatDate(Date.now());
                             $("#confirm_date").val(date);
                         });
+                        @endif
                     },
                     fnRowCallback: function (nRow, aData, iDisplayIndex) {
 
@@ -379,7 +353,7 @@
                 dr_table.DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "/encoder/pending/items/" + dr,
+                    ajax: "/{{$role}}/{{$current_status}}/items/" + dr,
                     columns: [
                         // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
                         {data: 'model_code', name: 'model_code'},
@@ -387,7 +361,9 @@
                         {data: 'frame_no', name: 'frame_no'},
                         {data: 'engine_no', name: 'engine_no'},
                         {data: 'span_status', name: 'span_status'},
+                            @if($checkbox)
                         {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false}
+                        @endif
                     ],
                     drawCallback: function (settings) {
                         /* check and uncheck items*/
@@ -396,7 +372,7 @@
 
                             /* CHECK CURRENT STATUS*/
                             var status = $("#status_" + id).html();
-                            if (status == 'PENDING') {
+                            if (status == '{{$current_status}}') {
                                 /* update the button class*/
                                 $(this).removeClass('btn-danger');
                                 $(this).addClass('btn-success');
@@ -406,7 +382,7 @@
                                 $("#icon_" + id).addClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('INTRANSIT');
+                                $("#status_" + id).html('{{$new_status}}');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val($(this).data('id'));
@@ -415,7 +391,7 @@
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
-                                    url: "/encoder/pending/update/" + id + "/INTRANSIT"
+                                    url: "/{{$role}}/{{$current_status}}/update/" + id + "/{{$new_status}}"
                                 });
                             } else {
                                 /* update the button class*/
@@ -427,7 +403,7 @@
                                 $("#icon_" + id).removeClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('PENDING');
+                                $("#status_" + id).html('{{$current_status}}');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val('');
@@ -435,7 +411,7 @@
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
-                                    url: "/encoder/pending/update/" + id + "/PENDING/"
+                                    url: "/{{$role}}/{{$current_status}}/update/" + id + "/{{$current_status}}/"
                                 });
                             }
 
@@ -450,7 +426,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/encoder/pending/dr/check_all/" + dr
+                    url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr + "/check"
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
@@ -462,7 +438,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/encoder/pending/dr/uncheck_all/" + dr
+                    url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr + "/uncheck"
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
@@ -558,7 +534,7 @@
                     /* update temporary detail */
                     $.ajax({
                         method: "get",
-                        url: "/encoder/pending/confirm/" + dr + "/" + $("#confirm_date").val()
+                        url: "/{{$role}}/{{$current_status}}/confirm/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         updateItemTable(dr);
                     });
@@ -569,7 +545,7 @@
                     /* update temporary detail */
                     $.ajax({
                         method: "get",
-                        url: "/encoder/pending/confirm_all/" + dr + "/" + $("#confirm_date").val()
+                        url: "/{{$role}}/{{$current_status}}/confirm_all/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         // hide the class
                         $("#row_" + dr).closest('tr').addClass('hidden');

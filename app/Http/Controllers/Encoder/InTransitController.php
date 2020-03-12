@@ -15,6 +15,6 @@ class InTransitController extends TransactionController
 {
     public function __construct()
     {
-        parent::__construct('intransit', 'intransit', 'encoder', 'transaction');
+        parent::__construct('intransit', 'intransit', 'encoder', 'transaction', false, false, false);
     }
 }

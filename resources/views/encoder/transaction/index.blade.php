@@ -61,11 +61,12 @@
                                                 rowspan="1" colspan="1"
                                                 aria-label=" : activate to sort column ascending"
                                             ></th>
-
-                                            <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
-                                                rowspan="1" colspan="1"
-                                                aria-label=" : activate to sort column ascending"
-                                            ></th>
+                                            @if($confirm_all)
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
+                                                    rowspan="1" colspan="1"
+                                                    aria-label=" : activate to sort column ascending"
+                                                ></th>
+                                            @endif
                                         </tr>
                                         </thead>
 
@@ -170,11 +171,13 @@
                                                     aria-label=" STATUS: activate to sort column ascending"
                                                     style="width: 99px;"> STATUS
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label=" : activate to sort column ascending"
-                                                    style="width: 51px;">
-                                                </th>
+                                                @if($checkbox)
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                        rowspan="1" colspan="1"
+                                                        aria-label=" : activate to sort column ascending"
+                                                        style="width: 51px;">
+                                                    </th>
+                                                @endif
                                             </tr>
                                             </thead>
 
@@ -191,13 +194,14 @@
                         <div class="form-group text-right">
 
                             <!--- <button class="btn btn-success" data-toggle="modal" data-target="#alldrModal"> CONFIRM ALL</button> --->
+                            @if($edit)
                             <button class="btn btn-info" id="btn_check_all" data-id=""> CHECK ALL</button>
                             <button class="btn btn-danger" id="btn_uncheck_all" data-id=""> UNCHECK ALL</button>
                             <button class="btn btn-warning" data-toggle="modal" data-target="#confirmModal"
                                     id="btn_confirm"> CONFIRM
                             </button>
                             <input id="nav_url" type="hidden" value="encoder/pending">
-
+                            @endif
 
                             <button
                                     class="btn btn-primary backToDR"> BACK
@@ -284,13 +288,17 @@
                         {data: 'dr_qty', name: 'dr_qty', orderable: false, searchable: false},
                         {data: 'po_no', name: 'po_no'},
                         {data: 'details', name: 'details', orderable: false, searchable: false},
-                        {data: 'confirm', name: 'confirm', orderable: false, searchable: false},
+                            @if($confirm_all)
+                        {
+                            data: 'confirm', name: 'confirm', orderable: false, searchable: false
+                        },
+                        @endif
                     ],
                     drawCallback: function (data) {
                         console.log(data);
                         // set the onclick button
                         loadDRItemsTable();
-
+                        @if($confirm_all)
                         /* confirm all*/
                         $(".btn_confirm_all").click(function () {
                             $("#hdn_is_confirm_all").val(1);
@@ -298,6 +306,7 @@
                             var date = formatDate(Date.now());
                             $("#confirm_date").val(date);
                         });
+                        @endif
                     },
                     fnRowCallback: function (nRow, aData, iDisplayIndex) {
 
@@ -352,7 +361,9 @@
                         {data: 'frame_no', name: 'frame_no'},
                         {data: 'engine_no', name: 'engine_no'},
                         {data: 'span_status', name: 'span_status'},
-                        {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false}
+                        @if($checkbox)
+                            {data: 'checkbox', name: 'checkbox', orderable: false, searchable: false}
+                        @endif
                     ],
                     drawCallback: function (settings) {
                         /* check and uncheck items*/
@@ -427,7 +438,7 @@
                 /* update temporary detail */
                 $.ajax({
                     method: "get",
-                    url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr  + "/uncheck"
+                    url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr + "/uncheck"
                 }).done(function (msg) {
                     updateItemTable(dr);
                 });
