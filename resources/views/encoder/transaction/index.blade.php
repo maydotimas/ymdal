@@ -372,7 +372,7 @@
 
                             /* CHECK CURRENT STATUS*/
                             var status = $("#status_" + id).html();
-                            if (status == '{{$current_status}}') {
+                            if (status.toLowerCase() == '{{strtolower($current_status)}}') {
                                 /* update the button class*/
                                 $(this).removeClass('btn-danger');
                                 $(this).addClass('btn-success');
@@ -382,7 +382,7 @@
                                 $("#icon_" + id).addClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('{{$new_status}}');
+                                $("#status_" + id).html('BACKLOAD');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val($(this).data('id'));
@@ -403,7 +403,7 @@
                                 $("#icon_" + id).removeClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('{{$current_status}}');
+                                $("#status_" + id).html('{{strtoupper($current_status)}}');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val('');

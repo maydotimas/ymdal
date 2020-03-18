@@ -8,6 +8,6 @@ class PendingTransactionController extends TransactionController
 {
     public function __construct()
     {
-        parent::__construct('pending', 'intransit', 'encoder', 'transaction');
+        parent::__construct('pending', 'intransit', 'encoder', 'transaction', true, true, true);
     }
 }

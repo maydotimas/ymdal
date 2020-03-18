@@ -130,8 +130,11 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             $result = DB::table('dr_items')
                 ->where('id', $id);
-
-            $this->update_status($result);
+            if($status=='BACKLOAD'){
+                $this->update_status($result,date('Y-m-d'),true);
+            }else{
+                $this->update_status($result,date('Y-m-d'),false);
+            }
         }
     }
 
@@ -222,32 +225,40 @@ class TransactionController extends Controller
     }
 
     /* helper para macheck kung guard_out, confirm_date o delivery_date ung gagawin*/
-    private function update_status($result, $date){
-        if($this->new_status=='INTRANSIT'){
+    private function update_status($result, $date, $isbackload = false){
+        if($isbackload){
             $result->update([
-                'status' => $this->new_status,
-                'updated_by' => auth()->user()->id,
-                'guard_out' => $date
-            ]);
-        }else if($this->new_status=='CONFIRMED'){
-            $result->update([
-                'status' => $this->new_status,
-                'updated_by' => auth()->user()->id,
-                'confirm_date' => $date
-            ]);
-        }else if($this->new_status=='DELIVERED'){
-            $result->update([
-                'status' => $this->new_status,
-                'updated_by' => auth()->user()->id,
-                'delivery_date' => $date
+                'status' => 'BACKLOAD',
+                'updated_by' => auth()->user()->id
             ]);
         }else{
-            $result->update([
-                'status' => $this->new_status,
-                'updated_by' => auth()->user()->id,
-                'is_updated' => 'NO'
-            ]);
+            if($this->new_status=='INTRANSIT'){
+                $result->update([
+                    'status' => $this->new_status,
+                    'updated_by' => auth()->user()->id,
+                    'guard_out' => $date
+                ]);
+            }else if($this->new_status=='CONFIRMED'){
+                $result->update([
+                    'status' => $this->new_status,
+                    'updated_by' => auth()->user()->id,
+                    'confirm_date' => $date
+                ]);
+            }else if($this->new_status=='DELIVERED'){
+                $result->update([
+                    'status' => $this->new_status,
+                    'updated_by' => auth()->user()->id,
+                    'delivery_date' => $date
+                ]);
+            }else{
+                $result->update([
+                    'status' => $this->current_status,
+                    'updated_by' => auth()->user()->id,
+                    'guard_out' => null
+                ]);
+            }
         }
+
     }
 
 }
