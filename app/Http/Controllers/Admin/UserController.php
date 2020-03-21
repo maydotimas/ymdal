@@ -10,6 +10,7 @@ use App\Outlet;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\DataTables;
 
 class UserController extends Controller
@@ -30,24 +31,25 @@ class UserController extends Controller
             return DataTables::of($data)
                 ->addColumn('edit', function ($data) {
 
-                    $btn = '<button type="button" data-status="' . $data->status . '"
+                    $btn = '<a type="button" data-status="' . $data->status . '"
                                     data-id="' . $data->id . '"
                                     data-name="' . $data->first_name . ' ' . $data->last_name . '"
                                     title="Edit ' . $data->first_name . ' ' . $data->last_name . '"
-                                    class="btn_details btn-xs edit btn btn-primary btn-sm btn-primary"><i class="entypo-pencil"></i></button>
+                                    class="btn_details btn-sm edit btn btn-success btn-sm btn-success"
+                                    href="/admin/users/edit/'.$data->id.'"><i class="entypo-pencil"></i></a>
                                     &nbsp;&nbsp;';
                     if ($data->status == 1) {
                         $btn .= '<button type="button" data-status="' . $data->status . '"
                                     data-id="' . $data->id . '"
                                     data-name="' . $data->first_name . ' ' . $data->last_name . '"
                                     title="Block ' . $data->first_name . ' ' . $data->last_name . '"
-                                    class="btn_lock btn-xs edit btn btn-primary btn-sm btn-danger"><i class="entypo-lock"></i></button>';
+                                    class="btn_lock btn-sm edit btn btn-primary btn-sm btn-danger"><i class="entypo-lock"></i></button>';
                     } else {
                         $btn .= '<button type="button" data-status="' . $data->status . '"
                                     data-id="' . $data->id . '"
                                     data-name="' . $data->first_name . ' ' . $data->last_name . '"
                                     title="Unblock ' . $data->first_name . ' ' . $data->last_name . '"
-                                    class="btn_lock btn-xs edit btn btn-primary btn-sm btn-success"><i class="entypo-lock-open"></i></button>';
+                                    class="btn_lock btn-sm edit btn btn-primary btn-sm btn-success"><i class="entypo-lock-open"></i></button>';
                     }
 
                     return $btn;
@@ -64,32 +66,68 @@ class UserController extends Controller
     /* create users */
     public function create_user(Request $request)
     {
-
+        return view('admin.users.create')
+            ->with('active', 'users')
+            ->with('title', 'USERS');
     }
 
     /* save users */
     public function store_user(Request $request)
     {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'role' => 'required',
+            'email' => 'required|email|unique:users'
+        ]);
 
+        $new = new User();
+        $new->first_name = $request->input('first_name');
+        $new->last_name = $request->input('last_name');
+        $new->role = $request->input('role');
+        $new->email = $request->input('email');
+        $new->password = Hash::make('123456');
+        $new->save();
+
+        return redirect('/admin/users');
     }
 
     /* get user details */
     public function details_user(Request $request, $id)
     {
 
-
     }
 
     /* edit users */
     public function edit_user(Request $request, $id)
     {
-
+        $user = User::find($id);
+        return view('admin.users.edit')
+            ->with('active', 'users')
+            ->with('title', 'USERS')
+            ->with('user',$user);
     }
 
     /* update users */
     public function update_user(Request $request, $id)
     {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'role' => 'required',
+            'email' => "required|email|unique:users,email,".$id
+        ]);
 
+        $new = User::find($id);
+        $new->first_name = $request->input('first_name');
+        $new->last_name = $request->input('last_name');
+        $new->role = $request->input('role');
+        $new->email = $request->input('email');
+        $new->password = Hash::make('123456');
+        $new->updated_at = date('Y-m-d H:i:s');
+        $new->save();
+
+        return redirect('/admin/users');
     }
 
     /* block users */

@@ -138,9 +138,9 @@ Route::prefix('admin')->group(function () {
         /* Users */
         Route::get('/users', 'Admin\UserController@index')->name('users');
         Route::get('/users/create', 'Admin\UserController@create_user')->name('users_create');
-        Route::get('/users/save', 'Admin\UserController@save_user')->name('users_save');
+        Route::post('/users/save', 'Admin\UserController@store_user')->name('users_save');
         Route::get('/users/details/{id}', 'Admin\UserController@details_user')->name('users_update');
-        Route::get('/users/update/{id}', 'Admin\UserController@update_user')->name('users_update');
+        Route::post('/users/update/{id}', 'Admin\UserController@update_user')->name('users_update');
         Route::get('/users/edit/{id}', 'Admin\UserController@edit_user')->name('users_update');
         Route::get('/users/block/{id}', 'Admin\UserController@block_user')->name('users_block');
         Route::get('/users/unblock/{id}', 'Admin\UserController@unblock_user')->name('users_unblock');

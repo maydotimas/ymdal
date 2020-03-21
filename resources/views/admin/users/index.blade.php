@@ -3,55 +3,22 @@
 @section('content')
 
     <div class="row">
-    {{-- UPLOAD CSV DIV--}}
-    <!-- Horizontal Form -->
-        <div class="box box-info hidden" style="padding-left: 20px; padding-right: 20px; ">
-            <!-- general form elements -->
-            <div class="box-body">
-                <!-- general form elements -->
-                <form action="/admin/branch/upload" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="col-md-4">
-                        <input type="button" class="btn btn-block btn-primary btn-lg"
-                               onclick="document.getElementById('fu').click()" value="Select CSV file">
-                        <input type="file" id="fu" name="pfilename" accept=".csv"
-                               style="width: 0;">
-                        <input type="hidden" name="ptype" id="csvtype" value="navision">
-                        <input type="hidden" name="name" id="name">
-                    </div>
-                    <div class="col-md-4">
-                        <input id="fileName" name="fileName" disabled="" class="form-control input-lg" type="text"
-                               placeholder="No CSV file chosen">
-                    </div>
-                    <div class="col-md-4">
-                        <input class="btn btn-block btn-success btn-lg" value="UPLOAD CSV" id="btnUploadCsv"
-                               disabled="" type="submit">
-                    </div>
-                </form>
-
-                <!-- /.box -->
-                <!-- loader -->
-                <div id="myloader" style="display: none;">
-                    <i id="myspinner"
-                       class="fa fa-spinner fa-spin text-center"
-                       style="color:red;"></i></div>
-            </div>
-        </div>
-
 
         <div class="row pt-50">
         </div>
 
+
         <div id="admincontent">
+
             <div class="col-md-12">
 
                 {{-- list of branches upload file --}}
                 <div class="panel panel-primary panel-table" id="div_files_uploaded">
                     {{-- USER LISTS --}}
-                    <div class="panel-body">
-                        <p class="bold">LIST OF USERS</p>
-                        <div id=""
-                             class="">
+                    <div class="panel-body mt-1 mb-1">
+                        <span class="bold">LIST OF USERS</span>
+                        <a class="btn btn-success pull-right" href="/admin/users/create">NEW USER</a>
+                        <div id="" class="">
 
                             <div class="row">
                                 <div class="col-sm-12">
@@ -162,7 +129,9 @@
                 </div>
 
             </div>
+
         </div>
+
     </div>
 
 @endsection
@@ -212,12 +181,16 @@
                                 $.ajax({
                                     method: "get",
                                     url: "/admin/users/block/" + id
+                                }).done(function(){
+                                    loadUserTable();
                                 });
                             } else {
                                 /* update temporary detail */
                                 $.ajax({
                                     method: "get",
                                     url: "/admin/users/unblock/" + id
+                                }).done(function(){
+                                    loadUserTable();
                                 });
                             }
 

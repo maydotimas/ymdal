@@ -130,7 +130,7 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             $result = DB::table('dr_items')
                 ->where('id', $id);
-            if($status=='BACKLOAD'){
+            if(($this->current_status == 'CONFIRM' || $this->current_status == 'INTRANSIT')&&($this->role=='agent')){
                 $this->update_status($result,date('Y-m-d'),true);
             }else{
                 $this->update_status($result,date('Y-m-d'),false);
