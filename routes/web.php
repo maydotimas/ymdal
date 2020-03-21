@@ -127,12 +127,13 @@ Route::prefix('admin')->group(function () {
         /* Branch Upload */
         Route::get('/branch/upload', 'Admin\BranchController@index')->name('branch');
         Route::post('/branch/upload', 'Admin\BranchController@upload')->name('branch-upload');
+        Route::post('/branch/upload/production/', 'Admin\BranchController@upload')->name('branch-upload');
         Route::get('/branch/dealers/{csv}', 'Admin\BranchController@dealers')->name('branch-dealers');
         Route::get('/branch/outlets/{csv}', 'Admin\BranchController@outlets')->name('branch-outlets');
 
         /* Dealer */
-        Route::get('/dealers', 'Admin\DealerController@index')->name('dealer');
-        Route::get('/dealers/outlets/{id}', 'Admin\DealerController@get_dealer_outlet')->name('dealer_outlet');
+        Route::get('/dealers', 'Admin\DealerController@dealers')->name('dealer');
+        Route::get('/dealers/outlets/{id}', 'Admin\DealerController@outlets')->name('dealer_outlet');
         Route::get('/dealers/update/{id}', 'Admin\DealerController@update_dealer')->name('dealer_update');
 
         /* Users */
@@ -147,6 +148,10 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/users/password_reset/{id}', 'Admin\UserController@password_reset')->name('users_password_reset');
         Route::get('/users/password_change/{id}', 'Admin\UserController@password_change')->name('users_password_change');
+
+        /* Dealers */
+
+
     });
 
 });

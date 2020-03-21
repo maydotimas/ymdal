@@ -72,61 +72,6 @@
                     </div>
                 </div>
 
-                {{-- DETAILS FOR USERS  --}}
-                <div class="row hidden" id="div_files_dr">
-                    <div class="row ml-3 mr-3">
-                        <div class="col-md-6 col-md-offset-6">
-                            <button class="btn btn-primary pull-right backToCSV">BACK</button>&nbsp;
-
-                            <button class="btn btn-danger pull-right" id="btn_prod_upload"
-                                    style="margin-right:3% !important;">UPLOAD TO
-                                PRODUCTION
-                            </button>
-                        </div>
-                    </div>
-                    <div class="panel panel-primary panel-table">
-
-                        <div class="panel-body">
-                            <p class="bold" id="dr_label">LIST OF FILES UPLOADED</p>
-                            <div id=""
-                                 class="">
-
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
-                                               id="DataTables_Table_1" role="grid"
-                                               aria-describedby="DataTables_Table_0_info"
-                                               style="color:black !important;">
-                                            <thead>
-                                            <tr role="row">
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label=" FILENAME: activate to sort column ascending"
-                                                    style="width: 207px;"> DEALER CODE
-                                                </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label=" DR COUNT: activate to sort column ascending"
-                                                    style="width: 57px;"> DEALER NAME
-                                                </th>
-
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
-                                                    rowspan="1" colspan="1"
-                                                    aria-label=" : activate to sort column ascending"
-                                                    style="width: 51px;">
-                                                </th>
-                                            </tr>
-                                            </thead>
-
-                                            <tbody>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
             </div>
 

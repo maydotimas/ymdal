@@ -111,7 +111,7 @@
 
                 {{-- DETAILS OR per branch uploaded  --}}
                 <div class="row hidden" id="div_files_dr">
-                    <div class="row ml-3 mr-3">
+                    <div class="row ml-3 mr-3 hidden">
                         <div class="col-md-6 col-md-offset-6">
                             <button class="btn btn-primary pull-right backToCSV">BACK</button>&nbsp;
 
