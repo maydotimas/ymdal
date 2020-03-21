@@ -32,33 +32,33 @@
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1"
                                                 aria-label=" FIRST NAME: activate to sort column ascending"
-                                                style="width: 207px;"> FIRST NAME
+                                                style="width: 20%;"> FIRST NAME
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1"
                                                 aria-label=" LAST NAME: activate to sort column ascending"
-                                                style="width: 57px;"> LAST NAME
+                                                style="width: 20%;"> LAST NAME
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1"
                                                 aria-label=" ROLE NAME: activate to sort column ascending"
-                                                style="width: 57px;"> ROLE NAME
+                                                style="width: 15%;"> ROLE NAME
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1"
                                                 aria-label=" EMAIL: activate to sort column ascending"
-                                                style="width: 71px;"> EMAIL
+                                                style="width: 15%;"> EMAIL
                                             </th>
                                             <th class="sorting_desc" tabindex="0"
                                                 aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
                                                 aria-sort="descending"
                                                 aria-label=" CREATED AT : activate to sort column ascending"
-                                                style="width: 79px;"> CREATED AT
+                                                style="width: 15%;"> CREATED AT
                                             </th>
                                             <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0"
                                                 rowspan="1" colspan="1"
                                                 aria-label=" : activate to sort column ascending"
-                                                style="width: 54px;"></th>
+                                                ></th>
 
                                         </tr>
                                         </thead>
@@ -133,6 +133,26 @@
         </div>
 
     </div>
+    <div id="resetModal" class="modal fade in" role="dialog" aria-hidden="false">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h4 class="modal-title">RESET PASSWORD FOR <span class="reset_name"></span></h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="text-center"><br><h4>Do you want to reset <span class="reset_name"></span>'s password?</h4></div>
+                    <input type="hidden" id="hdn_reset_password_id">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-warning" data-dismiss="modal" id="btn_confirm_reset">RESET PASSWORD</button>
+                    <button class="btn btn-warning" data-dismiss="modal" id="btn_cancel_reset">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 
@@ -194,6 +214,28 @@
                                 });
                             }
 
+                        });
+
+                        $(".btn_reset").click(function(){
+                            var id = $(this).data('id');
+                            var name = $(this).data('name');
+
+                            $(".reset_name").html(name);
+                            $("#hdn_reset_password_id").val(id);
+                        });
+
+                        $("#btn_cancel_reset").click(function(){
+                            $(".reset_name").html("");
+                            $("#hdn_reset_password_id").val("");
+                        });
+
+                        $("#btn_confirm_reset").click(function(){
+                            $.ajax({
+                                method: "get",
+                                url: "/admin/users/password_reset/" +  $("#hdn_reset_password_id").val()
+                            }).done(function(){
+                                alert('password updated!')
+                            });
                         });
                     }
                 });

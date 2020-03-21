@@ -52,6 +52,14 @@ class UserController extends Controller
                                     class="btn_lock btn-sm edit btn btn-primary btn-sm btn-success"><i class="entypo-lock-open"></i></button>';
                     }
 
+                    $btn .= '&nbsp;&nbsp; <button type="button" data-status="' . $data->status . '"
+                                    data-id="' . $data->id . '"
+                                    data-toggle="modal" 
+                                    data-name="' . ucwords($data->first_name) . ' ' . ucwords($data->last_name) . '"
+                                    title="Reset Password for ' . ucwords($data->first_name) . ' ' . ucwords($data->last_name) . '"
+                                    data-target="#resetModal"
+                                    class="btn_reset btn-sm edit btn btn-primary btn-sm btn-info"><i class="entypo-key"></i></button>';
+
                     return $btn;
                 })
                 ->rawColumns(['edit'])
@@ -154,6 +162,12 @@ class UserController extends Controller
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
         }
+    }
+
+    public function password_reset(Request $request, $id){
+        $new = User::find($id);
+        $new->password = Hash::make('123456');
+        $new->save();
     }
 
 
