@@ -211,11 +211,11 @@
                                                     aria-label=" TELEPHONE: activate to sort column ascending"
                                                     style="width: 99px;"> TELEPHONE
                                                 </th>
-                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                               {{-- <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
                                                     rowspan="1" colspan="1"
                                                     aria-label=" : activate to sort column ascending"
                                                     style="width: 54px;">PO NO
-                                                </th>
+                                                </th>--}}
                                             </tr>
                                             </thead>
 
