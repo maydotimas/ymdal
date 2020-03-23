@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/dealers/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/dealers/index.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/dnoegel/php-xdg-base-dir/" />
@@ -113,8 +113,8 @@
       <file leaf-file-name="web.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/web.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="134" column="28" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="28" />
+            <state relative-caret-position="218">
+              <caret line="136" column="35" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="35" />
               <folding>
                 <element signature="e#660#2240#2#PHP" />
                 <element signature="e#2273#3908#2#PHP" />
@@ -123,11 +123,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DealerController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DealerController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+            <state relative-caret-position="309">
+              <caret line="64" column="7" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
               <folding>
                 <element signature="e#46#61#0#PHP" expanded="true" />
               </folding>
@@ -135,11 +135,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/dealers/index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="102" column="46" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
+            <state relative-caret-position="309">
+              <caret line="292" column="39" selection-start-line="292" selection-start-column="39" selection-end-line="292" selection-end-column="39" />
+              <folding>
+                <element signature="e#6377#9606#0#HTML" />
+                <element signature="e#6802#6822#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/agent/transaction/index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="394" column="35" lean-forward="true" selection-start-line="391" selection-start-column="32" selection-end-line="394" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -167,9 +180,15 @@
       <find>load to production</find>
       <find>btn_prod_upload</find>
       <find>DataTables_Table_1</find>
-      <find>div_files_dr</find>
-      <find>branch/upload/production</find>
       <find>po no</find>
+      <find>$user</find>
+      <find>branch/upload/production</find>
+      <find>div_files_dr</find>
+      <find>div_items_dr</find>
+      <find>div_outlet_edit</find>
+      <find>outlet_telephone</find>
+      <find>back</find>
+      <find>alert</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,10 +213,11 @@
         <option value="$PROJECT_DIR$/resources/views/admin/users/edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/users/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/branch/index.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/dealers/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php" />
       </list>
     </option>
   </component>
@@ -340,6 +360,17 @@
             <path>
               <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
               <item name="ymdal" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ymdal" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ymdal" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -371,6 +402,14 @@
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="dealers" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ymdal" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ymdal" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="users" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -398,11 +437,11 @@
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\app\Http\Controllers\Admin" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\admin\dealers" />
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\admin" />
       <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\admin\users" />
       <recent name="C:\Users\edotimas\Desktop\test\ymdal\resources\views\admin" />
       <recent name="C:\Users\edotimas\Desktop\test\ymdal\app\Http\Controllers\Admin" />
-      <recent name="C:\Users\Dell\Desktop\nb-sites\ymdal\resources\views\encoder" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -455,12 +494,12 @@
       <workItem from="1581933598675" duration="14927000" />
       <workItem from="1583933328782" duration="10164000" />
       <workItem from="1584622896012" duration="5171000" />
-      <workItem from="1584786521699" duration="6639000" />
+      <workItem from="1584786521699" duration="11653000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21858000" />
+    <option name="totallyTimeSpent" value="26872000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -472,7 +511,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21010248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28257686" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -532,23 +571,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_113958_tbl_dr.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="29" column="101" selection-start-line="29" selection-start-column="101" selection-end-line="29" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115429_dr_items.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="26" column="101" selection-start-line="26" selection-start-column="101" selection-end-line="26" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115807_dealer.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="981">
@@ -694,16 +716,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/agent/transaction/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="215" column="25" selection-start-line="215" selection-start-column="13" selection-end-line="215" selection-end-column="25" />
-          <folding>
-            <element signature="e#13102#15054#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Encoder/PendingTransactionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -832,10 +844,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dealers/edit_outlet.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="76" column="22" selection-start-line="14" selection-start-column="16" selection-end-line="76" selection-end-column="22" />
+          <folding>
+            <element signature="e#210#3456#0#HTML" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2020_01_16_115912_outlet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="29" column="46" lean-forward="true" selection-start-line="29" selection-start-column="46" selection-end-line="29" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/web.config">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/agent/transaction/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="394" column="35" lean-forward="true" selection-start-line="391" selection-start-column="32" selection-end-line="394" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="134" column="28" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="28" />
+        <state relative-caret-position="218">
+          <caret line="136" column="35" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="35" />
           <folding>
             <element signature="e#660#2240#2#PHP" />
             <element signature="e#2273#3908#2#PHP" />
@@ -843,20 +882,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/dealers/index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
+        <state relative-caret-position="309">
+          <caret line="292" column="39" selection-start-line="292" selection-start-column="39" selection-end-line="292" selection-end-column="39" />
           <folding>
-            <element signature="e#46#61#0#PHP" expanded="true" />
+            <element signature="e#6377#9606#0#HTML" />
+            <element signature="e#6802#6822#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/dealers/index.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DealerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="102" column="46" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
+        <state relative-caret-position="309">
+          <caret line="64" column="7" selection-start-line="64" selection-start-column="7" selection-end-line="64" selection-end-column="7" />
+          <folding>
+            <element signature="e#46#61#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

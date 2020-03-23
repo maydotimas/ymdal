@@ -27,6 +27,7 @@ class Outlet extends Migration
             $table->string('outlet_area');
             $table->string('outlet_leadtime');
             $table->string('outlet_mobile');
+            $table->string('email')->nullable();
             $table->integer('csv_id');
             $table->timestamps();
         });

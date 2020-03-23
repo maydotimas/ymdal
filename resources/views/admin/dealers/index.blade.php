@@ -100,7 +100,10 @@
                                                     aria-label=" TELEPHONE: activate to sort column ascending"
                                                     style="width: 99px;"> TELEPHONE
                                                 </th>
-                                              
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
+                                                    rowspan="1" colspan="1"
+                                                    style="width: 99px;">
+                                                </th>
                                             </tr>
                                             </thead>
 
@@ -111,6 +114,59 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="hidden" id="div_outlet_edit">
+                    <div class="row ml-3 mr-3">
+                        <div class="col-md-6 col-md-offset-6">
+                            <button class="btn btn-primary pull-right backToOutlet">BACK</button>&nbsp;
+                        </div>
+                    </div>
+                    <div class="panel panel-primary" data-collapsed="0">
+
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                Edit Outlet <span id="outlet_edit"></span>
+                            </div>
+
+
+                        </div>
+                        <div class="panel-body">
+
+                            <form role="form"
+                                  class="form-horizontal form-groups-bordered">
+                                {{csrf_field()}}
+
+                                <div class="form-group @if($errors->has('email')) has-error @endif">
+                                    <label for="field-1" class="col-sm-3 control-label">Email</label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="outlet_email" name="outlet_email"
+                                               placeholder="" required value="">
+                                    </div>
+                                </div>
+                                <div class="form-group @if($errors->has('telephone')) has-error @endif">
+                                    <label for="field-1" class="col-sm-3 control-label">Outlet Telephone</label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" id="outlet_telephone"
+                                               name="outlet_telephone"
+                                               placeholder="" required value="">
+                                    </div>
+                                </div>
+
+                                <input type="hidden" id="outlet_id">
+
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-5">
+                                        <button type="button" class="btn btn-default" id="btn_update_outlet">Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -178,7 +234,7 @@
                     item_table.DataTable({
                         processing: true,
                         serverSide: true,
-                        ajax: "/admin/branch/outlets/" + $(this).data('id'),
+                        ajax: "/admin/dealers/outlets/" + $(this).data('id'),
                         columns: [
                             // {data: 'DT_Row_Index', name: 'DT_Row_Index'},
                             {data: 'outlet_code', name: 'outlet_code'},
@@ -186,7 +242,26 @@
                             {data: 'outlet_area', name: 'outlet_area'},
                             {data: 'outlet_leadtime', name: 'outlet_leadtime'},
                             {data: 'outlet_mobile', name: 'outlet_mobile'},
-                        ]
+                            {data: 'action', name: 'action', orderable: false, searchable: false}
+                        ],
+                        drawCallback: function (settings) {
+                            $(".btn_edit_outlet").click(function () {
+                                $("#div_files_dr").addClass('hidden');
+                                $("#div_items_dr").addClass('hidden');
+                                $("#div_outlet_edit").removeClass('hidden');
+
+                                var id = $(this).data('id');
+                                var name = $(this).data('name');
+                                var email = $(this).data('email');
+                                var telephone = $(this).data('telephone');
+
+                                $("#outlet_email").val(email);
+                                $("#outlet_telephone").val(telephone);
+                                $("#outlet_id").val(id);
+
+
+                            });
+                        }
                     });
 
                 });
@@ -197,20 +272,31 @@
             $(".backToDR").click(function () {
                 $("#div_files_dr").removeClass('hidden');
                 $("#div_items_dr").addClass('hidden');
+                $("#div_outlet_edit").addClass('hidden');
             });
 
-            $(".backToCSV").click(function () {
+            $(".backToOutlet").click(function () {
                 $("#div_files_dr").addClass('hidden');
-                $("#div_items_dr").addClass('hidden');
-
-                /* check if upload was done*/
-                if ($("#is_uploaded").val() != "0") {
-                    loadCSVTable();
-                } else {
-                    $("#is_uploaded").val("0");
-                }
-
+                $("#div_items_dr").removeClass('hidden');
+                $("#div_outlet_edit").addClass('hidden');
             });
+
+            $("#btn_update_outlet").click(function () {
+                $.ajax({
+                    method: "get",
+                    data: {
+                        'email': $("#outlet_email").val(),
+                        'telephone': $("#outlet_telephone").val()
+                    },
+                    url: "/admin/dealers/update/" +  $("#outlet_id").val()
+                }).done(function () {
+                    loadOutletsTable();
+                    $("#div_files_dr").addClass('hidden');
+                    $("#div_items_dr").removeClass('hidden');
+                    $("#div_outlet_edit").addClass('hidden');
+
+                });
+            })
 
 
         });
