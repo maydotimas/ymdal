@@ -52,7 +52,17 @@ class DealerController extends Controller
                                     data-email="' . $data->email . '"  
                                     data-telephone="' . $data->outlet_mobile . '"  
                                     title="Edit ' . $data->outlet_name . '"  
-                                    class="btn_edit_outlet edit btn btn-primary btn-sm btn-warning"><i class="entypo entypo-pencil"</button>';
+                                    class="btn_edit_outlet edit btn btn-primary btn-sm btn-success">
+                                    EDIT</button>';
+
+                    $btn .= '&nbsp;&nbsp;<button type="button"   
+                                    data-id="' . $data->id . '"  
+                                    data-name="' . $data->outlet_name . '"  
+                                    data-email="' . $data->email . '"  
+                                    data-telephone="' . $data->outlet_mobile . '"  
+                                    title="Agents for ' . $data->outlet_name . '"  
+                                    class="btn_edit_agents edit btn btn-primary btn-sm btn-warning">
+                                    AGENTS</button>';
                     return $btn;
                 })
                 ->rawColumns(['action'])

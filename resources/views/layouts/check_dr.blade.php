@@ -54,7 +54,7 @@
 
     <div class="login-form">
 
-        <div class="login-content">
+        <div class="login-content login-content-body">
 
             <div class="form-login-error">
                 <h3>Invalid login</h3>
@@ -62,7 +62,7 @@
             </div>
 
             <form method="post" role="form" id="form_login">
-
+                {{csrf_field()}}
                 <div class="form-group">
 
                     <div class="input-group">
@@ -94,41 +94,6 @@
                     </button>
                 </div>
 
-                <!-- Implemented in v1.1.4 -->
-               {{-- <div class="form-group">
-                    <em>- or -</em>
-                </div>
-
-                <div class="form-group">
-
-                    <button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left facebook-button">
-                        Login with Facebook
-                        <i class="entypo-facebook"></i>
-                    </button>
-
-                </div>--}}
-
-                <!--
-
-                You can also use other social network buttons
-                <div class="form-group">
-
-                    <button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left twitter-button">
-                        Login with Twitter
-                        <i class="entypo-twitter"></i>
-                    </button>
-
-                </div>
-
-                <div class="form-group">
-
-                    <button type="button" class="btn btn-default btn-lg btn-block btn-icon icon-left google-button">
-                        Login with Google+
-                        <i class="entypo-gplus"></i>
-                    </button>
-
-                </div> -->
-
             </form>
 
 {{--
@@ -143,6 +108,9 @@
             </div>--}}
 
         </div>
+
+    </div>
+    <div class="login-result hidden" style="background-color:white !important;">
 
     </div>
 
@@ -161,11 +129,11 @@
 
 
 <!-- JavaScripts initializations and stuff -->
-<script src="/neon/assets/js/neon-custom.js"></script>
+{{--<script src="/neon/assets/js/neon-custom.js"></script>--}}
 
 
 <!-- Demo Settings -->
-<script src="/neon/assets/js/neon-demo.js"></script>
+{{--<script src="/neon/assets/js/neon-demo.js"></script>--}}
 
 </body>
 </html>

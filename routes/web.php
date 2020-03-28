@@ -21,6 +21,8 @@ Route::get('/', function () {
     return view('layouts.check_dr');
 })->name('check-dr');
 
+Route::get('/get-dr','HomeController@checkDR');
+
 
 Route::get('/home', 'Admin\HomeController@index')->name('home');
 
