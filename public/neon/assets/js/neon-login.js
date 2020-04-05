@@ -80,7 +80,7 @@ var neonLogin = neonLogin || {};
                             // We will give some time for the animation to finish, then execute the following procedures
                             setTimeout(function () {
                                 // If login is invalid, we store the
-
+                                $("body").css('backgroundColor','white');
                                 $(".login-result").html(response);
 
                             }, 1000);

@@ -4,9 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="YMDAL" />
-    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="YMDAL"/>
+    <meta name="author" content=""/>
 
     <link rel="icon" href="/neon/assets/images/favicon.ico">
 
@@ -17,7 +17,8 @@
 
     <script src="/neon/assets/js/jquery-1.11.3.min.js"></script>
 
-    <!--[if lt IE 9]><script src="/neon/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="/neon/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -42,7 +43,7 @@
         <div class="login-content">
 
             <a href="index.html" class="logo">
-                <img src="/img/logos/hymdal-tag.png" class="img img-responsive" alt="" />
+                <img src="/img/logos/hymdal-tag.png" class="img img-responsive" alt=""/>
             </a>
         </div>
 
@@ -70,7 +71,8 @@
                             <i class="fa fa-home" style="color:darkgrey !important;"></i>
                         </div>
 
-                        <input type="text" class="form-control" name="txt_outlet_code" id="txt_outlet_code" placeholder="Outlet Code" autocomplete="off" />
+                        <input type="text" class="form-control" name="txt_outlet_code" id="txt_outlet_code"
+                               placeholder="Outlet Code" autocomplete="off"/>
                     </div>
 
                 </div>
@@ -82,37 +84,39 @@
                             <i class="fa fa-clipboard" style="color:darkgrey !important;"></i>
                         </div>
 
-                        <input type="password" class="form-control" name="txt_dr_no" id="txt_dr_no" placeholder="DR Number" autocomplete="off" />
+                        <input type="password" class="form-control" name="txt_dr_no" id="txt_dr_no"
+                               placeholder="DR Number" autocomplete="off"/>
                     </div>
 
                 </div>
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block btn-login">
-                        <i class="fa fa-check"  style="color:darkgrey !important;"></i>
+                        <i class="fa fa-check" style="color:darkgrey !important;"></i>
                         Check DR
                     </button>
                 </div>
 
             </form>
 
-{{--
-            <div class="login-bottom-links">
+            {{--
+                        <div class="login-bottom-links">
 
-                <a href="extra-forgot-password.html" class="link">Forgot your password?</a>
+                            <a href="extra-forgot-password.html" class="link">Forgot your password?</a>
 
-                <br />
+                            <br />
 
-                <a href="#">ToS</a>  - <a href="#">Privacy Policy</a>
+                            <a href="#">ToS</a>  - <a href="#">Privacy Policy</a>
 
-            </div>--}}
+                        </div>--}}
 
         </div>
 
     </div>
-    <div class="login-result hidden" style="background-color:white !important;">
 
-    </div>
+
+</div>
+<div class="login-result hidden" style="background-color:white !important;">
 
 </div>
 

@@ -1,4 +1,4 @@
-<div class="main-content" style="background-color:white !important;"> <!---START MAIN CONTENT -->
+<div class="main-content" style="background-color:white !important; padding:3%;"> <!---START MAIN CONTENT -->
     <div class="row">
         <!-- Profile Info and Notifications -->
         <div class="col-md-6 col-sm-8 clearfix">
@@ -17,49 +17,59 @@
                     </form>
         </div>-->
         <div class="col-md-6 col-sm-4 clearfix">
-            <form method="post" class="search-bar" action="http://test.yamahalogistics.com/dealer/logout" enctype="application/x-www-form-urlencoded">
+            <form method="post" class="search-bar" action="http://test.yamahalogistics.com/dealer/logout"
+                  enctype="application/x-www-form-urlencoded">
                 <div class="input-group">
                     <div class="input-group-btn text-right">
-                        <button type="submit" class="btn btn-lg btn-red btn-icon">EXIT HYMDAL <i class="entypo-cancel"></i> </button>
+                        <button type="submit" class="btn btn-lg btn-red btn-icon">EXIT HYMDAL <i
+                                    class="entypo-cancel"></i></button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+    <div style="background-color:white!important;">
 
-    <div id="dealerdr" class="col-md-7">
+
+    <div id="dealerdr" class="col-md-7" style="background-color:white!important;">
         <div class="panel panel-primary panel-table">
             <div class="panel-heading">
                 <table class="table">
                     <tbody>
                     <tr>
-                        <td class="col-md-1">DR NO: </td>
+                        <td class="col-md-1">DR NO:</td>
                         <td><h4 class="mt-3 bold text-danger">DJ009198</h4></td>
-                        <td class="col-md-1">ATP NO: </td>
+                        <td class="col-md-1">ATP NO:</td>
                         <td>0188687</td>
-                    </tr><tr>
                     </tr>
-                    <tr><td class="col-md-">DATE: </td>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td class="col-md-">DATE:</td>
                         <td>2018-08-03</td>
-                        <td class="col-md-1">PO NO: </td>
+                        <td class="col-md-1">PO NO:</td>
                         <td>2346 | 3235 | 4185</td>
-                    </tr><tr>
                     </tr>
-                    <tr><td class="col-md-1">OUTLET: </td>
+                    <tr>
+                    </tr>
+                    <tr>
+                        <td class="col-md-1">OUTLET:</td>
                         <td>YAMAHA PREMIUMBIKES Aparri</td>
-                        <td class="col-md-1">TELEPHONE: </td>
+                        <td class="col-md-1">TELEPHONE:</td>
                         <td>639778169209</td>
                     </tr>
 
-                    <tr><td class="col-md-1">ADDRESS: </td>
+                    <tr>
+                        <td class="col-md-1">ADDRESS:</td>
                         <td>Maharlika Highway, Macanaya, Aparri, Cagayan</td>
-                        <td class="col-md-1">EMAIL: </td>
+                        <td class="col-md-1">EMAIL:</td>
                         <td></td>
                     </tr>
 
-                    <tr><td class="col-md-1">SDR NO: </td>
+                    <tr>
+                        <td class="col-md-1">SDR NO:</td>
                         <td>18G06144 | 18G06143 | 18G06142</td>
-                        <td class="col-md-1">CARRIER: </td>
+                        <td class="col-md-1">CARRIER:</td>
                         <td>YUSEN</td>
                     </tr>
                     </tbody>
@@ -68,12 +78,14 @@
             <div class="panel-body">
                 <table class="table table-responsive table-bordered dataTable table-striped table-hover">
                     <thead>
-                    <tr><th> MODEL CODE </th>
-                        <th> MODEL NAME </th>
-                        <th> FRAME NO </th>
-                        <th> ENGINE NO </th>
-                        <th> STATUS </th>
-                    </tr></thead>
+                    <tr>
+                        <th> MODEL CODE</th>
+                        <th> MODEL NAME</th>
+                        <th> FRAME NO</th>
+                        <th> ENGINE NO</th>
+                        <th> STATUS</th>
+                    </tr>
+                    </thead>
 
                     <tbody>
                     <tr class="success">
@@ -182,13 +194,14 @@
         </div>
     </div>
 
-    <div id="dealertimeline" class="col-md-5">
+    <div id="dealertimeline" class="col-md-5" style="background-color:white!important; height: 100% !important;">
         <div class="timeline-centered" data-spy="affix" data-offset-top="205">
 
 
             <article class="timeline-entry">
                 <div class="timeline-entry-inner">
-                    <time class="timeline-time" datetime="2014-12-09T03:45"><span>2018-08-16</span> <span>Thursday</span></time>
+                    <time class="timeline-time" datetime="2014-12-09T03:45"><span>2018-08-16</span>
+                        <span>Thursday</span></time>
                     <div class="timeline-icon bg-success">
                         <i class="entypo-trophy"></i>
                     </div>
@@ -202,7 +215,8 @@
 
             <article class="timeline-entry left-aligned">
                 <div class="timeline-entry-inner">
-                    <time class="timeline-time" datetime="2014-12-09T03:45"><span>2018-08-15</span> <span>Wednesday</span></time>
+                    <time class="timeline-time" datetime="2014-12-09T03:45"><span>2018-08-15</span>
+                        <span>Wednesday</span></time>
                     <div class="timeline-icon bg-warning">
                         <i class="entypo-phone"></i>
                     </div>
@@ -227,7 +241,8 @@
 
             <article class="timeline-entry left-aligned">
                 <div class="timeline-entry-inner">
-                    <time class="timeline-time" datetime="2014-12-09T03:45"><span>03-Aug-18</span> <span>Friday</span></time>
+                    <time class="timeline-time" datetime="2014-12-09T03:45"><span>03-Aug-18</span> <span>Friday</span>
+                    </time>
                     <div class="timeline-icon bg-danger">
                         <i class="entypo-doc-text"></i>
                     </div>
@@ -246,5 +261,7 @@
             </article>
 
         </div>
-    </div><!---col-md-4-->
+    </div>
+    </div>
+        <!---col-md-4-->
 </div>
