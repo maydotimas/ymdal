@@ -17,8 +17,7 @@
                     </form>
         </div>-->
         <div class="col-md-6 col-sm-4 clearfix">
-            <form method="post" class="search-bar" action="http://test.yamahalogistics.com/dealer/logout"
-                  enctype="application/x-www-form-urlencoded">
+            <form method="get" class="search-bar" action="/">
                 <div class="input-group">
                     <div class="input-group-btn text-right">
                         <button type="submit" class="btn btn-lg btn-red btn-icon">EXIT HYMDAL <i
