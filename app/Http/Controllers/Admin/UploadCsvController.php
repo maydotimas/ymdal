@@ -59,7 +59,7 @@ class UploadCsvController extends Controller
         } else {
             $csv_details = CsvUpload::find($request->input('csv_upload'));
         }
-        
+
         return view('admin.csv.index')
             ->with('active', 'csv-upload')
             ->with('title', 'NAVISION')

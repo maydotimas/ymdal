@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UploadCsvController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UploadCsvController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Imports/DRImport.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Imports/DRImport.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/admin/csv/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/csv/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/admin_app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/admin_app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/agents_app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/agents_app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/encoder_app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/encoder_app.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +184,7 @@
       <workItem from="1585387337449" duration="3976000" />
       <workItem from="1586009243629" duration="2320000" />
       <workItem from="1586270746295" duration="2312000" />
-      <workItem from="1586274570743" duration="2851000" />
+      <workItem from="1586274570743" duration="2955000" />
     </task>
     <servers />
   </component>

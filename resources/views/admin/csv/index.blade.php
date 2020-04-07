@@ -594,6 +594,7 @@
                     data: {csv_id: $("#active_csv_id").val()}
                 })
                     .done(function (msg) {
+                        $(".backToCSV").click();
                         $("#is_uploaded").val("1");
                         loadCSVTable();
                         loadDRTable();
