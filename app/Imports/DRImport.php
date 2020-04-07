@@ -20,17 +20,23 @@ class DRImport implements ToModel, WithBatchInserts, SkipsOnFailure
     */
     public function model(array $row)
     {
+
         /* do format checking first for multiple date format */
         $date = explode("-",$row[2]);
-        $months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEPT", "OCT", "NOV", "DEC"];
-        $month = array_keys($months, strtoupper($date[1]));
-        $year = '20'.$date[2];
-
-        if($date[0] < 10){
-            $new_date = $year.'-'.($month[0]+1).'-0'.$date[0];
+        if(count($date) < 3){
+            $new_date = date('Y-m-d');
         }else{
-            $new_date = $year.'-'.($month[0]+1).'-'.$date[0];
+            $months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEPT", "OCT", "NOV", "DEC"];
+            $month = array_keys($months, strtoupper($date[1]));
+            $year = '20'.$date[2];
+
+            if($date[0] < 10){
+                $new_date = $year.'-'.($month[0]+1).'-0'.$date[0];
+            }else{
+                $new_date = $year.'-'.($month[0]+1).'-'.$date[0];
+            }
         }
+
 
         return new DrCsvContent([
             'nav_dr_no' => $row[0],

@@ -10,7 +10,7 @@
 
     <link rel="icon" href="/neon/assets/images/favicon.ico">
 
-    <title>Neon | {{$title}}</title>
+    <title>YMDAL | {{$title}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="/neon/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
@@ -177,11 +177,11 @@
                     <ul class="list-inline links-list pull-right">
 
                         <li>
-                            <b>ADMIN</b>: Role
+                            <b>ROLE</b>: {{auth()->user()->role}}
                         </li>
                         <li class="sep"></li>
                         <li>
-                            <b>version</b>: Role
+                            <b>version</b>:{{env('APP_VERSION','1.0.0')}}
                         </li>
 
                         <li class="sep"></li>

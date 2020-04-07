@@ -10,6 +10,7 @@ use App\Imports\DRImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Matrix\Exception;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
 
@@ -17,10 +18,12 @@ use Yajra\DataTables\DataTables;
 class UploadCsvController extends Controller
 {
     public $datatable;
+
     public function __construct()
     {
         $this->datatable = new DataTables();
     }
+
     /* get the data for csv datatable or display the index page*/
     public function index(Request $request)
     {
@@ -29,32 +32,40 @@ class UploadCsvController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('details', function($data){
+                ->addColumn('details', function ($data) {
 
-                    $btn = '<button type="button" data-status="'.$data->status.'"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
+                    $btn = '<button type="button" data-status="' . $data->status . '"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" class="btn_details edit btn btn-primary btn-sm btn-warning">DETAILS</button>';
                     return $btn;
                 })
-                ->addColumn('action', function($data){
-                    if($data->status=='UPLOADED_TO_PROD'){
-                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')"  type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+                ->addColumn('action', function ($data) {
+                    if ($data->status == 'UPLOADED_TO_PROD') {
+                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')"  type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
 
-                      }elseif($data->status=='RECALLED'){
-                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+                    } elseif ($data->status == 'RECALLED') {
+                        $btn = '<button data-toggle="modal" data-target="#recallModal"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" type="button" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
 
-                    }else{
-                        $btn = '<button  data-toggle="modal" data-target="#deleteModal"  type="button"  data-id="'.$data->id.'"  data-name="'.$data->file_name.'('.$data->created_at.')" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
+                    } else {
+                        $btn = '<button  data-toggle="modal" data-target="#deleteModal"  type="button"  data-id="' . $data->id . '"  data-name="' . $data->file_name . '(' . $data->created_at . ')" class="edit btn btn-primary btn-sm btn-danger">DELETE</button>';
                     }
 
 
                     return $btn;
                 })
-                ->rawColumns(['action','details'])
+                ->rawColumns(['action', 'details'])
                 ->make(true);
         }
-
+        if ($request->input('status') == false) {
+            $csv_details = [];
+        } else {
+            $csv_details = CsvUpload::find($request->input('csv_upload'));
+        }
+        
         return view('admin.csv.index')
             ->with('active', 'csv-upload')
-            ->with('title', 'NAVISION');
+            ->with('title', 'NAVISION')
+            ->with('status', $request->input('status'))
+            ->with('csv_upload', $csv_details)
+            ->with('current','/admin/csv/upload');
     }
 
     /* upload csv */
@@ -76,40 +87,44 @@ class UploadCsvController extends Controller
 
         /* store session to link csv content to csv file record*/
         session(['csv_id' => $csv_upload->id]);
+        try {
+            /* do import*/
+            $import = new DRImport();
+            $import->import($path);
 
-        /* do import*/
-        $import = new DRImport();
-        $import->import($path);
+            /* To Do: Store failures on a table, then display upload  */
+            /*foreach ($import->failures() as $failure) {
+                $failure->row(); // row that went wrong
+                $failure->attribute(); // either heading key (if using heading row concern) or column index
+                $failure->errors(); // Actual error messages from Laravel validator
+                $failure->values(); // The values of the row that has failed.
+            }*/
 
-        /* To Do: Store failures on a table, then display upload  */
-        /*foreach ($import->failures() as $failure) {
-            $failure->row(); // row that went wrong
-            $failure->attribute(); // either heading key (if using heading row concern) or column index
-            $failure->errors(); // Actual error messages from Laravel validator
-            $failure->values(); // The values of the row that has failed.
-        }*/
+            /* TO DO: PENDING IS THE STATUS SO PWEDE PA SIYANG MAUPDATE HEHE */
+            /* get and import all DRs */
+            $dr_count = DB::select('select ImportDr(?,?) as dr_count', [$csv_upload->id, 'PENDING']);
 
-        /* TO DO: PENDING IS THE STATUS SO PWEDE PA SIYANG MAUPDATE HEHE */
-        /* get and import all DRs */
-        $dr_count = DB::select('select ImportDr(?,?) as dr_count', [$csv_upload->id,'PENDING']);
-
-        /* get and import all DR Items */
-        $dr_item_count = DB::select('select ImportDrItem(?,?) as dr_items_count', [$csv_upload->id,'PENDING']);
+            /* get and import all DR Items */
+            $dr_item_count = DB::select('select ImportDrItem(?,?) as dr_items_count', [$csv_upload->id, 'PENDING']);
 
 
-        $csv_upload->dr_count = $dr_count[0]->dr_count;
-        $csv_upload->dr_item_count = $dr_item_count[0]->dr_items_count;
-        $csv_upload->save();
+            $csv_upload->dr_count = $dr_count[0]->dr_count;
+            $csv_upload->dr_item_count = $dr_item_count[0]->dr_items_count;
+            $csv_upload->save();
 
-        /* get dr record, then update counts of item per dr*/
+            /* get dr record, then update counts of item per dr*/
 
-        /*TO DO: Create branch and outlet details*/
-        /* get and import all branch */
-        /* get and import all outlet */
+            /*TO DO: Create branch and outlet details*/
+            /* get and import all branch */
+            /* get and import all outlet */
 //        session()->flush();
 
-        /* redirect to page with import details */
-        return redirect('/admin/csv/upload')->with('success', 'All good!');
+            /* redirect to page with import details */
+            return redirect()->action('Admin\UploadCsvController@index', ['csv_upload' => $csv_upload->id, 'status' => 'success']);
+        } catch (Exception $e) {
+            return redirect()->action('Admin\UploadCsvController@index', ['csv_upload' => [], 'status' => 'failed']);
+        }
+
     }
 
     /* get csv history for page*/
@@ -137,8 +152,8 @@ class UploadCsvController extends Controller
         if ($request->ajax()) {
             $csv_id = $request->input('csv_id');
             CsvUpload::find($csv_id)->delete();
-            DR::where('csv_id',$csv_id)->delete();
-            DR_Item::where('csv_id',$csv_id)->delete();
+            DR::where('csv_id', $csv_id)->delete();
+            DR_Item::where('csv_id', $csv_id)->delete();
         }
     }
 
@@ -149,26 +164,26 @@ class UploadCsvController extends Controller
             $csv_id = $request->input('csv_id');
 
             $csv = CsvUpload::find($csv_id);
-                $csv->status = 'RECALLED';
+            $csv->status = 'RECALLED';
             $csv->loaded_to_production = 0;
             $csv->recall_date = date('Y-m-d H:i:s');
             $csv->save();
 
-            DR::where('csv_id',$csv_id)->update(['status'=>'RECALLED']);
-            DR_Item::where('csv_id',$csv_id)->update(['status'=>'RECALLED']);
+            DR::where('csv_id', $csv_id)->update(['status' => 'RECALLED']);
+            DR_Item::where('csv_id', $csv_id)->update(['status' => 'RECALLED']);
         }
     }
 
     /* get datatable data for dr details*/
-    public function get_dr_per_file(Request $request,$id)
+    public function get_dr_per_file(Request $request, $id)
     {
         if ($request->ajax()) {
             $data = DB::table('dr')
-                ->where('csv_id',$id);
+                ->where('csv_id', $id);
 
             return DataTables::of($data)
-                ->addColumn('details', function($data){
-                    $btn = '<button  data-name="'.$data->dr_no.')"  data-id="'.$data->dr_no.'"  href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning btn_item_details">DETAILS</button>';
+                ->addColumn('details', function ($data) {
+                    $btn = '<button  data-name="' . $data->dr_no . ')"  data-id="' . $data->dr_no . '"  href="javascript:void(0)" class="edit btn btn-primary btn-sm btn-warning btn_item_details">DETAILS</button>';
                     return $btn;
                 })
                 ->rawColumns(['details'])
@@ -178,10 +193,10 @@ class UploadCsvController extends Controller
     }
 
     /* get the datatable data for items per dr */
-    public function get_items_per_file(Request $request,$id)
+    public function get_items_per_file(Request $request, $id)
     {
         if ($request->ajax()) {
-            $data = DB::table('dr_items')->where('dr_no',$id);
+            $data = DB::table('dr_items')->where('dr_no', $id);
 
             return DataTables::of($data)
                 ->make(true);

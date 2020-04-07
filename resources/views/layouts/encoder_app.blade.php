@@ -162,11 +162,11 @@
                     <ul class="list-inline links-list pull-right">
 
                         <li>
-                            <b>ADMIN</b>: Role
+                            <b>ROLE</b>: {{auth()->user()->role}}
                         </li>
                         <li class="sep"></li>
                         <li>
-                            <b>version</b>: Role
+                            <b>version</b>:{{env('APP_VERSION','1.0.0')}}
                         </li>
 
                         <li class="sep"></li>

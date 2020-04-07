@@ -1,7 +1,6 @@
 @extends('layouts.admin_app')
 
 @section('content')
-
     <div class="row">
     {{-- UPLOAD CSV DIV--}}
     <!-- Horizontal Form -->
@@ -316,9 +315,53 @@
 
         </div>
     </div>
+
+    @if(isset($status)&&($status=='success')&&(isset($csv_upload->dr_count)))
+    <div id="successModal" class="modal fade danger" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">SUCCESS UPLOAD</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center"><br><h4>You have successfully uploaded {{$csv_upload->dr_count}} items.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn_close" data-dismiss="modal"> CLOSE</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @endif
+    @if(isset($status)&&($status=='failed'))
+    <div id="failedModal" class="modal fade danger" role="dialog">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+                <div class="modal-header bg-danger">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">FAILED UPLOAD</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center"><br><h4>Transaction failed.</h4></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success btn_close" data-dismiss="modal"> CLOSE</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    @endif
     {{-- HIDDEN SWITCHES --}}
     <input type="hidden" id="active_csv_id">
     <input type="hidden" id="is_uploaded" value="0">
+    <button type="button" class="hidden" data-toggle="modal" data-target="#successModal" id="success"> </button>
+    <button type="button" class="hidden" data-toggle="modal" data-target="#failedModal" id="failed"> </button>
+
 
 @endsection
 
@@ -330,6 +373,12 @@
         /* once page is loaded*/
         $(document).ready(function () {
 
+            @if(isset($status)&&($status=='success'))
+            $('#success').click()
+            @endif
+            @if(isset($status)&&($status=='failed'))
+            $('#failed').click()
+            @endif
             // part where user uploads a csv file
             /* do this when the click select csv file is clicked. trigger the file select*/
             $("#fu").change(function () {
@@ -430,6 +479,7 @@
 
             /* LOAD DR TABLES*/
             function loadDRTable() {
+
                 $('.btn_details').click(function () {
 
                     /* check status, if not recalled the can upload to production*/
@@ -545,7 +595,8 @@
                 })
                     .done(function (msg) {
                         $("#is_uploaded").val("1");
-                        alert("Data Saved: " + msg);
+                        loadCSVTable();
+                        loadDRTable();
                     });
             });
 
@@ -558,6 +609,7 @@
                     data: {csv_id: $("#delete_csv_id").val()}
                 })
                     .done(function (msg) {
+                        loadCSVTable();
                         loadDRTable();
                     });
             });
@@ -570,7 +622,8 @@
                     data: {csv_id: $("#recall_csv_id").val()}
                 })
                     .done(function (msg) {
-
+                        loadCSVTable();
+                        loadDRTable();
                     });
             });
 
