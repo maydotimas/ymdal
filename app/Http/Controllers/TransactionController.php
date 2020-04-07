@@ -19,7 +19,14 @@ class TransactionController extends Controller
     private $checkbox;
     private $edit;
 
-    public function __construct($current_status, $new_status, $role, $view, $confirm_all = false, $checkbox = false, $edit = false)
+    public function __construct($current_status,
+                                $new_status,
+                                $role,
+                                $view,
+                                $confirm_all = false,
+                                $checkbox = false,
+                                $edit = false,
+                                $can_backlog = false)
     {
         $this->current_status = $current_status;
         $this->new_status = $new_status;
@@ -28,6 +35,7 @@ class TransactionController extends Controller
         $this->confirm_all = $confirm_all;
         $this->checkbox = $checkbox;
         $this->edit = $edit;
+
     }
 
     /* get list of all items per status*/
@@ -37,7 +45,7 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             $data = DB::table('dr')
                 ->select("*")
-                ->selectRaw('GetDRItemQty(dr_no) as dr_qty')
+                ->selectRaw('GetDRItemQtyStatus(dr_no,"' . $this->current_status . '") as dr_qty')
                 ->whereRaw('csv_id in (select id from csv_upload where loaded_to_production = 1)')
                 ->whereRaw('dr_no in (select dr_no from dr_items where status = "' . $this->current_status . '")');
 
@@ -46,8 +54,8 @@ class TransactionController extends Controller
 
                     $btn = '<button type="button" id="row_' . $data->dr_no
                         . '" data-id="' . $data->dr_no
-                        . '" data-toggle="modal" 
-                                                  data-target="#confirmModal" 
+                        . '" data-toggle="modal"
+                                                  data-target="#confirmModal"
                                                   class="btn_confirm_all edit btn btn-success btn-sm">
                               CONFIRM ALL
                           </button>';
@@ -69,7 +77,7 @@ class TransactionController extends Controller
                 ->make(true);
         }
 
-        return view($this->role .'.'. $this->view . '.index')
+        return view($this->role . '.' . $this->view . '.index')
             ->with('edit', $this->edit)
             ->with('checkbox', $this->checkbox)
             ->with('confirm_all', $this->confirm_all)
@@ -87,26 +95,26 @@ class TransactionController extends Controller
             $data = DB::table('dr_items')
                 ->select("*")
                 ->where('dr_no', $dr)
-                ->where(function($query){
-                    $query->where('status',  $this->current_status);
-                    $query->orWhere('status',$this->new_status);
+                ->where(function ($query) {
+                    $query->where('status', $this->current_status);
+                    $query->orWhere('status', $this->new_status);
                 });
 
             return DataTables::of($data)
                 ->addColumn('checkbox', function ($data) {
-                    if ($data->status != $this->current_status) {
-                        $btn = '<button type="button" 
-                                    class="btn btn-s btn-danger btn_check_uncheck" 
+                    if ($data->status == strtoupper($this->current_status)) {
+                        $btn = '<button type="button"
+                                    class="btn btn-s btn-danger btn_check_uncheck"
                                     data-id="' . $data->id . '">
 							            <i id="icon_' . $data->id . '" class="fa fa-minus-square"></i>
 							            <input type="hidden" id="' . $data->id . '" class="dr_items" name="dr_items[]" value="0">
 							    </button>';
                     } else {
-                        $btn = '<button type="button" 
-                                    class="btn btn-s btn-success btn_check_uncheck" 
+                        $btn = '<button type="button"
+                                    class="btn btn-s btn-success btn_check_uncheck"
                                     data-id="' . $data->id . '">
                                         <i id="icon_' . $data->id . '" class="fa fa-check-square"></i>
-                                        <input type="hidden" id="' . $data->id . '" 
+                                        <input type="hidden" id="' . $data->id . '"
                                                 class="dr_items" name="dr_items[]" value="' . $data->id . '">
 							</button>';
                     }
@@ -128,12 +136,11 @@ class TransactionController extends Controller
     public function update_item(Request $request, $id, $status)
     {
         if ($request->ajax()) {
-            $result = DB::table('dr_items')
-                ->where('id', $id);
-            if(($this->current_status == 'CONFIRM' || $this->current_status == 'INTRANSIT')&&($this->role=='agent')){
-                $this->update_status($result,date('Y-m-d'),true);
-            }else{
-                $this->update_status($result,date('Y-m-d'),false);
+            if (($this->current_status == 'CONFIRM' || $this->current_status == 'INTRANSIT') && ($this->role == 'agent')) {
+                $this->update_status($id, date('Y-m-d'), true,$status);
+            } else {
+                echo "hey";
+                $this->update_status($id, date('Y-m-d'), false,$status);
             }
         }
     }
@@ -143,15 +150,15 @@ class TransactionController extends Controller
     {
         if ($request->ajax()) {
             $result = DB::table('dr_items')
-                    ->where('dr_no', $dr);
+                ->where('dr_no', $dr);
 
-            if($mode=='check'){
+            if ($mode == 'check') {
                 $result->update([
                     'status' => $this->new_status,
                     'updated_by' => auth()->user()->id,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
-            }else{
+            } else {
                 $result->update([
                     'status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
@@ -211,7 +218,36 @@ class TransactionController extends Controller
             $result = DB::table('dr_items')
                 ->where('dr_no', $dr);
 
-            $this->update_status($result, $date);
+            if (strtoupper($this->new_status) == 'INTRANSIT') {
+
+                $result->update([
+                    'status' => $this->new_status,
+                    'updated_by' => auth()->user()->id,
+                    'guard_out' => $date
+                ]);
+            } else if (strtoupper($this->new_status) == 'CONFIRMED') {
+
+                $result->update([
+                    'status' => $this->new_status,
+                    'updated_by' => auth()->user()->id,
+                    'confirm_date' => $date
+                ]);
+            } else if (strtoupper($this->new_status) == 'DELIVERED') {
+
+                $result->update([
+                    'status' => $this->new_status,
+                    'updated_by' => auth()->user()->id,
+                    'delivery_date' => $date
+                ]);
+            } else {
+
+                $result->update([
+
+                    'status' => $this->current_status,
+                    'updated_by' => auth()->user()->id,
+                    'guard_out' => null
+                ]);
+            }
 
             DB::table('dr')
                 ->where('dr_no', $dr)
@@ -225,34 +261,44 @@ class TransactionController extends Controller
     }
 
     /* helper para macheck kung guard_out, confirm_date o delivery_date ung gagawin*/
-    private function update_status($result, $date, $isbackload = false){
-        if($isbackload){
+    private function update_status($id, $date, $isbackload = false,$status)
+    {
+
+        $result = DB::table('dr_items')
+            ->where('id', $id);
+
+        if ($isbackload) {
             $result->update([
                 'status' => 'BACKLOAD',
                 'updated_by' => auth()->user()->id
             ]);
-        }else{
-            if($this->new_status=='INTRANSIT'){
+        } else {
+            if (strtoupper($this->new_status) == 'INTRANSIT') {
+
                 $result->update([
                     'status' => $this->new_status,
                     'updated_by' => auth()->user()->id,
                     'guard_out' => $date
                 ]);
-            }else if($this->new_status=='CONFIRMED'){
+            } else if (strtoupper($this->new_status) == 'CONFIRMED') {
+
                 $result->update([
                     'status' => $this->new_status,
                     'updated_by' => auth()->user()->id,
                     'confirm_date' => $date
                 ]);
-            }else if($this->new_status=='DELIVERED'){
+            } else if (strtoupper($this->new_status) == 'DELIVERED') {
+
                 $result->update([
                     'status' => $this->new_status,
                     'updated_by' => auth()->user()->id,
                     'delivery_date' => $date
                 ]);
-            }else{
+            } else {
+
                 $result->update([
-                    'status' => $this->current_status,
+
+                    'status' => $status,
                     'updated_by' => auth()->user()->id,
                     'guard_out' => null
                 ]);

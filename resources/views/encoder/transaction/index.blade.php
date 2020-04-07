@@ -382,7 +382,7 @@
                                 $("#icon_" + id).addClass('fa-check-square');
 
                                 /* update the status span*/
-                                $("#status_" + id).html('BACKLOAD');
+                                $("#status_" + id).html('{{strtoupper($new_status)}}');
 
                                 /* add the value for updating status*/
                                 $("#" + id).val($(this).data('id'));

@@ -45,6 +45,7 @@ Route::prefix('encoder')->group(function () {
     Route::prefix('intransit')->group(function () {
         Route::get('/', 'Encoder\InTransitController@index');
         Route::get('/items/{id}', 'Encoder\InTransitController@items');
+        Route::get('/update/{dr}/{status}', 'Encoder\InTransitController@update_item');
     });
     /* CONFIRMED */
     Route::prefix('confirmed')->group(function () {
