@@ -18,7 +18,7 @@ class GetDrItemStatusQty extends Migration
             DECLARE _confirmed integer;
             DECLARE _status varchar(200);
 
-            select count(*) into _count from dr_items WHERE dr_no = _dr_no;
+            select count(*) into _count from dr_items WHERE dr_no = _dr_no  and `status` != "RECALLED";
             select count(*) into _confirmed from dr_items where dr_no = _dr_no AND `status` = _new_status;
 
             select concat(_confirmed,"/",_count) into _status;

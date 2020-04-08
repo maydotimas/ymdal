@@ -31,6 +31,8 @@ class TblDr extends Migration
             $table->dateTime('date_delivered')->nullable();
             $table->integer('csv_id');
             $table->timestamps();
+            $table->index(['dr_no', 'status']);
+            $table->index(['dr_no']);
         });
     }
 
