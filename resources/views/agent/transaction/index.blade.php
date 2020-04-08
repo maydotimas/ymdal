@@ -402,9 +402,12 @@
                                 $("#icon_" + id).addClass('fa-minus-square');
                                 $("#icon_" + id).removeClass('fa-check-square');
 
+                                @if($role=='agent' && (($current_status == 'CONFIRMED' || $current_status == 'INTRANSIT')))
                                 /* update the status span*/
-                                $("#status_" + id).html('{{$current_status}}');
-
+                                $("#status_" + id).html('{{strtoupper($current_status)}}');
+                                @else
+                                $("#status_" + id).html('BACKLOAD');
+                                @endif
                                 /* add the value for updating status*/
                                 $("#" + id).val('');
 
@@ -441,6 +444,13 @@
                     url: "/{{$role}}/{{$current_status}}/dr/update_all/" + dr + "/uncheck"
                 }).done(function (msg) {
                     updateItemTable(dr);
+                    {{--span_status--}}
+                    {{--@if($role=='agent' && (($current_status == 'CONFIRM' || $current_status == 'INTRANSIT')))--}}
+                    {{--/* update the status span*/--}}
+                    {{--$(".span_status").html('BACKLOAD');--}}
+                    {{--@else--}}
+                    {{--$(".span_status").html('{{strtoupper($current_status)}}');--}}
+                    {{--@endif--}}
                 });
             });
 

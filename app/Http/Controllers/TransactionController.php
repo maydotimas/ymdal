@@ -98,6 +98,8 @@ class TransactionController extends Controller
                 ->where(function ($query) {
                     $query->where('status', $this->current_status);
                     $query->orWhere('status', $this->new_status);
+                    $query->orwhere('original_status', $this->current_status);
+                    $query->orWhere('original_status', $this->new_status);
                 });
 
             return DataTables::of($data)
@@ -123,7 +125,7 @@ class TransactionController extends Controller
                 })
                 ->addColumn('span_status', function ($data) {
 
-                    $btn = '<span id="status_' . $data->id . '">' . $data->status . '</span>';
+                    $btn = '<span id="status_' . $data->id . '" class="span_status">' . $data->status . '</span>';
 
                     return $btn;
                 })
@@ -155,15 +157,28 @@ class TransactionController extends Controller
             if ($mode == 'check') {
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'updated_at' => date('Y-m-d H:i:s')
                 ]);
             } else {
-                $result->update([
-                    'status' => $this->current_status,
-                    'updated_by' => auth()->user()->id,
-                    'updated_at' => date('Y-m-d H:i:s')
-                ]);
+                if ((strtoupper($this->current_status) == 'CONFIRMED' || strtoupper($this->current_status) == 'INTRANSIT') && ($this->role == 'agent')) {
+                    $result->update([
+                        'status' => 'BACKLOAD',
+
+                        'original_status' => $this->current_status,
+                        'updated_by' => auth()->user()->id,
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]);
+                }else{
+                    $result->update([
+                        'status' => $this->current_status,
+                        'original_status' => $this->current_status,
+                        'updated_by' => auth()->user()->id,
+                        'updated_at' => date('Y-m-d H:i:s')
+                    ]);
+                }
+
             }
 
         }
@@ -179,7 +194,7 @@ class TransactionController extends Controller
                 ->where('dr_no', $dr)
                 ->update([
                     'status' => $this->new_status,
-                    'original_status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'is_updated' => null,
                     'updated_at' => date('Y-m-d H:i:s'),
@@ -222,6 +237,7 @@ class TransactionController extends Controller
 
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->new_status,
                     'updated_by' => auth()->user()->id,
                     'guard_out' => $date
                 ]);
@@ -229,6 +245,7 @@ class TransactionController extends Controller
 
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'confirm_date' => $date
                 ]);
@@ -236,14 +253,15 @@ class TransactionController extends Controller
 
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'delivery_date' => $date
                 ]);
             } else {
 
                 $result->update([
-
                     'status' => $this->current_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'guard_out' => null
                 ]);
@@ -270,6 +288,7 @@ class TransactionController extends Controller
         if ($isbackload) {
             $result->update([
                 'status' => 'BACKLOAD',
+                'original_status' => $this->current_status,
                 'updated_by' => auth()->user()->id
             ]);
         } else {
@@ -277,6 +296,7 @@ class TransactionController extends Controller
 
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'guard_out' => $date
                 ]);
@@ -284,6 +304,7 @@ class TransactionController extends Controller
 
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'confirm_date' => $date
                 ]);
@@ -291,6 +312,7 @@ class TransactionController extends Controller
 
                 $result->update([
                     'status' => $this->new_status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'delivery_date' => $date
                 ]);
@@ -299,6 +321,7 @@ class TransactionController extends Controller
                 $result->update([
 
                     'status' => $status,
+                    'original_status' => $this->current_status,
                     'updated_by' => auth()->user()->id,
                     'guard_out' => null
                 ]);

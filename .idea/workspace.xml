@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TransactionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TransactionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/agent/transaction/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/agent/transaction/index.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +186,7 @@
       <workItem from="1585387337449" duration="3976000" />
       <workItem from="1586009243629" duration="2320000" />
       <workItem from="1586270746295" duration="2312000" />
-      <workItem from="1586274570743" duration="9582000" />
+      <workItem from="1586274570743" duration="12457000" />
     </task>
     <servers />
   </component>
@@ -192,6 +194,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1586350634885">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1586350634885" />
     <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1586312136313">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -200,19 +206,19 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1586274627332" />
-    <state x="336" y="77" width="739" height="526" key="find.popup" timestamp="1586348826431">
+    <state x="336" y="77" width="739" height="526" key="find.popup" timestamp="1586350407233">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1583760312399" />
-    <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1586348826431" />
+    <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1586350407233" />
     <state x="297" y="151" key="run.anything.popup" timestamp="1586279581623">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1586279581623" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1586348565713">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1586350542634">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1583768769590" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1586348565713" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1586350542634" />
   </component>
 </project>
