@@ -372,17 +372,29 @@
 
                             /* CHECK CURRENT STATUS*/
                             var status = $("#status_" + id).html();
-                            if (status == '{{$current_status}}') {
+                            if (status.toLowerCase() == '{{strtolower($current_status)}}') {
                                 /* update the button class*/
                                 $(this).removeClass('btn-danger');
                                 $(this).addClass('btn-success');
+
+                                @if($role=='agent')
+                                    if(status=='BACKLOAD'){
+                                        /* update the status span*/
+                                        $("#status_" + id).html('{{strtoupper($current_status)}}');
+                                    }else{
+                                        /* update the status span*/
+                                        $("#status_" + id).html('BACKLOAD');
+                                    }
+                                @else
+                                    /* update the status span*/
+                                    $("#status_" + id).html('{{$new_status}}');
+                                @endif
 
                                 /* update the symbol display*/
                                 $("#icon_" + id).removeClass('fa-minus-square');
                                 $("#icon_" + id).addClass('fa-check-square');
 
-                                /* update the status span*/
-                                $("#status_" + id).html('{{$new_status}}');
+
 
                                 /* add the value for updating status*/
                                 $("#" + id).val($(this).data('id'));
@@ -402,12 +414,14 @@
                                 $("#icon_" + id).addClass('fa-minus-square');
                                 $("#icon_" + id).removeClass('fa-check-square');
 
-                                @if($role=='agent' && (($current_status == 'CONFIRMED' || $current_status == 'INTRANSIT')))
-                                /* update the status span*/
-                                $("#status_" + id).html('{{strtoupper($current_status)}}');
-                                @else
-                                $("#status_" + id).html('BACKLOAD');
-                                @endif
+                                if(status=='BACKLOAD'){
+                                    /* update the status span*/
+                                    $("#status_" + id).html('{{strtoupper($current_status)}}');
+                                }else{
+                                    /* update the status span*/
+                                    $("#status_" + id).html('{{strtoupper($new_status)}}');
+                                }
+
                                 /* add the value for updating status*/
                                 $("#" + id).val('');
 

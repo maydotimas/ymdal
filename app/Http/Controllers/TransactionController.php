@@ -45,7 +45,7 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             $data = DB::table('dr')
                 ->select("*")
-                ->selectRaw('GetDRItemQtyStatus(dr_no,"' . $this->current_status . '") as dr_qty')
+                ->selectRaw('GetDRItemQtyStatus(dr_no,"' . $this->new_status . '") as dr_qty')
                 ->whereRaw('csv_id in (select id from csv_upload where loaded_to_production = 1)')
                 ->whereRaw('dr_no in (select dr_no from dr_items where status = "' . $this->current_status . '")');
 
@@ -55,8 +55,8 @@ class TransactionController extends Controller
                     $btn = '<button type="button" id="row_' . $data->dr_no
                         . '" data-id="' . $data->dr_no
                         . '" data-toggle="modal"
-                                                  data-target="#confirmModal"
-                                                  class="btn_confirm_all edit btn btn-success btn-sm">
+                              data-target="#confirmModal"
+                              class="btn_confirm_all edit btn btn-success btn-sm">
                               CONFIRM ALL
                           </button>';
                     return $btn;
@@ -100,7 +100,8 @@ class TransactionController extends Controller
                     $query->orWhere('status', $this->new_status);
                     $query->orwhere('original_status', $this->current_status);
                     $query->orWhere('original_status', $this->new_status);
-                });
+                })
+                ->where('dr_items.status','<>','RECALLED');
 
             return DataTables::of($data)
                 ->addColumn('checkbox', function ($data) {
@@ -138,7 +139,8 @@ class TransactionController extends Controller
     public function update_item(Request $request, $id, $status)
     {
         if ($request->ajax()) {
-            if (($this->current_status == 'CONFIRM' || $this->current_status == 'INTRANSIT') && ($this->role == 'agent')) {
+            if ((strtoupper($this->current_status) == 'CONFIRMED' || strtoupper($this->current_status) == 'INTRANSIT') && ($this->role == 'agent')) {
+                echo $this->role;
                 $this->update_status($id, date('Y-m-d'), true,$status);
             } else {
                 echo "hey";
@@ -286,11 +288,21 @@ class TransactionController extends Controller
             ->where('id', $id);
 
         if ($isbackload) {
-            $result->update([
-                'status' => 'BACKLOAD',
-                'original_status' => $this->current_status,
-                'updated_by' => auth()->user()->id
-            ]);
+            $record = $result->first();
+            if($record->status=='BACKLOAD'){
+                $result->update([
+                    'status' => $this->current_status,
+                    'original_status' => $this->current_status,
+                    'updated_by' => auth()->user()->id
+                ]);
+            }else{
+                $result->update([
+                    'status' => 'BACKLOAD',
+                    'original_status' => $this->current_status,
+                    'updated_by' => auth()->user()->id
+                ]);
+            }
+
         } else {
             if (strtoupper($this->new_status) == 'INTRANSIT') {
 
