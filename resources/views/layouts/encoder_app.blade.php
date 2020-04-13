@@ -8,7 +8,7 @@
     <meta name="description" content="Neon Admin Panel" />
     <meta name="author" content="" />
 
-    <link rel="icon" href="/neon/assets/images/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <title>YMDAL | {{$title}}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">

@@ -8,7 +8,7 @@
     <meta name="description" content="YMDAL" />
     <meta name="author" content="" />
 
-    <link rel="icon" href="/neon/assets/images/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
 
     <title>YMDAL | Check DR</title>
 

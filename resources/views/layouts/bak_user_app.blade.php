@@ -8,7 +8,7 @@
     <meta name="description" content="YMDAL | HOME"/>
     <meta name="author" content=""/>
 
-    <link rel="icon" href="/neon/assets/images/favicon.ico">
+    <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/neon/assets/css/font-icons/entypo/css/entypo.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
