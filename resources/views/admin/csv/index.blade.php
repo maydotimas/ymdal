@@ -317,11 +317,11 @@
     </div>
 
     @if(isset($status)&&($status=='success')&&(isset($csv_upload->dr_count)))
-    <div id="successModal" class="modal fade danger" role="dialog">
+    <div id="successModal" class="modal fade success" role="dialog">
         <div class="modal-dialog">
 
             <div class="modal-content">
-                <div class="modal-header bg-danger">
+                <div class="modal-header bg-success">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">SUCCESS UPLOAD</h4>
                 </div>
