@@ -107,9 +107,18 @@ class UploadCsvController extends Controller
             /* get and import all DR Items */
             $dr_item_count = DB::select('select ImportDrItem(?,?) as dr_items_count', [$csv_upload->id, 'PENDING']);
 
+            if(isset($dr_count[0])){
+                $csv_upload->dr_count = $dr_count[0]->dr_count;
+            }else{
+                $csv_upload->dr_count = 0;
+            }
 
-            $csv_upload->dr_count = $dr_count[0]->dr_count;
-            $csv_upload->dr_item_count = $dr_item_count[0]->dr_items_count;
+            if(isset($dr_item_count[0])){
+                $csv_upload->dr_item_count = $dr_item_count[0]->dr_items_count;
+            }else{
+                $csv_upload->dr_item_count = 0;
+            }
+
             $csv_upload->save();
 
             /* get dr record, then update counts of item per dr*/
