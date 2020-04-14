@@ -20,7 +20,9 @@ class ImportDR extends Migration
             INSERT INTO dr (dr_no, atp_no, dr_date, outlet_code, sdr_no, po_no, carrier_code, dispatch, region, transit_days, `status`, csv_id, created_at, updated_at )
                 SELECT distinct nav_dr_no, nav_atp_no, nav_dr_date, outlet_code, nav_sdr_no, nav_po_no,  nav_carrier, nav_dispatch, nav_region, nav_transit_days, _status, _csv_id, now(), now()
                 FROM dr_csv_content
-                WHERE csv_id = _csv_id;
+                WHERE csv_id = _csv_id
+                and nav_dr_no not in ( select dr_no from dr where status != "RECALLED" );
+
             select count(*) into _count from dr WHERE csv_id = _csv_id;
          return _count;
         END

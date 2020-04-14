@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\CsvUpload;
 use App\DR;
 use App\DR_Item;
+use App\DrCsvContent;
 use App\Http\Controllers\Controller;
 use App\Imports\DRImport;
 use Illuminate\Http\Request;
@@ -171,6 +172,9 @@ class UploadCsvController extends Controller
     {
         if ($request->ajax()) {
             $csv_id = $request->input('csv_id');
+
+            DrCsvContent::where('csv_id',$csv_id)
+                ->update(['status'=>'RECALLED']);
 
             $csv = CsvUpload::find($csv_id);
             $csv->status = 'RECALLED';

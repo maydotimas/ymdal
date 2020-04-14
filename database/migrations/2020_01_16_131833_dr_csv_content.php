@@ -35,6 +35,7 @@ class DrCsvContent extends Migration
             $table->string('nav_sdr_no');
             $table->string('nav_po_no');
             $table->integer('csv_id');
+            $table->enum('status',['PENDING','INTRANSIT','CONFIRMED','DELIVERED','BACKLOAD','RECALLED']);
             $table->timestamps();
         });
     }

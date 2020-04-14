@@ -5,12 +5,13 @@ namespace App\Imports;
 use App\DrCsvContent;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Validators\Failure;
 
-class DRImport implements ToModel, WithBatchInserts, SkipsOnFailure
+class DRImport implements ToModel, WithBatchInserts, SkipsOnFailure, SkipsOnError
 {
     use Importable, SkipsFailures;
     /**
@@ -92,5 +93,9 @@ class DRImport implements ToModel, WithBatchInserts, SkipsOnFailure
             '16' => 'required',
             '17' => 'required',
         ];
+    }
+    public function onError(\Throwable $e)
+    {
+        // Handle the exception how you'd like.
     }
 }

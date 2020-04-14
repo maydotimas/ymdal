@@ -39,6 +39,7 @@ class DrItems extends Migration
 
             $table->index(['dr_no', 'status']);
             $table->index(['dr_no']);
+
         });
     }
 

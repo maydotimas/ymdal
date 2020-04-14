@@ -52,10 +52,11 @@
 
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
-                                           id="DataTables_Table_0" role="grid"
-                                           aria-describedby="DataTables_Table_0_info"
-                                           style="color:black !important;">
+                                    <table
+                                        class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
+                                        id="DataTables_Table_0" role="grid"
+                                        aria-describedby="DataTables_Table_0_info"
+                                        style="color:black !important;">
                                         <thead>
                                         <tr role="row">
                                             <th class="sorting_desc" tabindex="0"
@@ -130,10 +131,11 @@
 
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
-                                               id="DataTables_Table_1" role="grid"
-                                               aria-describedby="DataTables_Table_0_info"
-                                               style="color:black !important;">
+                                        <table
+                                            class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
+                                            id="DataTables_Table_1" role="grid"
+                                            aria-describedby="DataTables_Table_0_info"
+                                            style="color:black !important;">
                                             <thead>
                                             <tr role="row">
                                                 {{--<th class="sorting_desc" tabindex="0"
@@ -205,10 +207,11 @@
 
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <table class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
-                                               id="DataTables_Table_2" role="grid"
-                                               aria-describedby="DataTables_Table_0_info"
-                                               style="color:black !important;">
+                                        <table
+                                            class="table table-responsive table-bordered dataTable table-striped table-hover no-footer"
+                                            id="DataTables_Table_2" role="grid"
+                                            aria-describedby="DataTables_Table_0_info"
+                                            style="color:black !important;">
                                             <thead>
                                             <tr role="row">
                                                 <th class="sorting" tabindex="0" aria-controls="DataTables_Table_1"
@@ -317,50 +320,57 @@
     </div>
 
     @if(isset($status)&&($status=='success')&&(isset($csv_upload->dr_count)))
-    <div id="successModal" class="modal fade success" role="dialog">
-        <div class="modal-dialog">
+        <div id="successModal" class="modal fade success" role="dialog">
+            <div class="modal-dialog">
 
-            <div class="modal-content">
-                <div class="modal-header bg-success">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">SUCCESS UPLOAD</h4>
+                <div class="modal-content">
+                    <div class="modal-header bg-success">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">SUCCESS UPLOAD</h4>
+                    </div>
+                    <div class="modal-body">
+                        @if($csv_upload->dr_count == 0)
+                            <div class="text-center"><br><h4>There were no uploaded items.</h4></div>
+
+                        @else
+                            <div class="text-center"><br><h4>You have successfully uploaded {{$csv_upload->dr_count}}
+                                    items.</h4></div>
+
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btn_close" data-dismiss="modal"> CLOSE</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="text-center"><br><h4>You have successfully uploaded {{$csv_upload->dr_count}} items.</h4></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success btn_close" data-dismiss="modal"> CLOSE</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
     @endif
     @if(isset($status)&&($status=='failed'))
-    <div id="failedModal" class="modal fade danger" role="dialog">
-        <div class="modal-dialog">
+        <div id="failedModal" class="modal fade danger" role="dialog">
+            <div class="modal-dialog">
 
-            <div class="modal-content">
-                <div class="modal-header bg-danger">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">FAILED UPLOAD</h4>
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">FAILED UPLOAD</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center"><br><h4>Transaction failed.</h4></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-success btn_close" data-dismiss="modal"> CLOSE</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <div class="text-center"><br><h4>Transaction failed.</h4></div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success btn_close" data-dismiss="modal"> CLOSE</button>
-                </div>
+
             </div>
-
         </div>
-    </div>
     @endif
     {{-- HIDDEN SWITCHES --}}
     <input type="hidden" id="active_csv_id">
     <input type="hidden" id="is_uploaded" value="0">
-    <button type="button" class="hidden" data-toggle="modal" data-target="#successModal" id="success"> </button>
-    <button type="button" class="hidden" data-toggle="modal" data-target="#failedModal" id="failed"> </button>
+    <button type="button" class="hidden" data-toggle="modal" data-target="#successModal" id="success"></button>
+    <button type="button" class="hidden" data-toggle="modal" data-target="#failedModal" id="failed"></button>
 
 
 @endsection
@@ -451,8 +461,7 @@
                                     $("#delete_csv_name").val(aData.file_name);
                                     $("#delete_csv_id").val(aData.id);
                                 });
-                            }
-                            else {
+                            } else {
                                 /* COLOR GREEN ROW FOR ITEMS THAT ARE UPLOADED ALREADY*/
                                 $(nRow).addClass('danger');
                                 action_btn.removeClass('btn-danger');
@@ -485,8 +494,7 @@
                     /* check status, if not recalled the can upload to production*/
                     if ($(this).data('status') == 'RECALLED') {
                         $("#btn_prod_upload").addClass('hidden');
-                    }
-                    else if ($(this).data('status') == 'UPLOADED_TO_PROD') {
+                    } else if ($(this).data('status') == 'UPLOADED_TO_PROD') {
                         $("#btn_prod_upload").addClass('hidden');
                     } else {
                         $("#btn_prod_upload").removeClass('hidden');

@@ -21,9 +21,11 @@ class ImporDRItem extends Migration
                 INSERT INTO dr_items (dr_no, model_code, model_name, frame_no, engine_no, sdr_no, po_no, `status`, created_at, updated_at, csv_id, original_status )
                     SELECT nav_dr_no, nav_model_code, nav_model_name, nav_frame_no, nav_engine_no, nav_sdr_no, nav_po_no, _status, now(), now() , _csv_id, _status
                     FROM dr_csv_content
-                    WHERE csv_id = _csv_id;
+                     WHERE csv_id = _csv_id
+                     and (nav_dr_no, nav_model_code, nav_frame_no, nav_engine_no) not in
+                     (select dr_no, model_code, frame_no, engine_no from dr_items where status != "RECALLED" );
 
-                select count(nav_dr_no) into _count from dr_csv_content where csv_id = _csv_id;
+                select count(*) into _count from dr_items where csv_id = _csv_id;
                 return _count;
             END
         ');

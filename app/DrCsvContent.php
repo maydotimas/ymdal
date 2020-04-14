@@ -31,7 +31,8 @@ class DrCsvContent extends Model
         'nav_region',
         'nav_sdr_no',
         'nav_po_no',
-        'csv_id'
+        'csv_id',
+        'status',
     ];
 
 
