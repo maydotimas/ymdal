@@ -154,7 +154,8 @@ class TransactionController extends Controller
     {
         if ($request->ajax()) {
             $result = DB::table('dr_items')
-                ->where('dr_no', $dr);
+                ->where('dr_no', $dr)
+                ->where('status','!=','RECALLED');
 
             if ($mode == 'check') {
                 $result->update([
@@ -194,6 +195,7 @@ class TransactionController extends Controller
             // upload items that are set to intransit
             $status = DB::table('dr_items')
                 ->where('dr_no', $dr)
+                ->where('status','!=','RECALLED')
                 ->update([
                     'status' => $this->new_status,
                     'original_status' => $this->current_status,
@@ -233,7 +235,8 @@ class TransactionController extends Controller
         if ($request->ajax()) {
             // upload items that are set to intransit
             $result = DB::table('dr_items')
-                ->where('dr_no', $dr);
+                ->where('dr_no', $dr)
+                ->where('status','!=','RECALLED');
 
             if (strtoupper($this->new_status) == 'INTRANSIT') {
 
@@ -271,6 +274,7 @@ class TransactionController extends Controller
 
             DB::table('dr')
                 ->where('dr_no', $dr)
+                ->where('status','!=','RECALLED')
                 ->update([
                     'status' => $this->new_status,
                     'updated_at' => date('Y-m-d H:i:s')
@@ -285,7 +289,8 @@ class TransactionController extends Controller
     {
 
         $result = DB::table('dr_items')
-            ->where('id', $id);
+            ->where('id', $id)
+            ->where('status','!=','RECALLED');
 
         if ($isbackload) {
             $record = $result->first();
