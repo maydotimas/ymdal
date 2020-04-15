@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -41,18 +42,20 @@ class LoginController extends Controller
 
     public function redirectPath()
     {
-        if(auth()->user()->role=='ADMIN'){
+        Session::put('role', auth()->user()->role);
+        if (auth()->user()->role == 'ADMIN') {
             return '/admin/home';
         }
-        if(auth()->user()->role=='ENCODER'){
+        if (auth()->user()->role == 'ENCODER') {
             return '/encoder/home';
         }
-        if(auth()->user()->role=='CS'){
+        if (auth()->user()->role == 'CS') {
             return '/agent/home';
         }
         auth()->logout();
         return '/admin';
     }
+
     public function logout(Request $request)
     {
         $this->guard()->logout();

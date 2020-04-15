@@ -3,6 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="833b8ce3-533c-4882-a992-6a40f3eec367" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Encoder/InTransitController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Encoder/InTransitController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +193,7 @@
       <workItem from="1586791142753" duration="2998000" />
       <workItem from="1586851887981" duration="6332000" />
       <workItem from="1586935901194" duration="2339000" />
-      <workItem from="1586957396617" duration="2467000" />
+      <workItem from="1586957396617" duration="4894000" />
     </task>
     <servers />
   </component>
@@ -200,6 +205,14 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1586350634885" />
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1586962126380">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="87" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1586962126380" />
+    <state x="371" y="95" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1586961739099">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="371" y="95" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1280.680@0.0.1280.680" timestamp="1586961739099" />
     <state x="421" y="95" key="FileChooserDialogImpl" timestamp="1586312136313">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -208,19 +221,19 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="337" y="164" key="com.intellij.ide.util.TipDialog/0.0.1280.680@0.0.1280.680" timestamp="1586957509866" />
-    <state x="336" y="77" width="742" height="526" key="find.popup" timestamp="1586956261996">
+    <state x="336" y="77" width="742" height="526" key="find.popup" timestamp="1586960511701">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="336" y="77" width="739" height="526" key="find.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1583760312399" />
-    <state x="336" y="77" width="742" height="526" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1586956261996" />
+    <state x="336" y="77" width="742" height="526" key="find.popup/0.0.1280.680@0.0.1280.680" timestamp="1586960511701" />
     <state x="297" y="151" key="run.anything.popup" timestamp="1586279581623">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1586279581623" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1586959851957">
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1586962268953">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1536.824@0.0.1280.680" timestamp="1583768769590" />
-    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1586959851957" />
+    <state x="303" y="1" width="672" height="678" key="search.everywhere.popup/0.0.1280.680@0.0.1280.680" timestamp="1586962268953" />
   </component>
 </project>

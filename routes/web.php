@@ -21,91 +21,95 @@ Route::get('/', function () {
     return view('layouts.check_dr');
 })->name('check-dr');
 
-Route::get('/get-dr','HomeController@checkDR');
+Route::get('/get-dr', 'HomeController@checkDR');
 
 
 Route::get('/home', 'Admin\HomeController@index')->name('home');
 
-Route::prefix('encoder')->group(function () {
+Route::group(['middleware' => ['auth']], function () {
+    Route::prefix('encoder')->group(function () {
 
-    /*Dashboard*/
-    Route::get('/home', 'Encoder\HomeController@index')->name('home');
+        /*Dashboard*/
+        Route::get('/home', 'Encoder\HomeController@index')->name('home');
 
-    /* PENDING */
-    Route::prefix('pending')->group(function () {
-        Route::get('/', 'Encoder\PendingTransactionController@index');
-        Route::get('/items/{id}', 'Encoder\PendingTransactionController@items');
-        Route::get('/update/{dr}/{status}', 'Encoder\PendingTransactionController@update_item');
-        Route::get('/dr/update_all/{dr}/{mode}', 'Encoder\PendingTransactionController@update_all');
-        Route::get('/confirm/{dr}/{date}', 'Encoder\PendingTransactionController@confirm');
-        Route::get('/confirm_all/{dr}/{date}', 'Encoder\PendingTransactionController@confirm_all');
+        /* PENDING */
+        Route::prefix('pending')->group(function () {
+            Route::get('/', 'Encoder\PendingTransactionController@index');
+            Route::get('/items/{id}', 'Encoder\PendingTransactionController@items');
+            Route::get('/update/{dr}/{status}', 'Encoder\PendingTransactionController@update_item');
+            Route::get('/dr/update_all/{dr}/{mode}', 'Encoder\PendingTransactionController@update_all');
+            Route::get('/confirm/{dr}/{date}', 'Encoder\PendingTransactionController@confirm');
+            Route::get('/confirm_all/{dr}/{date}', 'Encoder\PendingTransactionController@confirm_all');
+        });
+
+        /* INTRANSIT */
+        Route::prefix('intransit')->group(function () {
+            Route::get('/', 'Encoder\InTransitController@index');
+            Route::get('/items/{id}', 'Encoder\InTransitController@items');
+            Route::get('/update/{dr}/{status}', 'Encoder\InTransitController@update_item');
+            Route::get('/dr/update_all/{dr}/{mode}', 'Encoder\InTransitController@update_all');
+            Route::get('/confirm/{dr}/{date}', 'Encoder\InTransitController@confirm');
+            Route::get('/confirm_all/{dr}/{date}', 'Encoder\InTransitController@confirm_all');
+        });
+        /* CONFIRMED */
+        Route::prefix('confirmed')->group(function () {
+            Route::get('/', 'Encoder\ConfirmedController@index');
+            Route::get('/items/{id}', 'Encoder\ConfirmedController@items');
+        });
+
+        /* DELIVERED */
+        Route::prefix('delivered')->group(function () {
+            Route::get('/', 'Encoder\DeliveredController@index');
+            Route::get('/items/{id}', 'Encoder\DeliveredController@items');
+        });
+
+        /* BACKLOAD */
+        Route::prefix('backload')->group(function () {
+            Route::get('/', 'Encoder\BackloadController@index');
+            Route::get('/items/{id}', 'Encoder\BackloadController@items');
+        });
+
     });
 
-    /* INTRANSIT */
-    Route::prefix('intransit')->group(function () {
-        Route::get('/', 'Encoder\InTransitController@index');
-        Route::get('/items/{id}', 'Encoder\InTransitController@items');
-        Route::get('/update/{dr}/{status}', 'Encoder\InTransitController@update_item');
+    Route::prefix('agent')->group(function () {
+
+        /*Dashboard*/
+        Route::get('/home', 'Agent\HomeController@index')->name('home');
+
+        /* INTRANSIT */
+        Route::prefix('intransit')->group(function () {
+            Route::get('/', 'Agent\InTransitController@index');
+            Route::get('/items/{id}', 'Agent\InTransitController@items');
+            Route::get('/update/{dr}/{status}', 'Agent\InTransitController@update_item');
+            Route::get('/dr/update_all/{dr}/{mode}', 'Agent\InTransitController@update_all');
+            Route::get('/confirm/{dr}/{date}', 'Agent\InTransitController@confirm');
+            Route::get('/confirm_all/{dr}/{date}', 'Agent\InTransitController@confirm_all');
+        });
+        /* CONFIRMED */
+        Route::prefix('confirmed')->group(function () {
+            Route::get('/', 'Agent\ConfirmedController@index');
+            Route::get('/items/{id}', 'Agent\ConfirmedController@items');
+            Route::get('/update/{dr}/{status}', 'Agent\ConfirmedController@update_item');
+            Route::get('/dr/update_all/{dr}/{mode}', 'Agent\ConfirmedController@update_all');
+            Route::get('/confirm/{dr}/{date}', 'Agent\ConfirmedController@confirm');
+            Route::get('/confirm_all/{dr}/{date}', 'Agent\ConfirmedController@confirm_all');
+        });
+
+        /* DELIVERED */
+        Route::prefix('delivered')->group(function () {
+            Route::get('/', 'Agent\DeliveredController@index');
+            Route::get('/items/{id}', 'Agent\DeliveredController@items');
+        });
+
+        /* BACKLOAD */
+        Route::prefix('backload')->group(function () {
+            Route::get('/', 'Agent\BackloadController@index');
+            Route::get('/items/{id}', 'Agent\BackloadController@items');
+        });
+
     });
-    /* CONFIRMED */
-    Route::prefix('confirmed')->group(function () {
-        Route::get('/', 'Encoder\ConfirmedController@index');
-        Route::get('/items/{id}', 'Encoder\ConfirmedController@items');
-    });
+    Route::prefix('admin')->group(function () {
 
-    /* DELIVERED */
-    Route::prefix('delivered')->group(function () {
-        Route::get('/', 'Encoder\DeliveredController@index');
-        Route::get('/items/{id}', 'Encoder\DeliveredController@items');
-    });
-
-    /* BACKLOAD */
-    Route::prefix('backload')->group(function () {
-        Route::get('/', 'Encoder\BackloadController@index');
-        Route::get('/items/{id}', 'Encoder\BackloadController@items');
-    });
-
-});
-Route::prefix('agent')->group(function () {
-
-    /*Dashboard*/
-    Route::get('/home', 'Agent\HomeController@index')->name('home');
-
-    /* INTRANSIT */
-    Route::prefix('intransit')->group(function () {
-        Route::get('/', 'Agent\InTransitController@index');
-        Route::get('/items/{id}', 'Agent\InTransitController@items');
-        Route::get('/update/{dr}/{status}', 'Agent\InTransitController@update_item');
-        Route::get('/dr/update_all/{dr}/{mode}', 'Agent\InTransitController@update_all');
-        Route::get('/confirm/{dr}/{date}', 'Agent\InTransitController@confirm');
-        Route::get('/confirm_all/{dr}/{date}', 'Agent\InTransitController@confirm_all');
-    });
-    /* CONFIRMED */
-    Route::prefix('confirmed')->group(function () {
-        Route::get('/', 'Agent\ConfirmedController@index');
-        Route::get('/items/{id}', 'Agent\ConfirmedController@items');
-        Route::get('/update/{dr}/{status}', 'Agent\ConfirmedController@update_item');
-        Route::get('/dr/update_all/{dr}/{mode}', 'Agent\ConfirmedController@update_all');
-        Route::get('/confirm/{dr}/{date}', 'Agent\ConfirmedController@confirm');
-        Route::get('/confirm_all/{dr}/{date}', 'Agent\ConfirmedController@confirm_all');
-    });
-
-    /* DELIVERED */
-    Route::prefix('delivered')->group(function () {
-        Route::get('/', 'Agent\DeliveredController@index');
-        Route::get('/items/{id}', 'Agent\DeliveredController@items');
-    });
-
-    /* BACKLOAD */
-    Route::prefix('backload')->group(function () {
-        Route::get('/', 'Agent\BackloadController@index');
-        Route::get('/items/{id}', 'Agent\BackloadController@items');
-    });
-
-});
-Route::prefix('admin')->group(function () {
-
-    Route::middleware(['isAdmin'])->group(function () {
         /*Dashboard*/
         Route::get('/home', 'Admin\HomeController@index')->name('home');
 
