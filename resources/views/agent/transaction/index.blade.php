@@ -560,7 +560,10 @@
                         method: "get",
                         url: "/{{$role}}/{{$current_status}}/confirm/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
-                        updateItemTable(dr);
+                        $("#div_dr_list").removeClass('hidden');
+                        $("#div_dr_items").addClass('hidden');
+                        table.DataTable().clear().destroy();
+                        loadDRTables();
                     });
                 }
                 // update all
@@ -572,7 +575,11 @@
                         url: "/{{$role}}/{{$current_status}}/confirm_all/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         // hide the class
-                        $("#row_" + dr).closest('tr').addClass('hidden');
+                        // $("#row_" + dr).closest('tr').addClass('hidden');
+                        $("#div_dr_list").removeClass('hidden');
+                        $("#div_dr_items").addClass('hidden');
+                        table.DataTable().clear().destroy();
+                        loadDRTables();
                     });
                 }
             });
