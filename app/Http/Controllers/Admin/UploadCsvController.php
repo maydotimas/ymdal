@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Matrix\Exception;
+use phpDocumentor\Reflection\Types\Object_;
 use Symfony\Component\VarDumper\Cloner\Data;
 use Yajra\DataTables\DataTables;
 
@@ -120,7 +121,22 @@ class UploadCsvController extends Controller
                 $csv_upload->dr_item_count = 0;
             }
 
-            $csv_upload->save();
+            /* if no upload */
+            if($csv_upload->dr_count==0){
+                DrCsvContent::where('csv_id',$csv_upload->id)
+                    ->delete();
+
+                $csv = CsvUpload::find($csv_upload->id)
+                    ->delete();
+
+                DR::where('csv_id', $csv_upload->id)->delete();
+                DR_Item::where('csv_id',$csv_upload->id)->delete();
+
+                return redirect()->action('Admin\UploadCsvController@index', ['csv_upload' => '', 'status' => 'success']);
+            }else{
+                $csv_upload->save();
+            }
+
 
             /* get dr record, then update counts of item per dr*/
 

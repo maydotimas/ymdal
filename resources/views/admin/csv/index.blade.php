@@ -319,17 +319,24 @@
         </div>
     </div>
 
-    @if(isset($status)&&($status=='success')&&(isset($csv_upload->dr_count)))
+    @if(isset($status)&&($status=='success'))
         <div id="successModal" class="modal fade success" role="dialog">
             <div class="modal-dialog">
 
                 <div class="modal-content">
+                    @if(isset($csv_upload))
                     <div class="modal-header bg-success">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">SUCCESS UPLOAD</h4>
                     </div>
+                    @else
+                        <div class="modal-header bg-danger">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">FAILED UPLOAD</h4>
+                        </div>
+                    @endif
                     <div class="modal-body">
-                        @if($csv_upload->dr_count == 0)
+                        @if(!isset($csv_upload))
                             <div class="text-center"><br><h4>There were no uploaded items.</h4></div>
 
                         @else
