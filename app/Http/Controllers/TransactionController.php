@@ -105,22 +105,42 @@ class TransactionController extends Controller
 
             return DataTables::of($data)
                 ->addColumn('checkbox', function ($data) {
-                    if ($data->status == strtoupper($this->current_status)) {
-                        $btn = '<button type="button"
+                    if($this->role=='encoder' && strtoupper($this->current_status) == 'INTRANSIT'){
+                        if (strtoupper($data->status) == strtoupper($this->new_status)) {
+                            $btn = '<button type="button"
                                     class="btn btn-s btn-danger btn_check_uncheck"
                                     data-id="' . $data->id . '">
 							            <i id="icon_' . $data->id . '" class="fa fa-minus-square"></i>
 							            <input type="hidden" id="' . $data->id . '" class="dr_items" name="dr_items[]" value="0">
 							    </button>';
-                    } else {
-                        $btn = '<button type="button"
+                        } else {
+                            $btn = '<button type="button"
                                     class="btn btn-s btn-success btn_check_uncheck"
                                     data-id="' . $data->id . '">
                                         <i id="icon_' . $data->id . '" class="fa fa-check-square"></i>
                                         <input type="hidden" id="' . $data->id . '"
                                                 class="dr_items" name="dr_items[]" value="' . $data->id . '">
 							</button>';
+                        }
+                    }else{
+                        if ($data->status == strtoupper($this->current_status)) {
+                            $btn = '<button type="button"
+                                    class="btn btn-s btn-danger btn_check_uncheck"
+                                    data-id="' . $data->id . '">
+							            <i id="icon_' . $data->id . '" class="fa fa-minus-square"></i>
+							            <input type="hidden" id="' . $data->id . '" class="dr_items" name="dr_items[]" value="0">
+							    </button>';
+                        } else {
+                            $btn = '<button type="button"
+                                    class="btn btn-s btn-success btn_check_uncheck"
+                                    data-id="' . $data->id . '">
+                                        <i id="icon_' . $data->id . '" class="fa fa-check-square"></i>
+                                        <input type="hidden" id="' . $data->id . '"
+                                                class="dr_items" name="dr_items[]" value="' . $data->id . '">
+							</button>';
+                        }
                     }
+
 
                     return $btn;
                 })

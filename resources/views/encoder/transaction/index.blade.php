@@ -295,7 +295,6 @@
                         @endif
                     ],
                     drawCallback: function (data) {
-                        console.log(data);
                         // set the onclick button
                         loadDRItemsTable();
                         @if($confirm_all)
@@ -373,16 +372,28 @@
                             /* CHECK CURRENT STATUS*/
                             var status = $("#status_" + id).html();
                             if (status.toLowerCase() == '{{strtolower($current_status)}}') {
-                                /* update the button class*/
-                                $(this).removeClass('btn-danger');
-                                $(this).addClass('btn-success');
 
-                                /* update the symbol display*/
-                                $("#icon_" + id).removeClass('fa-minus-square');
-                                $("#icon_" + id).addClass('fa-check-square');
+
+                                if('{{strtoupper($new_status)}}'=='PENDING'){
+                                    /* update the button class*/
+                                    $(this).addClass('btn-danger');
+                                    $(this).removeClass('btn-success');
+
+                                    /* update the symbol display*/
+                                    $("#icon_" + id).addClass('fa-minus-square');
+                                    $("#icon_" + id).removeClass('fa-check-square');
+                                }else{
+                                    /* update the button class*/
+                                    $(this).removeClass('btn-danger');
+                                    $(this).addClass('btn-success');
+                                    /* update the symbol display*/
+                                    $("#icon_" + id).removeClass('fa-minus-square');
+                                    $("#icon_" + id).addClass('fa-check-square');
+                                }
 
                                 /* update the status span*/
                                 $("#status_" + id).html('{{strtoupper($new_status)}}');
+
 
                                 /* add the value for updating status*/
                                 $("#" + id).val($(this).data('id'));
@@ -394,13 +405,24 @@
                                     url: "/{{$role}}/{{$current_status}}/update/" + id + "/{{$new_status}}"
                                 });
                             } else {
-                                /* update the button class*/
-                                $(this).addClass('btn-danger');
-                                $(this).removeClass('btn-success');
 
-                                /* update the symbol display*/
-                                $("#icon_" + id).addClass('fa-minus-square');
-                                $("#icon_" + id).removeClass('fa-check-square');
+                                if('{{strtoupper($new_status)}}'=='PENDING'){
+
+                                    /* update the button class*/
+                                    $(this).removeClass('btn-danger');
+                                    $(this).addClass('btn-success');
+                                    /* update the symbol display*/
+                                    $("#icon_" + id).removeClass('fa-minus-square');
+                                    $("#icon_" + id).addClass('fa-check-square');
+                                }else{
+                                    /* update the button class*/
+                                    $(this).addClass('btn-danger');
+                                    $(this).removeClass('btn-success');
+
+                                    /* update the symbol display*/
+                                    $("#icon_" + id).addClass('fa-minus-square');
+                                    $("#icon_" + id).removeClass('fa-check-square');
+                                }
 
                                 /* update the status span*/
                                 $("#status_" + id).html('{{strtoupper($current_status)}}');
@@ -537,6 +559,10 @@
                         url: "/{{$role}}/{{$current_status}}/confirm/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         updateItemTable(dr);
+                        $("#div_dr_list").removeClass('hidden');
+                        $("#div_dr_items").addClass('hidden');
+                        table.DataTable().clear().destroy();
+                        loadDRTables();
                     });
                 }
                 // update all
@@ -548,7 +574,11 @@
                         url: "/{{$role}}/{{$current_status}}/confirm_all/" + dr + "/" + $("#confirm_date").val()
                     }).done(function (msg) {
                         // hide the class
-                        $("#row_" + dr).closest('tr').addClass('hidden');
+                        //$("#row_" + dr).closest('tr').addClass('hidden');
+                        $("#div_dr_list").removeClass('hidden');
+                        $("#div_dr_items").addClass('hidden');
+                        table.DataTable().clear().destroy();
+                        loadDRTables();
                     });
                 }
             });
