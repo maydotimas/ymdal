@@ -124,6 +124,38 @@
                         <span class="title">Settings</span>
                     </a>
                 </li>
+                <li>
+                    <a>
+                        <i class="fa fa-search"></i>
+                        <span class="title">Filter</span>
+                    </a>
+                    <div class="row center-block" style="margin-top:3%;width:80% !important;">
+                        <div class="form-group">
+                            <label for="nav_dr_no" class="col-sm-5 control-label text-white search_dr">DR NO</label>
+                            <div class="input-group col-sm-7">
+                                <input type="text" class="form-control search_dr" id="nav_dr_no" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nav_atp_no" class="col-sm-5 control-label text-white search_dr">ATP NO</label>
+                            <div class="input-group col-sm-7">
+                                <input type="text" class="form-control search_dr" id="nav_atp_no" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="outlet" class="col-sm-5 control-label text-white ">OUTLET</label>
+                            <div class="input-group col-sm-7">
+                                <input type="text" class="form-control search_dr" id="outlet" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-sm-3">
+                                <a href="pending" id="btn-reset" onclick="checkchangesmade(event)" class="btn btn-danger btn-xs">RESET</a>
+                                <input type="hidden" id="nav_table" value="pending">
+                            </div>
+                        </div>
+                    </div>
+                </li>
 
             </ul>
 

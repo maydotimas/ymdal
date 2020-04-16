@@ -269,15 +269,17 @@
             loadDRTables();
 
             /* LOAD CSV TABLES*/
-            function loadDRTables() {
+            /* LOAD CSV TABLES*/
+            function loadDRTables(url="/{{$role}}/{{$current_status}}") {
 
                 // table.DataTable().clear().destroy();
 
                 // Initialize DataTable for CSV Upload list
                 table.DataTable({
+                    searching:false,
                     processing: true,
                     serverSide: true,
-                    ajax: "/{{$role}}/{{$current_status}}",
+                    ajax: url,
                     columns: [
                         // {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                         {data: 'dr_no', name: 'dr_no'},
@@ -589,6 +591,27 @@
                 $("#div_dr_list").removeClass('hidden');
                 $("#div_dr_items").addClass('hidden');
             });
+            @if($title!='DASHBOARD')
+            $(".search_dr").change(function(){
+                updateTable();
+            });
+            $(".search_dr").keyup(function(){
+                updateTable();
+            });
+
+            function updateTable(){
+                var dr = $("#nav_dr_no").val();
+                var atp = $("#nav_atp_no").val();
+                var outlet = $("#outlet").val();
+                if(atp == '' && outlet == '' && dr == '') return false;
+                if(atp == '') atp = '0';
+                if(outlet == '') outlet = '0';
+                if(dr == '') dr = '0';
+
+                table.DataTable().clear().destroy();
+                loadDRTables("/{{$role}}/{{$current_status}}/search/"+dr+"/"+atp+"/"+outlet);
+            }
+            @endif
 
         });
     </script>

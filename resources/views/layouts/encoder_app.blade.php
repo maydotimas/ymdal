@@ -4,9 +4,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Neon Admin Panel" />
-    <meta name="author" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Neon Admin Panel"/>
+    <meta name="author" content=""/>
 
     <link rel="icon" href="/favicon.ico">
 
@@ -25,7 +25,8 @@
 
     <script src="/neon/assets/js/jquery-1.11.3.min.js"></script>
 
-    <!--[if lt IE 9]><script src="/neon/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="/neon/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -37,7 +38,8 @@
 </head>
 <body class="page-body  page-fade" data-url="http://neon.dev">
 
-<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
+<div class="page-container">
+    <!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->
 
     <div class="sidebar-menu">
 
@@ -125,7 +127,42 @@
                     </a>
                 </li>
 
+                <li>
+                    <a>
+                    <i class="fa fa-search"></i>
+                    <span class="title">Filter</span>
+                    </a>
+                    <div class="row center-block" style="margin-top:3%;width:80% !important;">
+                        <div class="form-group">
+                            <label for="nav_dr_no" class="col-sm-5 control-label text-white search_dr">DR NO</label>
+                            <div class="input-group col-sm-7">
+                                <input type="text" class="form-control search_dr" id="nav_dr_no" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nav_atp_no" class="col-sm-5 control-label text-white search_dr">ATP NO</label>
+                            <div class="input-group col-sm-7">
+                                <input type="text" class="form-control search_dr" id="nav_atp_no" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="outlet" class="col-sm-5 control-label text-white ">OUTLET</label>
+                            <div class="input-group col-sm-7">
+                                <input type="text" class="form-control search_dr" id="outlet" value="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-sm-3">
+                                <a href="pending" id="btn-reset" onclick="checkchangesmade(event)" class="btn btn-danger btn-xs">RESET</a>
+                                <input type="hidden" id="nav_table" value="pending">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+
             </ul>
+
 
         </div>
 
@@ -187,10 +224,10 @@
             </div>
 
         </div>
-        <hr />
-        {{--main content--}}
-        @yield('content')
-        <!-- Footer -->
+        <hr/>
+    {{--main content--}}
+    @yield('content')
+    <!-- Footer -->
         <footer class="main">
 
             &copy; 2015 <strong>Neon</strong> Admin Theme by <a href="http://nexbridgetech.com" target="_blank">NexBrigeTech</a>
@@ -211,7 +248,10 @@
             </div>
 
             <div class="modal-body">
-                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope. Secure active living depend son repair day ladies now.</p>
+                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw.
+                    Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end
+                    marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope.
+                    Secure active living depend son repair day ladies now.</p>
             </div>
 
             <div class="modal-footer">
@@ -233,7 +273,10 @@
             </div>
 
             <div class="modal-body">
-                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope. Secure active living depend son repair day ladies now.</p>
+                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw.
+                    Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end
+                    marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope.
+                    Secure active living depend son repair day ladies now.</p>
             </div>
 
             <div class="modal-footer">
@@ -255,7 +298,10 @@
             </div>
 
             <div class="modal-body">
-                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw. Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope. Secure active living depend son repair day ladies now.</p>
+                <p>Now residence dashwoods she excellent you. Shade being under his bed her. Much read on as draw.
+                    Blessing for ignorant exercise any yourself unpacked. Pleasant horrible but confined day end
+                    marriage. Eagerness furniture set preserved far recommend. Did even but nor are most gave hope.
+                    Secure active living depend son repair day ladies now.</p>
             </div>
 
             <div class="modal-footer">
@@ -265,8 +311,6 @@
         </div>
     </div>
 </div>
-
-
 
 
 <!-- Imported styles on this page -->
@@ -296,7 +340,6 @@
 
 <!-- JavaScripts initializations and stuff -->
 <script src="/neon/assets/js/neon-custom.js"></script>
-
 
 <!-- Demo Settings -->
 <script src="/neon/assets/js/neon-demo.js"></script>

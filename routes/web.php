@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
         /* PENDING */
         Route::prefix('pending')->group(function () {
             Route::get('/', 'Encoder\PendingTransactionController@index');
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Encoder\PendingTransactionController@search');
             Route::get('/items/{id}', 'Encoder\PendingTransactionController@items');
             Route::get('/update/{dr}/{status}', 'Encoder\PendingTransactionController@update_item');
             Route::get('/dr/update_all/{dr}/{mode}', 'Encoder\PendingTransactionController@update_all');
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['auth']], function () {
         /* INTRANSIT */
         Route::prefix('intransit')->group(function () {
             Route::get('/', 'Encoder\InTransitController@index');
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Encoder\InTransitController@search');
             Route::get('/items/{id}', 'Encoder\InTransitController@items');
             Route::get('/update/{dr}/{status}', 'Encoder\InTransitController@update_item');
             Route::get('/dr/update_all/{dr}/{mode}', 'Encoder\InTransitController@update_all');
@@ -55,18 +57,24 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('confirmed')->group(function () {
             Route::get('/', 'Encoder\ConfirmedController@index');
             Route::get('/items/{id}', 'Encoder\ConfirmedController@items');
+
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Encoder\ConfirmedController@search');
         });
 
         /* DELIVERED */
         Route::prefix('delivered')->group(function () {
             Route::get('/', 'Encoder\DeliveredController@index');
             Route::get('/items/{id}', 'Encoder\DeliveredController@items');
+
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Encoder\ConfirmedController@search');
         });
 
         /* BACKLOAD */
         Route::prefix('backload')->group(function () {
             Route::get('/', 'Encoder\BackloadController@index');
             Route::get('/items/{id}', 'Encoder\BackloadController@items');
+
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Encoder\ConfirmedController@search');
         });
 
     });
@@ -79,6 +87,7 @@ Route::group(['middleware' => ['auth']], function () {
         /* INTRANSIT */
         Route::prefix('intransit')->group(function () {
             Route::get('/', 'Agent\InTransitController@index');
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Agent\InTransitController@search');
             Route::get('/items/{id}', 'Agent\InTransitController@items');
             Route::get('/update/{dr}/{status}', 'Agent\InTransitController@update_item');
             Route::get('/dr/update_all/{dr}/{mode}', 'Agent\InTransitController@update_all');
@@ -88,6 +97,7 @@ Route::group(['middleware' => ['auth']], function () {
         /* CONFIRMED */
         Route::prefix('confirmed')->group(function () {
             Route::get('/', 'Agent\ConfirmedController@index');
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Agent\ConfirmedController@search');
             Route::get('/items/{id}', 'Agent\ConfirmedController@items');
             Route::get('/update/{dr}/{status}', 'Agent\ConfirmedController@update_item');
             Route::get('/dr/update_all/{dr}/{mode}', 'Agent\ConfirmedController@update_all');
@@ -99,11 +109,13 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('delivered')->group(function () {
             Route::get('/', 'Agent\DeliveredController@index');
             Route::get('/items/{id}', 'Agent\DeliveredController@items');
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Agent\DeliveredController@search');
         });
 
         /* BACKLOAD */
         Route::prefix('backload')->group(function () {
             Route::get('/', 'Agent\BackloadController@index');
+            Route::get('/search/{dr_no}/{atp_no}/{outlet}', 'Agent\BackloadController@search');
             Route::get('/items/{id}', 'Agent\BackloadController@items');
         });
 

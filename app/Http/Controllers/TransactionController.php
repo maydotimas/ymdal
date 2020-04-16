@@ -88,6 +88,66 @@ class TransactionController extends Controller
             ->with('title', strtoupper($this->current_status));
     }
 
+
+    /* search */
+    public function search(Request $request,$dr_no=false,$atp_no=false,$outlet=false)
+    {
+        /* allow update for ajax only for dataable*/
+        if ($request->ajax()) {
+            $data = DB::table('dr')
+                ->select("*")
+                ->selectRaw('GetDRItemQtyStatus(dr_no,"' . $this->new_status . '") as dr_qty')
+                ->whereRaw('csv_id in (select id from csv_upload where loaded_to_production = 1)')
+                ->whereRaw('dr_no in (select dr_no from dr_items where status = "' . $this->current_status . '")');
+
+            if($dr_no != '0'){
+                $data = $data->where('dr_no',$dr_no);
+            }
+            if($atp_no != '0'){
+                $data = $data->where('atp_no',$atp_no);
+            }
+            if($outlet != '0'){
+                $data = $data->where('outlet_code',$outlet);
+            }
+
+            return DataTables::of($data)
+                ->addColumn('confirm', function ($data) {
+
+                    $btn = '<button type="button" id="row_' . $data->dr_no
+                        . '" data-id="' . $data->dr_no
+                        . '" data-toggle="modal"
+                              data-target="#confirmModal"
+                              class="btn_confirm_all edit btn btn-success btn-sm">
+                              CONFIRM ALL
+                          </button>';
+                    return $btn;
+                })
+                ->addColumn('details', function ($data) {
+                    $btn = '<button type="button" data-id="' . $data->dr_no
+                        . '" data-date="' . $data->dr_date
+                        . '" data-outlet="' . $data->outlet_code
+                        . '" data-address="' . $data->outlet_code
+                        . '" data-atp="' . $data->atp_no
+                        . '" data-po="' . $data->po_no
+                        . '" class="edit btn btn-primary btn-sm btn-warning btn_dr_details">
+                                DETAILS
+                            </button>';
+                    return $btn;
+                })
+                ->rawColumns(['details', 'confirm'])
+                ->make(true);
+        }
+
+        return view($this->role . '.' . $this->view . '.index')
+            ->with('edit', $this->edit)
+            ->with('checkbox', $this->checkbox)
+            ->with('confirm_all', $this->confirm_all)
+            ->with('role', $this->role)
+            ->with('current_status', $this->current_status)
+            ->with('new_status', $this->new_status)
+            ->with('active', $this->current_status)
+            ->with('title', strtoupper($this->current_status));
+    }
     /* get items per list */
     public function items(Request $request, $dr)
     {
